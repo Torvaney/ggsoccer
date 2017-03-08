@@ -3,7 +3,7 @@ Plot soccer event data in R/ggplot2
 
 ## Installation
 ```
-devtools::install_github("dill/emoGG")
+devtools::install_github("torvaney/ggsoccer")
 ```
 
 ## Usage
