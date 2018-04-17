@@ -4,23 +4,24 @@
 \alias{pitch_layer}
 \title{Adds soccer pitch markings as a layer for use in a ggplot plot.}
 \usage{
-pitch_layer(fill = "green", colour = "white", x_scale = 1, y_scale = 1,
+pitch_layer(colour = "black", fill = "white", x_scale = 1, y_scale = 1,
   x_shift = 0, y_shift = 0, juego = FALSE)
 }
 \arguments{
-\item{fill}{fill colour of the pitch}
+\item{colour}{Colour of pitch outline.}
 
-\item{colour}{outline colour of the pitch}
+\item{fill}{Colour of pitch fill}
 
-\item{x_scale}{scale applied to x coordinates of the pitch markings}
+\item{x_scale}{Scale applied to x coordinates of the pitch markings.}
 
-\item{y_scale}{scale applied to y coordinates of the pitch markings}
+\item{y_scale}{Scale applied to y coordinates of the pitch markings.}
 
-\item{x_shift}{constant value added to x coordinates of the pitch markings}
+\item{x_shift}{Constant value added to x coordinates of the pitch markings.}
 
-\item{y_shift}{constant value added to y coordinates of the pitch markings}
+\item{y_shift}{Constant value added to y coordinates of the pitch markings.}
 
-\item{juego}{boolean indicating whether additional 'juego de posicion' markings should be shown}
+\item{juego}{TRUE/FALSE indicating whether additional 'Juego de Posición'
+markings should be shown.}
 }
 \value{
 list of ggplot geoms to be added to a ggplot plot
@@ -29,5 +30,12 @@ list of ggplot geoms to be added to a ggplot plot
 Adds soccer pitch markings as a layer for use in a ggplot plot.
 }
 \examples{
-ggplot(shots_data, aes(x = x, y = y)) + pitch_layer() + geom_point() + theme_pitch()
+library(ggplot2)
+
+shots_data <- data.frame(x = c(90, 85, 82, 78, 83),
+                         y = c(43, 40, 52, 56, 44))
+
+ggplot(shots_data, aes(x = x, y = y)) +
+  pitch_layer()
+
 }

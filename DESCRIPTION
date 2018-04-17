@@ -3,8 +3,12 @@ Title: Plot Soccer Event Data
 Version: 0.0.0.9000
 Authors@R: person("Ben", "Torvaney", email = "torvaney@protonmail.com", role = c("aut", "cre"))
 Description: Additional layers and functions for plotting Opta-style event data in R.
-Depends: R (>= 3.3.3)
-License: MIT
-Encoding: UTF-8
+License: MIT + file LICENSE
+Depends: 
+  R (>= 3.3.3)
+Imports:
+  ggplot2
 LazyData: true
+Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
+Encoding: UTF-8
