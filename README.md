@@ -15,7 +15,7 @@ ggsoccer is not currently available on CRAN and must be downloaded from github l
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("tidyverse/purrr")
+devtools::install_github("torvaney/ggsoccer")
 ```
 
 Usage
