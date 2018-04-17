@@ -2,14 +2,10 @@
 % Please edit documentation in R/annotate_pitch.R
 \name{annotate_pitch}
 \alias{annotate_pitch}
-\alias{pitch_layer}
 \title{Adds soccer pitch markings as a layer for use in a ggplot plot.}
 \usage{
 annotate_pitch(colour = "black", fill = "white", x_scale = 1,
   y_scale = 1, x_shift = 0, y_shift = 0)
-
-pitch_layer(colour = "black", fill = "white", x_scale = 1, y_scale = 1,
-  x_shift = 0, y_shift = 0)
 }
 \arguments{
 \item{colour}{Colour of pitch outline.}
@@ -37,6 +33,6 @@ shots_data <- data.frame(x = c(90, 85, 82, 78, 83),
                          y = c(43, 40, 52, 56, 44))
 
 ggplot(shots_data, aes(x = x, y = y)) +
-  pitch_layer()
+  annotate_pitch()
 
 }

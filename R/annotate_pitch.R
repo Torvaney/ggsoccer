@@ -16,7 +16,7 @@
 #'                          y = c(43, 40, 52, 56, 44))
 #'
 #' ggplot(shots_data, aes(x = x, y = y)) +
-#'   pitch_layer()
+#'   annotate_pitch()
 #'
 #' @export
 annotate_pitch <- function(colour = "black",
@@ -157,8 +157,10 @@ annotate_pitch <- function(colour = "black",
   return(markings)
 }
 
-
-#' @rdname annotate_pitch
+#' Adds soccer pitch markings as a layer for use in a ggplot plot.
+#'
+#' This function is deprecated. Please use `annotate_pitch` instead.
+#'
 #' @export
 pitch_layer <- function(colour = "black",
                         fill = "white",
