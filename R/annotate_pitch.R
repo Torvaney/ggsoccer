@@ -7,9 +7,6 @@
 #' @param x_shift Constant value added to x coordinates of the pitch markings.
 #' @param y_shift Constant value added to y coordinates of the pitch markings.
 #'
-#' @param juego TRUE/FALSE indicating whether additional 'Juego de Posición'
-#' markings should be shown.
-#'
 #' @return list of ggplot geoms to be added to a ggplot plot
 #'
 #' @examples
@@ -22,13 +19,12 @@
 #'   pitch_layer()
 #'
 #' @export
-pitch_layer <- function(colour = "black",
+annotate_pitch <- function(colour = "black",
                         fill = "white",
                         x_scale = 1,
                         y_scale = 1,
                         x_shift = 0,
-                        y_shift = 0,
-                        juego = FALSE) {
+                        y_shift = 0) {
 
   markings <- list(
     # Add pitch outline
@@ -161,3 +157,21 @@ pitch_layer <- function(colour = "black",
   return(markings)
 }
 
+
+#' @rdname annotate_pitch
+#' @export
+pitch_layer <- function(colour = "black",
+                        fill = "white",
+                        x_scale = 1,
+                        y_scale = 1,
+                        x_shift = 0,
+                        y_shift = 0) {
+  .Deprecated("annotate_pitch")
+  annotate_pitch(
+    colour,
+    fill,
+    x_scale,
+    y_scale,
+    x_shift,
+    y_shift)
+}

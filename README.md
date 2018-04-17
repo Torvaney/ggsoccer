@@ -31,7 +31,7 @@ shots <- data.frame(x = c(90, 85, 82, 78, 83),
                     y = c(43, 40, 52, 56, 44))
 
 ggplot(shots, aes(x = x, y = y)) +
-  pitch_layer() +
+  annotate_pitch() +
   geom_point(size = 3) +
   theme_pitch() +
   direction_label() +
@@ -52,8 +52,8 @@ pass_data <- data.frame(x = c(24, 18, 64, 78, 53),
                         y2 = c(40, 59, 89, 44, 28))
 
 ggplot(pass_data) +
-  pitch_layer(colour = "forestgreen",
-              fill = "lightgreen") +
+  annotate_pitch(colour = "forestgreen",
+                 fill = "lightgreen") +
   geom_segment(aes(x = x, y = y, xend = x2, yend = y2),
                arrow = arrow(length = unit(0.25, "cm"),
                              type = "closed")) +

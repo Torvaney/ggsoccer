@@ -14,7 +14,7 @@
 #'                          y = c(43, 40, 52, 56, 44))
 #'
 #' p <- ggplot(shots_data, aes(x = x, y = y)) +
-#'   pitch_layer() +
+#'   annotate_pitch() +
 #'   geom_point()
 #'
 #' # Add direction of play label
