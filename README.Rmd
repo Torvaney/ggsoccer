@@ -1,29 +1,39 @@
+---
+output:
+  github_document:
+    html_preview: false
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-ggsoccer
-========
 
-Overview
---------
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+```
+
+# ggsoccer
+
+## Overview
 
 ggsoccer provides a handful of functions to make plotting Opta-style soccer event data in R/ggplot2.
 
-Installation
-------------
+## Installation
 
 ggsoccer is not currently available on CRAN and must be downloaded from github like so:
 
-``` r
+```{r, eval = FALSE}
 # install.packages("devtools")
 devtools::install_github("tidyverse/purrr")
 ```
 
-Usage
------
+## Usage
 
 The following example uses ggsoccer to solve a fairly realistic problem: plot a set of shots onto a soccer pitch.
 
-``` r
+```{r example_shots}
 library(ggplot2)
 library(ggsoccer)
 
@@ -41,11 +51,9 @@ ggplot(shots, aes(x = x, y = y)) +
           "ggsoccer example")
 ```
 
-![](man/figures/README-example_shots-1.png)
-
 You may want to customise your pitch plot. Here is a different example, plotting passes on a green pitch:
 
-``` r
+```{r example_passes}
 pass_data <- data.frame(x = c(24, 18, 64, 78, 53),
                         y = c(43, 55, 88, 18, 44),
                         x2 = c(34, 44, 81, 82, 64),
@@ -65,4 +73,3 @@ ggplot(pass_data) +
           "ggsoccer example")
 ```
 
-![](man/figures/README-example_passes-1.png)
