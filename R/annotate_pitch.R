@@ -19,12 +19,12 @@
 #'   annotate_pitch()
 #'
 #' @export
-annotate_pitch <- function(colour = "black",
-                        fill = "white",
-                        x_scale = 1,
-                        y_scale = 1,
-                        x_shift = 0,
-                        y_shift = 0) {
+annotate_pitch <- function(colour = "dimgray",
+                           fill = "white",
+                           x_scale = 1,
+                           y_scale = 1,
+                           x_shift = 0,
+                           y_shift = 0) {
 
   markings <- list(
     # Add pitch outline

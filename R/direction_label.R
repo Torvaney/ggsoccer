@@ -27,7 +27,7 @@
 direction_label <- function(x_label = 50,
                             y_label = -3,
                             label_length = 20,
-                            colour = "black") {
+                            colour = "dimgray") {
   layer <- list(
     geom_segment(
       x = x_label - (label_length / 2),
