@@ -38,7 +38,7 @@ annotate_pitch <- function(colour = "dimgray",
     ),
     # Centre circle
     ggplot2::annotation_custom(
-      grob = grid::circleGrob(r  = grid::unit(1,"npc"),
+      grob = grid::circleGrob(r  = grid::unit(1, "npc"),
                               gp = grid::gpar(col  = colour,
                                               fill = fill,
                                               lwd = 2)),
@@ -67,7 +67,7 @@ annotate_pitch <- function(colour = "dimgray",
     ),
     # Add penalty areas (with penalty spot)
     ggplot2::annotation_custom(
-      grob = grid::circleGrob(r  = grid::unit(1,"npc"),
+      grob = grid::circleGrob(r  = grid::unit(1, "npc"),
                               gp = grid::gpar(col  = colour,
                                               fill = fill,
                                               lwd = 2)),
@@ -93,7 +93,7 @@ annotate_pitch <- function(colour = "dimgray",
       fill = fill
     ),
     ggplot2::annotation_custom(
-      grob = grid::circleGrob(r  = grid::unit(1,"npc"),
+      grob = grid::circleGrob(r  = grid::unit(1, "npc"),
                               gp = grid::gpar(col  = colour,
                                               fill = fill,
                                               lwd = 2)),
