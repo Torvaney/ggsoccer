@@ -4,7 +4,7 @@
 \alias{annotate_pitch}
 \title{Adds soccer pitch markings as a layer for use in a ggplot plot.}
 \usage{
-annotate_pitch(colour = "black", fill = "white", x_scale = 1,
+annotate_pitch(colour = "dimgray", fill = "white", x_scale = 1,
   y_scale = 1, x_shift = 0, y_shift = 0)
 }
 \arguments{

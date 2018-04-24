@@ -5,7 +5,7 @@
 \title{Adds an arrow indicating the direction of play to a ggplot plot}
 \usage{
 direction_label(x_label = 50, y_label = -3, label_length = 20,
-  colour = "black")
+  colour = "dimgray")
 }
 \arguments{
 \item{x_label}{x position of the centre of the arrow on the plot}
