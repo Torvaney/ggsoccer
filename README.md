@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-ggsoccer
-========
+ggsoccer <img src="man/figures/logo.png" width="160px" align="right" />
+=======================================================================
 
 Overview
 --------
