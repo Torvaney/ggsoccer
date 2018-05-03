@@ -6,7 +6,7 @@ ggsoccer <img src="man/figures/logo.png" width="160px" align="right" />
 Overview
 --------
 
-ggsoccer provides a handful of functions to make plotting Opta-style soccer event data in R/ggplot2.
+ggsoccer provides a handful of functions to make it easy to plot Opta-style soccer event data in R/ggplot2.
 
 Installation
 ------------
