@@ -39,10 +39,40 @@ events <-
   matches %>% 
   transpose() %>% 
   map(as_tibble) %>% 
-  map_dfr(StatsBombR::get.matchFree)
+  map_dfr(StatsBombR::get.matchFree) %>% 
+  as_tibble()
 ```
 
-
 ## Pass maps
+
+```{r}
+library(ggsoccer)
+
+passes <-
+  events %>%
+  filter(type.name == "Pass",
+         pass.shot_assist) %>%
+  mutate(
+    x    = map_dbl(location, first),
+    y    = map_dbl(location, last),
+    xend = map_dbl(pass.end_location, first),
+    yend = map_dbl(pass.end_location, last)
+  ) %>% 
+  select(x, y, xend, yend)
+
+passes
+
+ggplot(passes) +
+  annotate_pitch(x_scale = 1.2,
+                 y_scale = 0.8) +
+  geom_segment(aes(x = x, y = y,
+                   xend = xend, yend = yend)) +
+  geom_point(aes(x = xend,
+                 y = yend)) +
+  theme_pitch() +
+  xlim(-1, 121) +
+  ylim(-1, 81)
+```
+
 
 ## Shot maps
