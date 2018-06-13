@@ -62,15 +62,43 @@ Because ggsoccer is implemented as ggplot layers, it makes customising a plot ve
 shots <- data.frame(x = c(90, 85, 82, 78, 83, 74),
                     y = c(43, 40, 52, 56, 44, 71))
 
-ggplot(shots, aes(x = x, y = y)) +
-  annotate_pitch(colour = "gray50",
+ggplot(shots) +
+  annotate_pitch(colour = "gray70",
                  fill = "gray90") +
-  geom_point(fill = "white", size = 3, pch = 21) +
+  geom_point(aes(x = x, y = y),
+             fill = "white", 
+             size = 4, 
+             pch = 21) +
   theme_pitch() +
   coord_flip(xlim = c(49, 101),
              ylim = c(-1, 101)) +
   ggtitle("Simple shotmap",
           "ggsoccer example")
+```
+
+Finally, different data providers may use alternative co-ordinate systems to 
+ggsoccer's default 100x100. For instance, [StatsBomb's release of free data]()
+uses a 120x80 co-ordinate system. This can be easily handled with the `*_scale`
+arguments to `annotate_pitch`:
+
+```{r}
+shots_rescaled <- data.frame(x = shots$x * 1.20,
+                             y = shots$y * 0.80)
+
+ggplot(shots_rescaled) +
+  annotate_pitch(x_scale = 1.2,
+                 y_scale = 0.8,
+                 colour = "gray70",
+                 fill = "gray90") +
+  geom_point(aes(x = x, y = y),
+             fill = "white", 
+             size = 4, 
+             pch = 21) +
+  theme_pitch() +
+  coord_flip(xlim = c(59, 121),
+             ylim = c(-1, 81)) +
+  ggtitle("Simple shotmap",
+          "ggsoccer example (120x80 co-ordinates)")
 ```
 
 
