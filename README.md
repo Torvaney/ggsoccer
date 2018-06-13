@@ -66,3 +66,11 @@ ggplot(shots, aes(x = x, y = y)) +
 ```
 
 ![](man/figures/README-example_shots-1.png)
+
+Other options
+-------------
+
+There are other packages that offer alternative pitch plotting options. Depending on your use case, you may want to check these out too:
+
+-   [soccermatics](https://github.com/JoGall/soccermatics)
+-   [SBpitch](https://github.com/FCrSTATS/SBpitch)
