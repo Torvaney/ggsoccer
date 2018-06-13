@@ -2,3 +2,4 @@
 .Rhistory
 .RData
 hex_logo.R
+inst/doc

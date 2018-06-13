@@ -1,0 +1,48 @@
+---
+title: "Using ggsoccer"
+author: "Ben Torvaney"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+ggsoccer is a simple, lightweight package for plotting event data onto a soccer 
+pitch. It is designed to work easily with ggplot2 and its idioms.
+
+This document shows you how to perform some common tasks around plotting soccer
+evend data.
+
+## Data: StatsBombR
+
+To explore the plotting of event data, we'll use the StatsBombR package from 
+StatsBomb. This package provides easy access to some of StatsBomb's event data.
+
+We'll also make use of the tidyverse for data manipulation.
+
+```{r, message = FALSE, results = FALSE}
+library(tidyverse)
+
+competitions <- StatsBombR::FreeCompetitions()
+matches <- StatsBombR::FreeMatches(competitions$competition_id)
+
+events <- 
+  matches %>% 
+  transpose() %>% 
+  map(as_tibble) %>% 
+  map_dfr(StatsBombR::get.matchFree)
+```
+
+
+## Pass maps
+
+## Shot maps
