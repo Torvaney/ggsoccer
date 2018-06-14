@@ -1,27 +1,27 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-ggsoccer <img src="man/figures/logo.png" width="160px" align="right" />
-=======================================================================
 
-Overview
---------
+# ggsoccer <img src="man/figures/logo.png" width="160px" align="right" />
 
-ggsoccer provides a handful of functions to make it easy to plot Opta-style soccer event data in R/ggplot2.
+## Overview
 
-Installation
-------------
+ggsoccer provides a handful of functions to make it easy to plot
+Opta-style soccer event data in R/ggplot2.
 
-ggsoccer is not currently available on CRAN and must be downloaded from github like so:
+## Installation
+
+ggsoccer is not currently available on CRAN and must be downloaded from
+github like so:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("torvaney/ggsoccer")
 ```
 
-Usage
------
+## Usage
 
-The following example uses ggsoccer to solve a fairly realistic problem: plot a set of passes onto a soccer pitch.
+The following example uses ggsoccer to solve a fairly realistic problem:
+plot a set of passes onto a soccer pitch.
 
 ``` r
 library(ggplot2)
@@ -45,9 +45,11 @@ ggplot(pass_data) +
           "ggsoccer example")
 ```
 
-![](man/figures/README-example_passes-1.png)
+![](man/figures/README-example_passes-1.png)<!-- -->
 
-Because ggsoccer is implemented as ggplot layers, it makes customising a plot very easy. Here is a different example, plotting shots on a gray pitch:
+Because ggsoccer is implemented as ggplot layers, it makes customising a
+plot very easy. Here is a different example, plotting shots on a gray
+pitch:
 
 ``` r
 
@@ -68,11 +70,17 @@ ggplot(shots) +
           "ggsoccer example")
 ```
 
-![](man/figures/README-example_shots-1.png)
+![](man/figures/README-example_shots-1.png)<!-- -->
 
-Finally, different data providers may use alternative co-ordinate systems to ggsoccer's default 100x100. For instance, [StatsBomb's release of free data]() uses a 120x80 co-ordinate system. This can be easily handled with the `*_scale` arguments to `annotate_pitch`:
+### StatsBomb data
+
+Finally, different data providers may use alternative co-ordinate
+systems to ggsoccer’s default 100x100. For instance, [StatsBomb’s
+release of free data]() uses a 120x80 co-ordinate system. This can be
+easily handled with the `*_scale` arguments to `annotate_pitch`:
 
 ``` r
+# Rescale shots to use StatsBomb-style coordinates
 shots_rescaled <- data.frame(x = shots$x * 1.20,
                              y = shots$y * 0.80)
 
@@ -92,12 +100,12 @@ ggplot(shots_rescaled) +
           "ggsoccer example (120x80 co-ordinates)")
 ```
 
-![](man/figures/README-unnamed-chunk-3-1.png)
+![](man/figures/README-example_shots_sb-1.png)<!-- -->
 
-Other options
--------------
+## Other options
 
-There are other packages that offer alternative pitch plotting options. Depending on your use case, you may want to check these out too:
+There are other packages that offer alternative pitch plotting options.
+Depending on your use case, you may want to check these out too:
 
--   [soccermatics](https://github.com/JoGall/soccermatics)
--   [SBpitch](https://github.com/FCrSTATS/SBpitch)
+  - [soccermatics](https://github.com/JoGall/soccermatics)
+  - [SBpitch](https://github.com/FCrSTATS/SBpitch)
