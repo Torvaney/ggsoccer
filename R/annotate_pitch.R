@@ -48,11 +48,10 @@ annotate_pitch <- function(colour = "dimgray",
       ymax = (50+7) * y_scale + y_shift
     ),
     # Centre spot
-    ggplot2::geom_rect(
-      xmin = 49.8 * x_scale + x_shift,
-      xmax = 50.2 * x_scale + x_shift,
-      ymin = 49.8 * y_scale + y_shift,
-      ymax = 50.2 * y_scale + y_shift,
+    ggplot2::annotate(
+      geom = "point",
+      x = 50 * x_scale + x_shift,
+      y = 50 * y_scale + y_shift,
       colour = colour,
       fill = fill
     ),
@@ -84,11 +83,10 @@ annotate_pitch <- function(colour = "dimgray",
       colour = colour,
       fill = fill
     ),
-    ggplot2::geom_rect(  # Penalty spot
-      xmin = 88.4 * x_scale + x_shift,
-      xmax = 88.6 * x_scale + x_shift,
-      ymin = 49.8 * y_scale + y_shift,
-      ymax = 50.2 * y_scale + y_shift,
+    ggplot2::annotate(  # Penalty spot
+      geom = "point",
+      x = 88.5 * x_scale + x_shift,
+      y = 50 * y_scale + y_shift,
       colour = colour,
       fill = fill
     ),
@@ -110,11 +108,10 @@ annotate_pitch <- function(colour = "dimgray",
       colour = colour,
       fill = fill
     ),
-    ggplot2::geom_rect(  # Penalty spot
-      xmin = 11.4 * x_scale + x_shift,
-      xmax = 11.6 * x_scale + x_shift,
-      ymin = 49.8 * y_scale + y_shift,
-      ymax = 50.2 * y_scale + y_shift,
+    ggplot2::annotate(  # Penalty spot
+      geom = "point",
+      x = 11.5 * x_scale + x_shift,
+      y = 50 * y_scale + y_shift,
       colour = colour,
       fill = fill
     ),

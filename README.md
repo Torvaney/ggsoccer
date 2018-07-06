@@ -92,7 +92,7 @@ ggplot(shots_rescaled) +
           "ggsoccer example (120x80 co-ordinates)")
 ```
 
-![](man/figures/README-unnamed-chunk-3-1.png)
+![](man/figures/README-example_sb-1.png)
 
 Other options
 -------------
