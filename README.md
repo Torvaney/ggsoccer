@@ -70,9 +70,12 @@ ggplot(shots) +
 
 ![](man/figures/README-example_shots-1.png)
 
+### StatsBomb data
+
 Finally, different data providers may use alternative co-ordinate systems to ggsoccer's default 100x100. For instance, [StatsBomb's release of free data]() uses a 120x80 co-ordinate system. This can be easily handled with the `*_scale` arguments to `annotate_pitch`:
 
 ``` r
+# Rescale shots to use StatsBomb-style coordinates
 shots_rescaled <- data.frame(x = shots$x * 1.20,
                              y = shots$y * 0.80)
 
@@ -92,7 +95,7 @@ ggplot(shots_rescaled) +
           "ggsoccer example (120x80 co-ordinates)")
 ```
 
-![](man/figures/README-example_sb-1.png)
+![](man/figures/README-example_shots_sb-1.png)
 
 Other options
 -------------
