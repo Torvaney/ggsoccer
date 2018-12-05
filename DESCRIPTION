@@ -4,12 +4,13 @@ Version: 0.0.1.9000
 Authors@R: person("Ben", "Torvaney", email = "torvaney@protonmail.com", role = c("aut", "cre"))
 Description: Additional layers and functions for plotting Opta-style event data in R.
 License: MIT + file LICENSE
+URL: ggsoccer.statsandsnakeoil.com, github.com/Torvaney/ggsoccer
 Depends:
   R (>= 3.3.3)
 Imports:
   ggplot2
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Encoding: UTF-8
 BugReports: https://github.com/torvaney/ggsoccer/issues
