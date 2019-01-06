@@ -6,3 +6,4 @@
 ^README-.*\.png$
 ^hex_logo.R$
 ^logo.png$
+^pkgdown$
