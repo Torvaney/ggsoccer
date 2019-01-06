@@ -5,7 +5,7 @@
 \title{Adds soccer pitch markings as a layer for use in a ggplot plot.}
 \usage{
 annotate_pitch(colour = "dimgray", fill = "white", x_scale = 1,
-  y_scale = 1, x_shift = 0, y_shift = 0)
+  y_scale = 1, x_shift = 0, y_shift = 0, limits = TRUE)
 }
 \arguments{
 \item{colour}{Colour of pitch outline.}
@@ -19,6 +19,8 @@ annotate_pitch(colour = "dimgray", fill = "white", x_scale = 1,
 \item{x_shift}{Constant value added to x coordinates of the pitch markings.}
 
 \item{y_shift}{Constant value added to y coordinates of the pitch markings.}
+
+\item{limits}{Whether to adjust the plot limits to display the whole pitch.}
 }
 \value{
 list of ggplot geoms to be added to a ggplot plot

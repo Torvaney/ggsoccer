@@ -39,8 +39,6 @@ ggplot(pass_data) +
                              type = "closed")) +
   theme_pitch() +
   direction_label() +
-  xlim(-1, 101) +
-  ylim(-5, 101) +
   ggtitle("Simple passmap", 
           "ggsoccer example")
 ```
@@ -48,8 +46,13 @@ ggplot(pass_data) +
 ![](man/figures/README-example_passes-1.png)<!-- -->
 
 Because ggsoccer is implemented as ggplot layers, it makes customising a
-plot very easy. Here is a different example, plotting shots on a gray
-pitch:
+plot very easy. Here is a different example, plotting shots on a
+**gray** pitch.
+
+Note that by default, ggsoccer will display the whole pitch. To display
+a subsection of the pitch, simply set the plot limits as you would with
+any other ggplot2 plot. Here, we use the `xlim` and `ylim` arguments to
+`coord_flip`:
 
 ``` r
 
@@ -98,6 +101,8 @@ ggplot(shots_rescaled) +
              ylim = c(-1, 81)) +
   ggtitle("Simple shotmap",
           "ggsoccer example (120x80 co-ordinates)")
+#> Warning: Removed 1 rows containing missing values (geom_point).
+#> Warning: Removed 2 rows containing missing values (geom_point).
 ```
 
 ![](man/figures/README-example_shots_sb-1.png)<!-- -->

@@ -6,6 +6,7 @@
 #' @param y_scale Scale applied to y coordinates of the pitch markings.
 #' @param x_shift Constant value added to x coordinates of the pitch markings.
 #' @param y_shift Constant value added to y coordinates of the pitch markings.
+#' @param limits Whether to adjust the plot limits to display the whole pitch.
 #'
 #' @return list of ggplot geoms to be added to a ggplot plot
 #'
@@ -19,14 +20,15 @@
 #'   annotate_pitch()
 #'
 #' @export
-annotate_pitch <- function(colour = "dimgray",
-                           fill = "white",
+annotate_pitch <- function(colour  = "dimgray",
+                           fill    = "white",
                            x_scale = 1,
                            y_scale = 1,
                            x_shift = 0,
-                           y_shift = 0) {
+                           y_shift = 0,
+                           limits  = TRUE) {
 
-  markings <- list(
+  marking_layers <- list(
     # Add pitch outline
     ggplot2::geom_rect(
       xmin = 0 * x_scale + x_shift,
@@ -151,7 +153,19 @@ annotate_pitch <- function(colour = "dimgray",
     )
   )
 
-  return(markings)
+  if (!limits) {
+    return(marking_layers)
+  }
+
+  limit_layers <- list(
+    ggplot2::xlim(-1, 101),
+    ggplot2::ylim(-5, 101)  # -5 so that we leave room for direction_label()
+  )
+
+  append(
+    marking_layers,
+    limit_layers,
+  )
 }
 
 #' Adds soccer pitch markings as a layer for use in a ggplot plot.
