@@ -30,7 +30,8 @@ annotate_pitch <- function(colour  = "dimgray",
 
   marking_layers <- list(
     # Add pitch outline
-    ggplot2::geom_rect(
+    ggplot2::annotate(
+      geom = "rect",
       xmin = 0 * x_scale + x_shift,
       xmax = 100 * x_scale + x_shift,
       ymin = 0 * y_scale + y_shift,
@@ -77,7 +78,7 @@ annotate_pitch <- function(colour  = "dimgray",
       ymin = (50-7) * y_scale + y_shift,
       ymax = (50+7) * y_scale + y_shift
     ),
-    ggplot2::geom_rect(
+    ggplot2::annotate(geom = "rect",
       xmin = 83 * x_scale + x_shift,
       xmax = 100 * x_scale + x_shift,
       ymin = 21.1 * y_scale + y_shift,
@@ -102,7 +103,7 @@ annotate_pitch <- function(colour  = "dimgray",
       ymin = (50-7) * y_scale + y_shift,
       ymax = (50+7) * y_scale + y_shift
     ),
-    ggplot2::geom_rect(
+    ggplot2::annotate(geom = "rect",
       xmin = 0 * x_scale + x_shift,
       xmax = 17 * x_scale + x_shift,
       ymin = 21.1 * y_scale + y_shift,
@@ -118,7 +119,7 @@ annotate_pitch <- function(colour  = "dimgray",
       fill = fill
     ),
     # Add 6 yard boxes
-    ggplot2::geom_rect(
+    ggplot2::annotate(geom = "rect",
       xmin = 94.2 * x_scale + x_shift,
       xmax = 100 * x_scale + x_shift,
       ymin = 36.8 * y_scale + y_shift,
@@ -126,7 +127,7 @@ annotate_pitch <- function(colour  = "dimgray",
       colour = colour,
       fill = fill
     ),
-    ggplot2::geom_rect(
+    ggplot2::annotate(geom = "rect",
       xmin = 0 * x_scale + x_shift,
       xmax = 5.8 * x_scale + x_shift,
       ymin = 36.8 * y_scale + y_shift,
@@ -135,7 +136,7 @@ annotate_pitch <- function(colour  = "dimgray",
       fill = fill
     ),
     # Add goals
-    ggplot2::geom_rect(
+    ggplot2::annotate(geom = "rect",
       xmin = 100 * x_scale + x_shift,
       xmax = 102 * x_scale + x_shift,
       ymin = 44.2 * y_scale + y_shift,
@@ -143,7 +144,7 @@ annotate_pitch <- function(colour  = "dimgray",
       colour = colour,
       fill = fill
     ),
-    ggplot2::geom_rect(
+    ggplot2::annotate(geom = "rect",
       xmin = 0 * x_scale + x_shift,
       xmax = -2 * x_scale + x_shift,
       ymin = 44.2 * y_scale + y_shift,
@@ -187,4 +188,12 @@ pitch_layer <- function(colour = "black",
     y_scale,
     x_shift,
     y_shift)
+}
+
+
+.circle_data <- function(x, y, r, resolution = 1000) {
+  tt <- seq(0, 2*pi, length.out = resolution)
+  xx <- x + r*cos(tt)
+  yy <- y + r*sin(tt)
+  return(data.frame(x = xx, y = yy))
 }
