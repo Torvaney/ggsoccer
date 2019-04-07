@@ -4,23 +4,17 @@
 \alias{annotate_pitch}
 \title{Adds soccer pitch markings as a layer for use in a ggplot plot.}
 \usage{
-annotate_pitch(colour = "dimgray", fill = "white", x_scale = 1,
-  y_scale = 1, x_shift = 0, y_shift = 0, limits = TRUE)
+annotate_pitch(colour = "dimgray", fill = "white", limits = TRUE,
+  dimensions = pitch_opta)
 }
 \arguments{
 \item{colour}{Colour of pitch outline.}
 
 \item{fill}{Colour of pitch fill}
 
-\item{x_scale}{Scale applied to x coordinates of the pitch markings.}
-
-\item{y_scale}{Scale applied to y coordinates of the pitch markings.}
-
-\item{x_shift}{Constant value added to x coordinates of the pitch markings.}
-
-\item{y_shift}{Constant value added to y coordinates of the pitch markings.}
-
 \item{limits}{Whether to adjust the plot limits to display the whole pitch.}
+
+\item{dimensions}{A list containing the pitch dimensions to draw. See \code{help(pitch_opta)}.}
 }
 \value{
 list of ggplot geoms to be added to a ggplot plot
@@ -35,6 +29,7 @@ shots_data <- data.frame(x = c(90, 85, 82, 78, 83),
                          y = c(43, 40, 52, 56, 44))
 
 ggplot(shots_data, aes(x = x, y = y)) +
-  annotate_pitch()
+  annotate_pitch() +
+  geom_point()
 
 }

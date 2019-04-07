@@ -1,4 +1,8 @@
-# 0.1.2.9000 (in progress)
+# 0.1.3.9000 (in progress)
+
+
+
+# 0.1.2
 
 * Show pitch with `scale_*_reverse`
   * Centre-circle and penalty box arcs still do not properly render when 

@@ -47,26 +47,38 @@ ggplot(pass_data) +
 
 Because ggsoccer is implemented as ggplot layers, it makes customising a
 plot very easy. Here is a different example, plotting shots on a
-**gray** pitch.
+**green** pitch.
 
 Note that by default, ggsoccer will display the whole pitch. To display
 a subsection of the pitch, simply set the plot limits as you would with
 any other ggplot2 plot. Here, we use the `xlim` and `ylim` arguments to
-`coord_flip`:
+`coord_flip`.
+
+Because of the way coordinates get flipped, we must also reverse the
+y-axis to ensure that the orientation remains correct.
+
+NOTE: Ordinarily, we would just do this with `scale_y_reverse`. However,
+due to a [bug in
+ggplot2](https://github.com/tidyverse/ggplot2/issues/3120), this results
+in certain elements of the pitch (center and penalty box arcs) failing
+to render. Instead, we can flip the y coordinates manually (`100 - y` in
+this case).
 
 ``` r
 
-shots <- data.frame(x = c(90, 85, 82, 78, 83, 74),
-                    y = c(43, 40, 52, 56, 44, 71))
+shots <- data.frame(x = c(90, 85, 82, 78, 83, 74, 94, 91),
+                    y = c(43, 40, 52, 56, 44, 71, 60, 54))
 
 ggplot(shots) +
-  annotate_pitch(colour = "gray70",
-                 fill = "gray90") +
-  geom_point(aes(x = x, y = y),
-             fill = "white", 
-             size = 4, 
-             pch = 21) +
+  annotate_pitch(colour = "white",
+                 fill   = "chartreuse4",
+                 limits = FALSE) +
+  geom_point(aes(x = x, y = 100 - y),
+             colour = "yellow", 
+             size = 4) +
   theme_pitch() +
+  theme(plot.background = element_rect(fill = "chartreuse4"),
+        title = element_text(colour = "white")) +
   coord_flip(xlim = c(49, 101),
              ylim = c(-1, 101)) +
   ggtitle("Simple shotmap",
@@ -75,37 +87,67 @@ ggplot(shots) +
 
 ![](man/figures/README-example_shots-1.png)<!-- -->
 
-### StatsBomb data
+### Data providers
 
-Finally, different data providers may use alternative co-ordinate
-systems to ggsoccer’s default 100x100. For instance, [StatsBomb’s
-release of free data]() uses a 120x80 co-ordinate system. This can be
-easily handled with the `*_scale` arguments to `annotate_pitch`:
+ggsoccer defaults to Opta’s 100x100 coordinate system. However,
+different data providers may use alternative coordinates.
+
+ggsoccer provides support for a couple of data providers out of the box,
+as well as an interface for custom coordinates.
+
+#### Statsbomb
 
 ``` r
-# Rescale shots to use StatsBomb-style coordinates
-shots_rescaled <- data.frame(x = shots$x * 1.20,
-                             y = shots$y * 0.80)
+# Hackily rescale shots to use StatsBomb-style coordinates
+passes_rescaled <- data.frame(x  = pass_data$x * 1.20,
+                              y  = pass_data$y * 0.80,
+                              x2 = pass_data$x2 * 1.20,
+                              y2 = pass_data$y2 * 0.80)
 
-ggplot(shots_rescaled) +
-  annotate_pitch(x_scale = 1.2,
-                 y_scale = 0.8,
-                 colour = "gray70",
-                 fill = "gray90") +
-  geom_point(aes(x = x, y = y),
-             fill = "white", 
-             size = 4, 
-             pch = 21) +
+ggplot(passes_rescaled) +
+  annotate_pitch(dimensions = pitch_statsbomb) +
+  geom_segment(aes(x = x, y = y, xend = x2, yend = y2),
+               colour = "firebrick",
+               arrow = arrow(length = unit(0.25, "cm"),
+                             type = "closed")) +
   theme_pitch() +
-  coord_flip(xlim = c(59, 121),
-             ylim = c(-1, 81)) +
-  ggtitle("Simple shotmap",
-          "ggsoccer example (120x80 co-ordinates)")
-#> Warning: Removed 1 rows containing missing values (geom_point).
-#> Warning: Removed 2 rows containing missing values (geom_point).
+  direction_label(x_label = 60) +
+  ggtitle("Simple passmap", 
+          "Statsbomb co-ordinates")
 ```
 
 ![](man/figures/README-example_shots_sb-1.png)<!-- -->
+
+#### Custom data
+
+To plot data for a dataset not provided is also possible. ggsoccer just
+requires a pitch specification. This is a list containing the required
+pitch dimensions:
+
+``` r
+pitch_custom <- list(
+  length = 150,
+  width = 100,
+  penalty_box_length = 25,
+  penalty_box_width = 50,
+  six_yard_box_length = 8,
+  six_yard_box_width = 26,
+  penalty_spot_distance = 20,
+  goal_width = 12,
+  origin_x = 0,
+  origin_y = 0
+)
+```
+
+This can then be used to generate pitch markings:
+
+``` r
+ggplot() +
+  annotate_pitch(dimensions = pitch_custom) +
+  theme_pitch()
+```
+
+![](man/figures/README-unnamed-chunk-13-1.png)<!-- -->
 
 ## Other options
 

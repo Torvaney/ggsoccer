@@ -36,7 +36,8 @@ direction_label <- function(x_label = 50,
       yend = y_label,
       arrow = arrow(length = unit(0.02, "npc"),
                     type = "closed"),
-      colour = colour),
+      colour = colour
+    ),
     annotate(
       "text",
       x = x_label,
