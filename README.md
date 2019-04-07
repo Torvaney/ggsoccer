@@ -147,7 +147,7 @@ ggplot() +
   theme_pitch()
 ```
 
-![](man/figures/README-unnamed-chunk-13-1.png)<!-- -->
+![](man/figures/README-unnamed-chunk-4-1.png)<!-- -->
 
 ## Other options
 
