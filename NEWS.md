@@ -1,6 +1,7 @@
 # 0.1.3.9000 (in progress)
 
-
+* Generate pitch markings from a generic specification
+  * This makes ggsoccer compatible with any data provider
 
 # 0.1.2
 
