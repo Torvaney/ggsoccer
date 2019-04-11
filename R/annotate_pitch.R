@@ -23,6 +23,9 @@ annotate_pitch <- function(colour   = "dimgray",
                            limits   = TRUE,
                            dimensions = pitch_opta) {
 
+  # NOTE: could parameterise the whole function by the list of layer-creation
+  #       functions it uses. We could then open up the API for user-defined pitch
+  #       elements (e.g. a custom goal type)
   marking_layers <- unlist(list(
     annotate_base_pitch(colour, fill, dimensions),
     annotate_penalty_box(colour, fill, dimensions),
