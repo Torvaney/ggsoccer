@@ -4,14 +4,34 @@
 \name{pitch_opta}
 \alias{pitch_opta}
 \alias{pitch_statsbomb}
+\alias{pitch_wyscout}
+\alias{pitch_chyronhego}
 \title{Pitch dimensions}
 \format{An object of class \code{list} of length 10.}
 \usage{
 pitch_opta
 
 pitch_statsbomb
+
+pitch_wyscout
+
+pitch_chyronhego
 }
 \description{
-Pitch dimensions
+The coordinate system used to generate pitch markings in
+can be customised by supplying a pitch specification to the \code{dimensions}
+argument of \code{annotate_pitch}.
+
+ggsoccer provides pitch specifications for a few popular data providers by default.
+However, user-defined specifications can also be used.
+}
+\examples{
+library(ggplot2)
+library(ggsoccer)
+
+ggplot() +
+  annotate_pitch(dimensions = pitch_statsbomb) +
+  theme_pitch()
+
 }
 \keyword{datasets}

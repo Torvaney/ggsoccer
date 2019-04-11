@@ -2,8 +2,10 @@
 
 export(annotate_pitch)
 export(direction_label)
+export(pitch_chyronhego)
 export(pitch_opta)
 export(pitch_statsbomb)
+export(pitch_wyscout)
 export(theme_pitch)
 importFrom(ggplot2,annotate)
 importFrom(ggplot2,geom_segment)
