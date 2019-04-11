@@ -75,18 +75,3 @@ pitch_wyscout <- list(
   origin_x = 0,
   origin_y = 0
 )
-
-#' @rdname pitch_opta
-#' @export
-pitch_chyronhego <- list(
-  length = 10500,
-  width = 6600,
-  penalty_box_length = 1650,
-  penalty_box_width = 4030,
-  six_yard_box_length = 550,
-  six_yard_box_width = 1832,
-  penalty_spot_distance = 1100,
-  goal_width = 732,
-  origin_x = -5250,
-  origin_y = -3300
-)
