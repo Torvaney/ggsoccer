@@ -120,9 +120,8 @@ ggplot(passes_rescaled) +
 
 #### Custom data
 
-To plot data for a dataset not provided is also possible. ggsoccer just
-requires a pitch specification. This is a list containing the required
-pitch dimensions:
+To plot data for a dataset not provided, ggsoccer just requires a pitch
+specification. This is a list containing the required pitch dimensions:
 
 ``` r
 pitch_custom <- list(
@@ -137,11 +136,7 @@ pitch_custom <- list(
   origin_x = 0,
   origin_y = 0
 )
-```
 
-This can then be used to generate pitch markings:
-
-``` r
 ggplot() +
   annotate_pitch(dimensions = pitch_custom) +
   theme_pitch()
