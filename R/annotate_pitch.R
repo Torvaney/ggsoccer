@@ -153,7 +153,7 @@ annotate_penalty_box <- function(colour, fill, spec) {
     ## Penalty spot
     ggplot2::annotate(
       geom = "point",
-      x = spec$penalty_spot_distance,
+      x = spec$origin_x + spec$penalty_spot_distance,
       y = midpoint$y,
       colour = colour,
       fill = fill
