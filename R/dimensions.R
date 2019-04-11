@@ -71,7 +71,7 @@ pitch_wyscout <- list(
   six_yard_box_length = 6,
   six_yard_box_width = 26,
   penalty_spot_distance = 10,
-  goal_width = 10,
+  goal_width = 12,
   origin_x = 0,
   origin_y = 0
 )
