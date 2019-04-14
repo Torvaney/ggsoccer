@@ -1,5 +1,36 @@
 #' Pitch dimensions
 #'
+#' @description The coordinate system used to generate pitch markings in
+#' can be customised by supplying a pitch specification to the `dimensions`
+#' argument of `annotate_pitch`.
+#'
+#' ggsoccer provides pitch specifications for a few popular data providers by default.
+#' However, user-defined specifications can also be used.
+#'
+#' @details A "pitch specification" is simply a list of dimensions that define a
+#' coordinate system. The required dimensions are:
+#'
+# \itemize{
+#'  \item{"length"}{The length of the pitch from one goal to the other (x axis)}
+#'  \item{"width"}{The width of the pitch from touchline to the other (y axis)}
+#'  \item{"penalty_box_length"}{The distance from the goalline to the edge of the penalty area}
+#'  \item{"penalty_box_width"}{The width of the penalty area}
+#'  \item{"six_yard_box_length"}{The distance from the goalline to the edge of the six-yard box}
+#'  \item{"six_yard_box_width"}{The width of the six-yard box}
+#'  \item{"penalty_spot_distance"}{The distance from the goalline to the penalty spot}
+#'  \item{"goal_width"}{The distance from one goal post to the other}
+#'  \item{"origin_x"}{The minimum x coordinate of the pitch}
+#'  \item{"origin_y"}{The minimum y coordinate of the pitch}
+#' }
+#'
+#' @examples
+#' library(ggplot2)
+#' library(ggsoccer)
+#'
+#' ggplot() +
+#'   annotate_pitch(dimensions = pitch_statsbomb) +
+#'   theme_pitch()
+#'
 #' @export
 pitch_opta <- list(
   length = 100,
@@ -26,6 +57,21 @@ pitch_statsbomb <- list(
   six_yard_box_width = 20,
   penalty_spot_distance = 12,
   goal_width = 8,
+  origin_x = 0,
+  origin_y = 0
+)
+
+#' @rdname pitch_opta
+#' @export
+pitch_wyscout <- list(
+  length = 100,
+  width = 100,
+  penalty_box_length = 16,
+  penalty_box_width = 62,
+  six_yard_box_length = 6,
+  six_yard_box_width = 26,
+  penalty_spot_distance = 10,
+  goal_width = 12,
   origin_x = 0,
   origin_y = 0
 )

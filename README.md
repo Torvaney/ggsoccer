@@ -5,8 +5,8 @@
 
 ## Overview
 
-ggsoccer provides a handful of functions to make it easy to plot
-Opta-style soccer event data in R/ggplot2.
+ggsoccer provides a handful of functions that make it easy to plot
+soccer event data in R/ggplot2.
 
 ## Installation
 
@@ -20,8 +20,19 @@ devtools::install_github("torvaney/ggsoccer")
 
 ## Usage
 
-The following example uses ggsoccer to solve a fairly realistic problem:
-plot a set of passes onto a soccer pitch.
+``` r
+library(ggplot2)
+library(ggsoccer)
+
+ggplot() +
+  annotate_pitch() +
+  theme_pitch()
+```
+
+![](man/figures/README-example_blank-1.png)<!-- -->
+
+The following example uses ggsoccer to solve a realistic problem:
+plotting a set of passes onto a soccer pitch.
 
 ``` r
 library(ggplot2)
@@ -151,3 +162,4 @@ Depending on your use case, you may want to check these out too:
 
   - [soccermatics](https://github.com/JoGall/soccermatics)
   - [SBpitch](https://github.com/FCrSTATS/SBpitch)
+  - [fc.rstats](https://github.com/FCrSTATS/fc.rstats)
