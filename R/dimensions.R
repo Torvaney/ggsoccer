@@ -63,6 +63,7 @@ pitch_statsbomb <- list(
 
 #' @rdname pitch_opta
 #' @export
+# Source: A length email chain with customer support...
 pitch_wyscout <- list(
   length = 100,
   width = 100,

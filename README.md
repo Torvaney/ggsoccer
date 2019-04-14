@@ -103,13 +103,17 @@ ggplot(shots) +
 ggsoccer defaults to Opta’s 100x100 coordinate system. However,
 different data providers may use alternative coordinates.
 
-ggsoccer provides support for a couple of data providers out of the box,
-as well as an interface for custom coordinates.
+ggsoccer provides support for a few data providers out of the box, as
+well as an interface for any custom coordinate system:
+
+  - Opta
+  - Statsbomb
+  - Wyscout
 
 #### Statsbomb
 
 ``` r
-# Hackily rescale shots to use StatsBomb-style coordinates
+# Roughly rescale shots to use StatsBomb-style coordinates
 passes_rescaled <- data.frame(x  = pass_data$x * 1.20,
                               y  = pass_data$y * 0.80,
                               x2 = pass_data$x2 * 1.20,
@@ -132,7 +136,8 @@ ggplot(passes_rescaled) +
 #### Custom data
 
 To plot data for a dataset not provided, ggsoccer just requires a pitch
-specification. This is a list containing the required pitch dimensions:
+specification. This is a list containing the required pitch dimensions
+like so:
 
 ``` r
 pitch_custom <- list(
