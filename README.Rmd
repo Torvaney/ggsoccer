@@ -6,6 +6,9 @@ output:
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+[![Travis build status](https://travis-ci.org/Torvaney/ggsoccer.svg?branch=master)](https://travis-ci.org/Torvaney/ggsoccer)
+
+
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
