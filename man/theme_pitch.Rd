@@ -8,7 +8,9 @@ theme_pitch(aspect_ratio = 68/105)
 }
 \arguments{
 \item{aspect_ratio}{Aspect ratio (\code{y / x}) for the plot.
-Use \code{NULL} to let the plot take any aspect ratio.}
+Use \code{NULL} to let the plot take any aspect ratio. Defaults to 68 x 105,
+which is the standard for
+\href{https://en.wikipedia.org/wiki/UEFA_stadium_categories}{UEFA Category 3 and Category 4 stadia}}
 }
 \value{
 list of ggplot themes to be added to a ggplot plot

@@ -3,7 +3,9 @@
 #' Functionally very similar to `ggplot2::theme_void`.
 #'
 #' @param aspect_ratio Aspect ratio (`y / x`) for the plot.
-#'   Use `NULL` to let the plot take any aspect ratio.
+#'   Use `NULL` to let the plot take any aspect ratio. Defaults to 68 x 105,
+#'   which is the standard for
+#'   \href{https://en.wikipedia.org/wiki/UEFA_stadium_categories}{UEFA Category 3 and Category 4 stadia}
 #'
 #' @return list of ggplot themes to be added to a ggplot plot
 #'

@@ -8,7 +8,8 @@ URL: ggsoccer.statsandsnakeoil.com, github.com/Torvaney/ggsoccer
 Depends:
   R (>= 3.3.0)
 Imports:
-  ggplot2
+  ggplot2,
+  ggforce
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
