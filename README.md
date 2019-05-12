@@ -131,7 +131,7 @@ ggplot(passes_rescaled) +
           "Statsbomb co-ordinates")
 ```
 
-![](man/figures/README-example_shots_sb-1.png)<!-- -->
+![](man/figures/README-example_passes_sb-1.png)<!-- -->
 
 #### Custom data
 
@@ -147,7 +147,7 @@ pitch_custom <- list(
   penalty_box_width = 50,
   six_yard_box_length = 8,
   six_yard_box_width = 26,
-  penalty_spot_distance = 20,
+  penalty_spot_distance = 16,
   goal_width = 12,
   origin_x = 0,
   origin_y = 0

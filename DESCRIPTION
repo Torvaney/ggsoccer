@@ -1,6 +1,6 @@
 Package: ggsoccer
 Title: Plot Soccer Event Data
-Version: 0.1.3.9000
+Version: 0.1.4.9000
 Authors@R: person("Ben", "Torvaney", email = "torvaney@protonmail.com", role = c("aut", "cre"))
 Description: Additional layers and functions for plotting Opta-style event data in R.
 License: MIT + file LICENSE

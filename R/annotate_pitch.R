@@ -57,7 +57,6 @@ annotate_pitch <- function(colour   = "dimgray",
 
 annotate_base_pitch <- function(colour, fill, spec) {
   midpoint <- pitch_center(spec)
-  centre_circle_radius <- 7  # Not actually on the same scale as the pitch
 
   list(
     ggplot2::annotate(
@@ -71,14 +70,13 @@ annotate_base_pitch <- function(colour, fill, spec) {
     ),
     # Centre circle
     ggplot2::annotation_custom(
-      grob = grid::circleGrob(r  = grid::unit(1, "npc"),
-                              gp = grid::gpar(col  = colour,
+      grob = grid::circleGrob(gp = grid::gpar(col  = colour,
                                               fill = fill,
                                               lwd = 2)),
-      xmin = midpoint$x - centre_circle_radius,
-      xmax = midpoint$x + centre_circle_radius,
-      ymin = midpoint$y - centre_circle_radius,
-      ymax = midpoint$y + centre_circle_radius
+      xmin = midpoint$x - spec$penalty_spot_distance,
+      xmax = midpoint$x + spec$penalty_spot_distance,
+      ymin = midpoint$y - spec$penalty_spot_distance,
+      ymax = midpoint$y + spec$penalty_spot_distance
     ),
     # Centre spot
     ggplot2::annotate(
@@ -102,19 +100,15 @@ annotate_base_pitch <- function(colour, fill, spec) {
 
 annotate_penalty_box <- function(colour, fill, spec) {
   midpoint <- pitch_center(spec)
-  penalty_radius <- 7
 
   list(
     # Right penalty area
-    ggplot2::annotation_custom(
-      grob = grid::circleGrob(r  = grid::unit(1, "npc"),
-                              gp = grid::gpar(col  = colour,
-                                              fill = fill,
-                                              lwd = 2)),
-      xmin = spec$origin_x + spec$length - spec$penalty_spot_distance - penalty_radius,
-      xmax = spec$origin_x + spec$length - spec$penalty_spot_distance + penalty_radius,
-      ymin = midpoint$y - penalty_radius,
-      ymax = midpoint$y + penalty_radius
+    annotate_circle(
+      x      = spec$origin_x + spec$length - spec$penalty_spot_distance,
+      y      = midpoint$y,
+      r      = spec$penalty_spot_distance,
+      colour = colour,
+      fill   = fill
     ),
     ggplot2::annotate(
       geom = "rect",
@@ -134,15 +128,12 @@ annotate_penalty_box <- function(colour, fill, spec) {
       fill = fill
     ),
     # Left penalty area
-    ggplot2::annotation_custom(
-      grob = grid::circleGrob(r  = grid::unit(1, "npc"),
-                              gp = grid::gpar(col  = colour,
-                                              fill = fill,
-                                              lwd = 2)),
-      xmin = spec$origin_x + spec$penalty_spot_distance - penalty_radius,
-      xmax = spec$origin_x + spec$penalty_spot_distance + penalty_radius,
-      ymin = midpoint$y - penalty_radius,
-      ymax = midpoint$y + penalty_radius
+    annotate_circle(
+      x      = spec$origin_x + spec$penalty_spot_distance,
+      y      = midpoint$y,
+      r      = spec$penalty_spot_distance,
+      colour = colour,
+      fill   = fill
     ),
     ggplot2::annotate(
       geom = "rect",
@@ -220,4 +211,14 @@ annotate_goal <- function(colour, fill, spec) {
 pitch_center <- function(spec) {
   list(x = spec$origin_x + spec$length/2,
        y = spec$origin_y + spec$width/2)
+}
+
+annotate_circle <- function(x, y, r, colour, fill) {
+  ggplot2::annotation_custom(
+    grob = grid::circleGrob(gp = grid::gpar(col  = colour, fill = fill, lwd  = 2)),
+    xmin = x - r,
+    xmax = x + r,
+    ymin = y - r,
+    ymax = y + r
+  )
 }
