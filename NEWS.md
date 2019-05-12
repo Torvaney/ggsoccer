@@ -1,8 +1,8 @@
-# ggsoccer 0.1.4.9000 (in progress)
+# ggsoccer 0.1.4
 
 * Link penalty box arc to pitch specification
   * Fixes a previous issue in which the edge of a circle could be seen poking
-    out from behind the pitch (see #8).
+    out from behind the pitch (#8).
 
 
 # ggsoccer 0.1.3
