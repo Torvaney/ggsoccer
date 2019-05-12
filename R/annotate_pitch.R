@@ -102,19 +102,23 @@ annotate_base_pitch <- function(colour, fill, spec) {
 
 annotate_penalty_box <- function(colour, fill, spec) {
   midpoint <- pitch_center(spec)
-  penalty_radius <- 7
+  penalty_radius <- 14
 
   list(
     # Right penalty area
     ggplot2::annotation_custom(
-      grob = grid::circleGrob(r  = grid::unit(1, "npc"),
-                              gp = grid::gpar(col  = colour,
-                                              fill = fill,
-                                              lwd = 2)),
-      xmin = spec$origin_x + spec$length - spec$penalty_spot_distance - penalty_radius,
-      xmax = spec$origin_x + spec$length - spec$penalty_spot_distance + penalty_radius,
-      ymin = midpoint$y - penalty_radius,
-      ymax = midpoint$y + penalty_radius
+      grob = grid::curveGrob(x1 = 0.0, y1 = 0.0,
+                             x2 = 0.0, y2 = 1.0,
+                             ncp = 20,
+                             square = FALSE,
+                             curvature = -1,
+                             gp = grid::gpar(col  = colour,
+                                             fill = fill,
+                                             lwd  = 2)),
+      xmin = spec$origin_x + spec$length - spec$penalty_spot_distance,
+      xmax = spec$origin_x + spec$length - spec$penalty_spot_distance,
+      ymin = 50 - penalty_radius,
+      ymax = 50 + penalty_radius
     ),
     ggplot2::annotate(
       geom = "rect",
@@ -135,12 +139,16 @@ annotate_penalty_box <- function(colour, fill, spec) {
     ),
     # Left penalty area
     ggplot2::annotation_custom(
-      grob = grid::circleGrob(r  = grid::unit(1, "npc"),
-                              gp = grid::gpar(col  = colour,
-                                              fill = fill,
-                                              lwd = 2)),
-      xmin = spec$origin_x + spec$penalty_spot_distance - penalty_radius,
-      xmax = spec$origin_x + spec$penalty_spot_distance + penalty_radius,
+      grob = grid::curveGrob(x1 = 0.0, y1 = 0.0,
+                             x2 = 0.0, y2 = 1.0,
+                             ncp = 20,
+                             square = FALSE,
+                             curvature = 1,
+                             gp = grid::gpar(col  = colour,
+                                             fill = fill,
+                                             lwd  = 2)),
+      xmin = spec$origin_x + spec$penalty_spot_distance,
+      xmax = spec$origin_x + spec$penalty_spot_distance,
       ymin = midpoint$y - penalty_radius,
       ymax = midpoint$y + penalty_radius
     ),

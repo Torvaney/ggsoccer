@@ -10,7 +10,7 @@
 #' @details A "pitch specification" is simply a list of dimensions that define a
 #' coordinate system. The required dimensions are:
 #'
-# \itemize{
+#' \itemize{
 #'  \item{"length"}{The length of the pitch from one goal to the other (x axis)}
 #'  \item{"width"}{The width of the pitch from touchline to the other (y axis)}
 #'  \item{"penalty_box_length"}{The distance from the goalline to the edge of the penalty area}

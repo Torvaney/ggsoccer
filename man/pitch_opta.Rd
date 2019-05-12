@@ -22,6 +22,23 @@ argument of \code{annotate_pitch}.
 ggsoccer provides pitch specifications for a few popular data providers by default.
 However, user-defined specifications can also be used.
 }
+\details{
+A "pitch specification" is simply a list of dimensions that define a
+coordinate system. The required dimensions are:
+
+\itemize{
+\item{"length"}{The length of the pitch from one goal to the other (x axis)}
+\item{"width"}{The width of the pitch from touchline to the other (y axis)}
+\item{"penalty_box_length"}{The distance from the goalline to the edge of the penalty area}
+\item{"penalty_box_width"}{The width of the penalty area}
+\item{"six_yard_box_length"}{The distance from the goalline to the edge of the six-yard box}
+\item{"six_yard_box_width"}{The width of the six-yard box}
+\item{"penalty_spot_distance"}{The distance from the goalline to the penalty spot}
+\item{"goal_width"}{The distance from one goal post to the other}
+\item{"origin_x"}{The minimum x coordinate of the pitch}
+\item{"origin_y"}{The minimum y coordinate of the pitch}
+}
+}
 \examples{
 library(ggplot2)
 library(ggsoccer)
