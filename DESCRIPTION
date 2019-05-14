@@ -1,6 +1,6 @@
 Package: ggsoccer
 Title: Plot Soccer Event Data
-Version: 0.1.4
+Version: 0.1.5.9000
 Authors@R: person("Ben", "Torvaney", email = "torvaney@protonmail.com", role = c("aut", "cre"))
 Description: The 'ggplot2' package provides a powerful set of tools 
   for visualising and investigating data. The 'ggsoccer' package provides a 

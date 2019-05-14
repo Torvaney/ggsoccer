@@ -13,12 +13,18 @@ soccer event data in R/ggplot2.
 
 ## Installation
 
-ggsoccer is not currently available on CRAN and must be downloaded from
-github like so:
+ggsoccer is available via CRAN:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("torvaney/ggsoccer")
+install.packages("ggsoccer")
+```
+
+Alternatively, you can download the development version from github like
+so:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("torvaney/ggsoccer")
 ```
 
 ## Usage
