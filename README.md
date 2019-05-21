@@ -1,14 +1,13 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-[![Travis build
-status](https://travis-ci.org/Torvaney/ggsoccer.svg?branch=master)](https://travis-ci.org/Torvaney/ggsoccer)
-
 # ggsoccer <img src="man/figures/logo.png" width="160px" align="right" />
 
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ggsoccer)](https://cran.r-project.org/package=ggsoccer)
 [![CRAN\_Version\_Badge](https://cranlogs.r-pkg.org/badges/ggsoccer?color=ff69b4)](https://cran.r-project.org/package=ggsoccer)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![Travis build
+status](https://travis-ci.org/Torvaney/ggsoccer.svg?branch=master)](https://travis-ci.org/Torvaney/ggsoccer)
 
 ## Overview
 
