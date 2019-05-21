@@ -6,6 +6,10 @@ status](https://travis-ci.org/Torvaney/ggsoccer.svg?branch=master)](https://trav
 
 # ggsoccer <img src="man/figures/logo.png" width="160px" align="right" />
 
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ggsoccer)](https://cran.r-project.org/package=ggsoccer)
+[![CRAN\_Version\_Badge](https://cranlogs.r-pkg.org/badges/ggsoccer?color=ff69b4)](https://cran.r-project.org/package=ggsoccer)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+
 ## Overview
 
 ggsoccer provides a handful of functions that make it easy to plot
@@ -31,6 +35,7 @@ remotes::install_github("torvaney/ggsoccer")
 
 ``` r
 library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 3.4.4
 library(ggsoccer)
 
 ggplot() +
