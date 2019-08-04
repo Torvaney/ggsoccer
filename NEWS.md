@@ -1,5 +1,7 @@
 # ggsoccer 0.1.5.9000 (In progress)
 
+* Add UEFA-standard pitch dimensions (`pitch_international`)
+
 # ggsoccer 0.1.4
 
 * Released to CRAN!

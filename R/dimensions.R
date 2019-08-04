@@ -76,3 +76,20 @@ pitch_wyscout <- list(
   origin_x = 0,
   origin_y = 0
 )
+
+#' @rdname pitch_opta
+#' @export
+# As per UEFA Category 4 regulations
+# Source: https://www.sportscourtdimensions.com/soccer/
+pitch_international <- list(
+  length = 100,
+  width = 68,
+  penalty_box_length = 16.5,
+  penalty_box_width = 40.32,
+  six_yard_box_length = 5.5,
+  six_yard_box_width = 18.32,
+  penalty_spot_distance = 11,
+  goal_width = 7.32,
+  origin_x = 0,
+  origin_y = 0
+)

@@ -5,6 +5,7 @@
 \alias{pitch_opta}
 \alias{pitch_statsbomb}
 \alias{pitch_wyscout}
+\alias{pitch_international}
 \title{Pitch dimensions}
 \format{An object of class \code{list} of length 10.}
 \usage{
@@ -13,6 +14,8 @@ pitch_opta
 pitch_statsbomb
 
 pitch_wyscout
+
+pitch_international
 }
 \description{
 The coordinate system used to generate pitch markings in
