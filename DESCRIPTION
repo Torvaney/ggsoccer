@@ -18,3 +18,5 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Encoding: UTF-8
 BugReports: https://github.com/torvaney/ggsoccer/issues
+Suggests: 
+    testthat (>= 2.1.0)
