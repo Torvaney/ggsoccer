@@ -2,9 +2,12 @@
 % Please edit documentation in R/rescale_coordinates.R
 \name{rescale_coordinates}
 \alias{rescale_coordinates}
+\alias{rescale_international}
 \title{Rescale x-y coordinates}
 \usage{
 rescale_coordinates(from, to)
+
+rescale_international(from)
 }
 \arguments{
 \item{from}{The dimensions to convert from (see \code{help(dimensions)})}
@@ -12,8 +15,12 @@ rescale_coordinates(from, to)
 \item{to}{The dimensions to convert to (see \code{help(dimensions)})}
 }
 \description{
-Returns a list containing functions to rescale coordinates from
-one set of pitch dimensions (i.e. data provider) to another.
+Returns a list containing 2 functions to translate x and y coordinates,
+from one set of pitch dimensions (i.e. data provider) to another.
+}
+\details{
+\code{pitch_international} creates a rescaler to \code{pitch_international}
+coordinates
 }
 \examples{
 
@@ -26,9 +33,9 @@ opta_xs <- c(10, 22, 55, 78)
 opta_ys <- c(10, 22, 55, 78)
 
 opta_to_wyscout$x(opta_xs)
-#> c(...)
+#> c(9.75000, 21.15152, 55.15152, 78.84848)
 
 opta_to_wyscout$y(opta_ys)
-#> c(...)
+#> c(9.004739, 20.031847, 55.172414, 79.968153)
 
 }

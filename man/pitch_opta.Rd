@@ -41,6 +41,14 @@ coordinate system. The required dimensions are:
 \item{"origin_x"}{The minimum x coordinate of the pitch}
 \item{"origin_y"}{The minimum y coordinate of the pitch}
 }
+
+The following pitch dimensions are provided
+\itemize{
+\item{"pitch_opta"}{For Opta f24 data}
+\item{"pitch_statsbomb"}{For Statsbomb data}
+\item{"pitch_wyscout"}{For Wyscout data}
+\item{"pitch_international"}{As per UEFA Category 4 stadium regulations}
+}
 }
 \examples{
 library(ggplot2)
