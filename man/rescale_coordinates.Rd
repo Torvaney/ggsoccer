@@ -17,10 +17,13 @@ rescale_international(from)
 \description{
 Returns a list containing 2 functions to translate x and y coordinates,
 from one set of pitch dimensions (i.e. data provider) to another.
+
+Any x or y coordinate is rescaled linearly between the nearest two pitch markings.
+For example, the edge of the penalty box and the half way-line.
 }
 \details{
 \code{pitch_international} creates a rescaler to \code{pitch_international}
-coordinates
+coordinates.
 }
 \examples{
 
