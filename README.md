@@ -47,9 +47,6 @@ The following example uses ggsoccer to solve a realistic problem:
 plotting a set of passes onto a soccer pitch.
 
 ``` r
-library(ggplot2)
-library(ggsoccer)
-
 pass_data <- data.frame(x = c(24, 18, 64, 78, 53),
                         y = c(43, 55, 88, 18, 44),
                         x2 = c(34, 44, 81, 85, 64),
