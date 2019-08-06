@@ -4,14 +4,8 @@ language: R
 sudo: false
 cache: packages
 
-after_success:
-  - Rscript -e 'pkgdown::build_site()'
-
+before_deploy: Rscript -e 'remotes::install_cran("pkgdown")'
 deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_PAT
-  keep-history: true
-  local-dir: docs
-  on:
-    branch: push-pkgdown-via-travis
+  provider: script
+  script: Rscript -e 'pkgdown::deploy_site_github()'
+  skip_cleanup: true
