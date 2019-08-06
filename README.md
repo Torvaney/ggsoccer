@@ -34,7 +34,6 @@ remotes::install_github("torvaney/ggsoccer")
 
 ``` r
 library(ggplot2)
-#> Warning: package 'ggplot2' was built under R version 3.4.4
 library(ggsoccer)
 
 ggplot() +
@@ -126,11 +125,13 @@ well as an interface for any custom coordinate system:
 #### Statsbomb
 
 ``` r
-# Roughly rescale shots to use StatsBomb-style coordinates
-passes_rescaled <- data.frame(x  = pass_data$x * 1.20,
-                              y  = pass_data$y * 0.80,
-                              x2 = pass_data$x2 * 1.20,
-                              y2 = pass_data$y2 * 0.80)
+# ggsoccer enables you to rescale coordinates from one data provider to another, too
+to_statsbomb <- rescale_coordinates(from = pitch_opta, to = pitch_statsbomb)
+
+passes_rescaled <- data.frame(x  = to_statsbomb$x(pass_data$x),
+                              y  = to_statsbomb$y(pass_data$y),
+                              x2 = to_statsbomb$x(pass_data$x2),
+                              y2 = to_statsbomb$y(pass_data$y2))
 
 ggplot(passes_rescaled) +
   annotate_pitch(dimensions = pitch_statsbomb) +
