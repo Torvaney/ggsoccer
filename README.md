@@ -179,3 +179,9 @@ Depending on your use case, you may want to check these out too:
   - [soccermatics](https://github.com/JoGall/soccermatics)
   - [SBpitch](https://github.com/FCrSTATS/SBpitch)
   - [fc.rstats](https://github.com/FCrSTATS/fc.rstats)
+
+### Python
+
+  - If you have the misfortune of being stuck with matplotlib,
+    [matplotsoccer](https://github.com/TomDecroos/matplotsoccer) might
+    be able to help you out.
