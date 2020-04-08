@@ -94,16 +94,18 @@ shots <- data.frame(x = c(90, 85, 82, 78, 83, 74, 94, 91),
 
 ggplot(shots) +
   annotate_pitch(colour = "white",
-                 fill   = "chartreuse4",
+                 fill   = "#64c564",
                  limits = FALSE) +
   geom_point(aes(x = x, y = 100 - y),
-             colour = "yellow", 
-             size = 4) +
+             colour = "black", 
+             fill = "chartreuse4", 
+             pch = 21,
+             size = 2) +
   theme_pitch() +
-  theme(plot.background = element_rect(fill = "chartreuse4"),
+  theme(plot.background = element_rect(fill = "#64c564"),
         title = element_text(colour = "white")) +
   coord_flip(xlim = c(49, 101),
-             ylim = c(-1, 101)) +
+             ylim = c(-12, 112)) +
   ggtitle("Simple shotmap",
           "ggsoccer example")
 ```
@@ -134,7 +136,7 @@ passes_rescaled <- data.frame(x  = to_statsbomb$x(pass_data$x),
 ggplot(passes_rescaled) +
   annotate_pitch(dimensions = pitch_statsbomb) +
   geom_segment(aes(x = x, y = y, xend = x2, yend = y2),
-               colour = "firebrick",
+               colour = "coral",
                arrow = arrow(length = unit(0.25, "cm"),
                              type = "closed")) +
   theme_pitch() +
