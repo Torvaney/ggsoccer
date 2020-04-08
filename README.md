@@ -91,7 +91,7 @@ shots <- data.frame(x = c(90, 85, 82, 78, 83, 74, 94, 91),
 
 ggplot(shots) +
   annotate_pitch(colour = "white",
-                 fill   = "#64c564",
+                 fill   = "#7fc47f",
                  limits = FALSE) +
   geom_point(aes(x = x, y = 100 - y),
              colour = "black", 
@@ -99,8 +99,6 @@ ggplot(shots) +
              pch = 21,
              size = 2) +
   theme_pitch() +
-  theme(plot.background = element_rect(fill = "#64c564"),
-        title = element_text(colour = "white")) +
   coord_flip(xlim = c(49, 101),
              ylim = c(-12, 112)) +
   ggtitle("Simple shotmap",
