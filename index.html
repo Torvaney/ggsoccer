@@ -135,23 +135,25 @@
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">shots</span>) +
   <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="st">"white"</span>,
-                 <span class="kw">fill</span>   <span class="kw">=</span> <span class="st">"chartreuse4"</span>,
+                 <span class="kw">fill</span>   <span class="kw">=</span> <span class="st">"#64c564"</span>,
                  <span class="kw">limits</span> <span class="kw">=</span> <span class="fl">FALSE</span>) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">x</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="fl">100</span> - <span class="no">y</span>),
-             <span class="kw">colour</span> <span class="kw">=</span> <span class="st">"yellow"</span>,
-             <span class="kw">size</span> <span class="kw">=</span> <span class="fl">4</span>) +
+             <span class="kw">colour</span> <span class="kw">=</span> <span class="st">"black"</span>,
+             <span class="kw">fill</span> <span class="kw">=</span> <span class="st">"chartreuse4"</span>,
+             <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">21</span>,
+             <span class="kw">size</span> <span class="kw">=</span> <span class="fl">2</span>) +
   <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span>() +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">plot.background</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span>(<span class="kw">fill</span> <span class="kw">=</span> <span class="st">"chartreuse4"</span>),
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">plot.background</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span>(<span class="kw">fill</span> <span class="kw">=</span> <span class="st">"#64c564"</span>),
         <span class="kw">title</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="kw">colour</span> <span class="kw">=</span> <span class="st">"white"</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>(<span class="kw">xlim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">49</span>, <span class="fl">101</span>),
-             <span class="kw">ylim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">1</span>, <span class="fl">101</span>)) +
+             <span class="kw">ylim</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(-<span class="fl">12</span>, <span class="fl">112</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">"Simple shotmap"</span>,
           <span class="st">"ggsoccer example"</span>)</pre></div>
 <p><img src="reference/figures/README-example_shots-1.png"><!-- --></p>
 <div id="data-providers" class="section level3">
 <h3 class="hasAnchor">
 <a href="#data-providers" class="anchor"></a>Data providers</h3>
-<p>ggsoccer defaults to Opta’s 100x100 coordinate system. However, different data providers may use alternative coordinates.</p>
+<p>ggsoccer defaults to Optaâs 100x100 coordinate system. However, different data providers may use alternative coordinates.</p>
 <p>ggsoccer provides support for a few data providers out of the box, as well as an interface for any custom coordinate system:</p>
 <ul>
 <li>Opta</li>
@@ -172,7 +174,7 @@
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="no">passes_rescaled</span>) +
   <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span>(<span class="kw">dimensions</span> <span class="kw">=</span> <span class="no">pitch_statsbomb</span>) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">x</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">y</span>, <span class="kw">xend</span> <span class="kw">=</span> <span class="no">x2</span>, <span class="kw">yend</span> <span class="kw">=</span> <span class="no">y2</span>),
-               <span class="kw">colour</span> <span class="kw">=</span> <span class="st">"firebrick"</span>,
+               <span class="kw">colour</span> <span class="kw">=</span> <span class="st">"coral"</span>,
                <span class="kw">arrow</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/reexports.html">arrow</a></span>(<span class="kw">length</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/reexports.html">unit</a></span>(<span class="fl">0.25</span>, <span class="st">"cm"</span>),
                              <span class="kw">type</span> <span class="kw">=</span> <span class="st">"closed"</span>)) +
   <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span>() +
