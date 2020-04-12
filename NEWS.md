@@ -1,5 +1,6 @@
 # ggsoccer 0.1.5.9000 (In progress)
 
+* Make line widths consistent across all pitch elements
 * Convert coordinates between different pitch specifications
 * Add UEFA-standard pitch dimensions (`pitch_international`)
 
