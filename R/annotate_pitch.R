@@ -69,14 +69,12 @@ annotate_base_pitch <- function(colour, fill, spec) {
       fill = fill
     ),
     # Centre circle
-    ggplot2::annotation_custom(
-      grob = grid::circleGrob(gp = grid::gpar(col  = colour,
-                                              fill = fill,
-                                              lwd = 2)),
-      xmin = midpoint$x - spec$penalty_spot_distance,
-      xmax = midpoint$x + spec$penalty_spot_distance,
-      ymin = midpoint$y - spec$penalty_spot_distance,
-      ymax = midpoint$y + spec$penalty_spot_distance
+    annotate_circle(
+      x = midpoint$x,
+      y = midpoint$y,
+      r = spec$penalty_spot_distance,
+      colour = colour,
+      fill = fill
     ),
     # Centre spot
     ggplot2::annotate(
@@ -215,7 +213,7 @@ pitch_center <- function(spec) {
 
 annotate_circle <- function(x, y, r, colour, fill) {
   ggplot2::annotation_custom(
-    grob = grid::circleGrob(gp = grid::gpar(col  = colour, fill = fill, lwd  = 2)),
+    grob = grid::circleGrob(gp = grid::gpar(col  = colour, fill = fill, lwd  = 1.5)),
     xmin = x - r,
     xmax = x + r,
     ymin = y - r,
