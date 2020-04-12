@@ -2,10 +2,8 @@
 #'
 #' @param colour Colour of pitch outline.
 #' @param fill Colour of pitch fill
-#' @param x_scale Scale applied to x coordinates of the pitch markings.
-#' @param y_scale Scale applied to y coordinates of the pitch markings.
-#' @param x_shift Constant value added to x coordinates of the pitch markings.
-#' @param y_shift Constant value added to y coordinates of the pitch markings.
+#' @param limits Whether to adjust the plot limits to display the whole pitch.
+#' @param dimensions A list containing the pitch dimensions to draw. See `help(pitch_opta)`.
 #'
 #' @return list of ggplot geoms to be added to a ggplot plot
 #'
@@ -16,164 +14,209 @@
 #'                          y = c(43, 40, 52, 56, 44))
 #'
 #' ggplot(shots_data, aes(x = x, y = y)) +
-#'   annotate_pitch()
+#'   annotate_pitch() +
+#'   geom_point()
 #'
 #' @export
-annotate_pitch <- function(colour = "dimgray",
-                           fill = "white",
-                           x_scale = 1,
-                           y_scale = 1,
-                           x_shift = 0,
-                           y_shift = 0) {
+annotate_pitch <- function(colour   = "dimgray",
+                           fill     = "white",
+                           limits   = TRUE,
+                           dimensions = pitch_opta) {
 
-  markings <- list(
-    # Add pitch outline
-    ggplot2::geom_rect(
-      xmin = 0 * x_scale + x_shift,
-      xmax = 100 * x_scale + x_shift,
-      ymin = 0 * y_scale + y_shift,
-      ymax = 100 * y_scale + y_shift,
+  # NOTE: could parameterise the whole function by the list of layer-creation
+  #       functions it uses. We could then open up the API for user-defined pitch
+  #       elements (e.g. a custom goal type)
+  marking_layers <- unlist(list(
+    annotate_base_pitch(colour, fill, dimensions),
+    annotate_penalty_box(colour, fill, dimensions),
+    annotate_six_yard_box(colour, fill, dimensions),
+    annotate_goal(colour, fill, dimensions)
+  ), recursive = FALSE)
+
+  if (!limits) {
+    return(marking_layers)
+  }
+
+  # Leave room for full pitch + goals and direction_label by default
+  limit_layers <- list(
+    ggplot2::xlim(dimensions$origin_x - 3,
+                  dimensions$origin_x + dimensions$length + 3),
+    ggplot2::ylim(dimensions$origin_y - 5,
+                  dimensions$origin_y + dimensions$width + 3)
+  )
+
+  append(
+    marking_layers,
+    limit_layers,
+  )
+}
+
+# Pitch components -------------------------------------------------------------
+# Add markings for parts of a soccer pitch.
+# NOTE: Should these be exposed for top-level use?
+
+annotate_base_pitch <- function(colour, fill, spec) {
+  midpoint <- pitch_center(spec)
+
+  list(
+    ggplot2::annotate(
+      geom = "rect",
+      xmin = spec$origin_x,
+      xmax = spec$origin_x + spec$length,
+      ymin = spec$origin_y,
+      ymax = spec$origin_y + spec$width,
       colour = colour,
       fill = fill
     ),
     # Centre circle
-    ggplot2::annotation_custom(
-      grob = grid::circleGrob(r  = grid::unit(1, "npc"),
-                              gp = grid::gpar(col  = colour,
-                                              fill = fill,
-                                              lwd = 2)),
-      xmin = (50-7) * x_scale + x_shift,
-      xmax = (50+7) * x_scale + x_shift,
-      ymin = (50-7) * y_scale + y_shift,
-      ymax = (50+7) * y_scale + y_shift
+    annotate_circle(
+      x = midpoint$x,
+      y = midpoint$y,
+      r = spec$penalty_spot_distance,
+      colour = colour,
+      fill = fill
     ),
     # Centre spot
-    ggplot2::geom_rect(
-      xmin = 49.8 * x_scale + x_shift,
-      xmax = 50.2 * x_scale + x_shift,
-      ymin = 49.8 * y_scale + y_shift,
-      ymax = 50.2 * y_scale + y_shift,
+    ggplot2::annotate(
+      geom = "point",
+      x = midpoint$x,
+      y = midpoint$y,
       colour = colour,
       fill = fill
     ),
     # Halfway line
     ggplot2::annotate(
       "segment",
-      x    = 50 * x_scale + x_shift,
-      xend = 50 * x_scale + x_shift,
-      y    = 0 * y_scale + y_shift,
-      yend = 100 * y_scale + y_shift,
+      x = midpoint$x,
+      xend = midpoint$x,
+      y = spec$origin_y,
+      yend = spec$origin_y + spec$width,
       colour = colour
+    )
+  )
+}
+
+annotate_penalty_box <- function(colour, fill, spec) {
+  midpoint <- pitch_center(spec)
+
+  list(
+    # Right penalty area
+    annotate_circle(
+      x      = spec$origin_x + spec$length - spec$penalty_spot_distance,
+      y      = midpoint$y,
+      r      = spec$penalty_spot_distance,
+      colour = colour,
+      fill   = fill
     ),
-    # Add penalty areas (with penalty spot)
-    ggplot2::annotation_custom(
-      grob = grid::circleGrob(r  = grid::unit(1, "npc"),
-                              gp = grid::gpar(col  = colour,
-                                              fill = fill,
-                                              lwd = 2)),
-      xmin = (88.5-7) * x_scale + x_shift,
-      xmax = (88.5+7) * x_scale + x_shift,
-      ymin = (50-7) * y_scale + y_shift,
-      ymax = (50+7) * y_scale + y_shift
-    ),
-    ggplot2::geom_rect(
-      xmin = 83 * x_scale + x_shift,
-      xmax = 100 * x_scale + x_shift,
-      ymin = 21.1 * y_scale + y_shift,
-      ymax = 79.9 * y_scale + y_shift,
+    ggplot2::annotate(
+      geom = "rect",
+      xmin = spec$origin_x + spec$length - spec$penalty_box_length,
+      xmax = spec$origin_x + spec$length,
+      ymin = midpoint$y - spec$penalty_box_width/2,
+      ymax = midpoint$y + spec$penalty_box_width/2,
       colour = colour,
       fill = fill
     ),
-    ggplot2::geom_rect(  # Penalty spot
-      xmin = 88.4 * x_scale + x_shift,
-      xmax = 88.6 * x_scale + x_shift,
-      ymin = 49.8 * y_scale + y_shift,
-      ymax = 50.2 * y_scale + y_shift,
+    ## Penalty spot
+    ggplot2::annotate(
+      geom = "point",
+      x = spec$origin_x + spec$length - spec$penalty_spot_distance,
+      y = midpoint$y,
       colour = colour,
       fill = fill
     ),
-    ggplot2::annotation_custom(
-      grob = grid::circleGrob(r  = grid::unit(1, "npc"),
-                              gp = grid::gpar(col  = colour,
-                                              fill = fill,
-                                              lwd = 2)),
-      xmin = (11.5-7) * x_scale + x_shift,
-      xmax = (11.5+7) * x_scale + x_shift,
-      ymin = (50-7) * y_scale + y_shift,
-      ymax = (50+7) * y_scale + y_shift
+    # Left penalty area
+    annotate_circle(
+      x      = spec$origin_x + spec$penalty_spot_distance,
+      y      = midpoint$y,
+      r      = spec$penalty_spot_distance,
+      colour = colour,
+      fill   = fill
     ),
-    ggplot2::geom_rect(
-      xmin = 0 * x_scale + x_shift,
-      xmax = 17 * x_scale + x_shift,
-      ymin = 21.1 * y_scale + y_shift,
-      ymax = 79.9 * y_scale + y_shift,
+    ggplot2::annotate(
+      geom = "rect",
+      xmin = spec$origin_x,
+      xmax = spec$origin_x + spec$penalty_box_length,
+      ymin = midpoint$y - spec$penalty_box_width/2,
+      ymax = midpoint$y + spec$penalty_box_width/2,
       colour = colour,
       fill = fill
     ),
-    ggplot2::geom_rect(  # Penalty spot
-      xmin = 11.4 * x_scale + x_shift,
-      xmax = 11.6 * x_scale + x_shift,
-      ymin = 49.8 * y_scale + y_shift,
-      ymax = 50.2 * y_scale + y_shift,
-      colour = colour,
-      fill = fill
-    ),
-    # Add 6 yard boxes
-    ggplot2::geom_rect(
-      xmin = 94.2 * x_scale + x_shift,
-      xmax = 100 * x_scale + x_shift,
-      ymin = 36.8 * y_scale + y_shift,
-      ymax = 63.2 * y_scale + y_shift,
-      colour = colour,
-      fill = fill
-    ),
-    ggplot2::geom_rect(
-      xmin = 0 * x_scale + x_shift,
-      xmax = 5.8 * x_scale + x_shift,
-      ymin = 36.8 * y_scale + y_shift,
-      ymax = 63.2 * y_scale + y_shift,
-      colour = colour,
-      fill = fill
-    ),
-    # Add goals
-    ggplot2::geom_rect(
-      xmin = 100 * x_scale + x_shift,
-      xmax = 102 * x_scale + x_shift,
-      ymin = 44.2 * y_scale + y_shift,
-      ymax = 55.8 * y_scale + y_shift,
-      colour = colour,
-      fill = fill
-    ),
-    ggplot2::geom_rect(
-      xmin = 0 * x_scale + x_shift,
-      xmax = -2 * x_scale + x_shift,
-      ymin = 44.2 * y_scale + y_shift,
-      ymax = 55.8 * y_scale + y_shift,
+    ## Penalty spot
+    ggplot2::annotate(
+      geom = "point",
+      x = spec$origin_x + spec$penalty_spot_distance,
+      y = midpoint$y,
       colour = colour,
       fill = fill
     )
   )
-
-  return(markings)
 }
 
-#' Adds soccer pitch markings as a layer for use in a ggplot plot.
-#'
-#' This function is deprecated. Please use `annotate_pitch` instead.
-#'
-#' @export
-pitch_layer <- function(colour = "black",
-                        fill = "white",
-                        x_scale = 1,
-                        y_scale = 1,
-                        x_shift = 0,
-                        y_shift = 0) {
-  .Deprecated("annotate_pitch")
-  annotate_pitch(
-    colour,
-    fill,
-    x_scale,
-    y_scale,
-    x_shift,
-    y_shift)
+annotate_six_yard_box <- function(colour, fill, spec) {
+  midpoint <- pitch_center(spec)
+
+  list(
+    ggplot2::annotate(
+      geom = "rect",
+      xmin = spec$origin_x + spec$length - spec$six_yard_box_length,
+      xmax = spec$origin_x + spec$length,
+      ymin = midpoint$y - spec$six_yard_box_width/2,
+      ymax = midpoint$y + spec$six_yard_box_width/2,
+      colour = colour,
+      fill = fill
+    ),
+    ggplot2::annotate(
+      geom = "rect",
+      xmin = spec$origin_x,
+      xmax = spec$origin_x + spec$six_yard_box_length,
+      ymin = midpoint$y - spec$six_yard_box_width/2,
+      ymax = midpoint$y + spec$six_yard_box_width/2,
+      colour = colour,
+      fill = fill
+    )
+  )
+}
+
+annotate_goal <- function(colour, fill, spec) {
+  midpoint <- pitch_center(spec)
+  goal_depth <- 2
+
+  list(
+    ggplot2::annotate(
+      geom = "rect",
+      xmin = spec$origin_x + spec$length,
+      xmax = spec$origin_x + spec$length + goal_depth,
+      ymin = midpoint$y - spec$goal_width/2,
+      ymax = midpoint$y + spec$goal_width/2,
+      colour = colour,
+      fill = fill
+    ),
+    ggplot2::annotate(
+      geom = "rect",
+      xmin = spec$origin_x - goal_depth,
+      xmax = spec$origin_x,
+      ymin = midpoint$y - spec$goal_width/2,
+      ymax = midpoint$y + spec$goal_width/2,
+      colour = colour,
+      fill = fill
+    )
+  )
+}
+
+# Helper functions
+
+pitch_center <- function(spec) {
+  list(x = spec$origin_x + spec$length/2,
+       y = spec$origin_y + spec$width/2)
+}
+
+annotate_circle <- function(x, y, r, colour, fill) {
+  ggplot2::annotation_custom(
+    grob = grid::circleGrob(gp = grid::gpar(col  = colour, fill = fill, lwd  = 1.5)),
+    xmin = x - r,
+    xmax = x + r,
+    ymin = y - r,
+    ymax = y + r
+  )
 }

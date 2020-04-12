@@ -26,7 +26,7 @@ p <- ggplot(shots_data, aes(x = x, y = y)) +
   annotate_pitch() +
   geom_point()
 
-# Pitch fixed to 65/105 by default
+# Pitch fixed to 68/105 by default
 p + theme_pitch()
 
 # Free aspect

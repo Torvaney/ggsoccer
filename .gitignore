@@ -1,5 +1,9 @@
 .Rproj.user
 .Rhistory
 .RData
+
+# pkgdown
+docs
+
 hex_logo.R
 inst/doc

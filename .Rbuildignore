@@ -1,6 +1,13 @@
+^LICENSE\.md$
+^CRAN-RELEASE$
+^\.travis\.yml$
+^cran-comments\.md$
+^docs$
+^_pkgdown\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^README-.*\.png$
 ^hex_logo.R$
 ^logo.png$
+^pkgdown$

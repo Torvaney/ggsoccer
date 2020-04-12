@@ -2,7 +2,12 @@
 
 export(annotate_pitch)
 export(direction_label)
-export(pitch_layer)
+export(pitch_international)
+export(pitch_opta)
+export(pitch_statsbomb)
+export(pitch_wyscout)
+export(rescale_coordinates)
+export(rescale_international)
 export(theme_pitch)
 importFrom(ggplot2,annotate)
 importFrom(ggplot2,geom_segment)
