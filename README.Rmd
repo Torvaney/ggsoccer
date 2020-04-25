@@ -196,16 +196,24 @@ pitch_custom_large_circle <- list(
   origin_y = 0
 )
 
-ggplot() +
+p1 <- ggplot() +
   annotate_pitch(dimensions = pitch_custom_large_circle) +
-  theme_pitch()
+  theme_pitch() +
+  labs(title = "p1 - Default circle size")
 
 pitch_custom_large_circle$arc_size <- 8
 
-ggplot() +
+p2 <- ggplot() +
   annotate_pitch(dimensions = pitch_custom_large_circle) +
-  theme_pitch()
+  theme_pitch() +
+  labs(title = "p2 - Using `arc_size`")
 ```
+
+```{r, echo=FALSE}
+print(p1)
+print(p2)
+```
+
 
 ## Other options
 

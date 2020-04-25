@@ -199,23 +199,20 @@ pitch_custom_large_circle <- list(
   origin_y = 0
 )
 
-ggplot() +
+p1 <- ggplot() +
   annotate_pitch(dimensions = pitch_custom_large_circle) +
-  theme_pitch()
-```
-
-![](man/figures/README-example_custom_circle-1.png)<!-- -->
-
-``` r
+  theme_pitch() +
+  labs(title = "p1 - Default circle size")
 
 pitch_custom_large_circle$arc_size <- 8
 
-ggplot() +
+p2 <- ggplot() +
   annotate_pitch(dimensions = pitch_custom_large_circle) +
-  theme_pitch()
+  theme_pitch() +
+  labs(title = "p2 - Using `arc_size`")
 ```
 
-![](man/figures/README-example_custom_circle-2.png)<!-- -->
+![](man/figures/README-unnamed-chunk-4-1.png)<!-- -->![](man/figures/README-unnamed-chunk-4-2.png)<!-- -->
 
 ## Other options
 
