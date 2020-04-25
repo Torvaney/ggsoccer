@@ -119,6 +119,10 @@ well as an interface for any custom coordinate system:
   - Statsbomb
   - Wyscout
 
+If you have any other data providers that would be useful to add, please
+let me know by opening a new issue, or by sending me a message [on
+twitter](https://twitter.com/torvaney)\!
+
 #### Statsbomb
 
 ``` r
@@ -170,6 +174,48 @@ ggplot() +
 ```
 
 ![](man/figures/README-example_custom-1.png)<!-- -->
+
+##### Arc size
+
+By default, the size of the D (penalty box arc) and centre circle are
+set to the distance between the penalty spot and the goalline.
+
+Therefore, under certain conditions, the centre circle and D can appear
+too large. If you find yourself working with a data provider that has
+this issue, then you can add an optional `arc_size` parameter to your
+pitch specification to control this directly.
+
+``` r
+pitch_custom_large_circle <- list(
+  length = 106,
+  width = 68,
+  penalty_box_length = 14.5,
+  penalty_box_width = 40.32,
+  six_yard_box_length = 5.5,
+  six_yard_box_width = 18.32,
+  penalty_spot_distance = 11,
+  goal_width = 7.32,
+  origin_x = 0,
+  origin_y = 0
+)
+
+ggplot() +
+  annotate_pitch(dimensions = pitch_custom_large_circle) +
+  theme_pitch()
+```
+
+![](man/figures/README-example_custom_circle-1.png)<!-- -->
+
+``` r
+
+pitch_custom_large_circle$arc_size <- 8
+
+ggplot() +
+  annotate_pitch(dimensions = pitch_custom_large_circle) +
+  theme_pitch()
+```
+
+![](man/figures/README-example_custom_circle-2.png)<!-- -->
 
 ## Other options
 

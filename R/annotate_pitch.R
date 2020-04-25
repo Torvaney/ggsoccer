@@ -72,7 +72,7 @@ annotate_base_pitch <- function(colour, fill, spec) {
     annotate_circle(
       x = midpoint$x,
       y = midpoint$y,
-      r = spec$penalty_spot_distance,
+      r = spec$arc_size %||% spec$penalty_spot_distance,
       colour = colour,
       fill = fill
     ),
@@ -104,7 +104,7 @@ annotate_penalty_box <- function(colour, fill, spec) {
     annotate_circle(
       x      = spec$origin_x + spec$length - spec$penalty_spot_distance,
       y      = midpoint$y,
-      r      = spec$penalty_spot_distance,
+      r      = spec$arc_size %||% spec$penalty_spot_distance,
       colour = colour,
       fill   = fill
     ),
@@ -129,7 +129,7 @@ annotate_penalty_box <- function(colour, fill, spec) {
     annotate_circle(
       x      = spec$origin_x + spec$penalty_spot_distance,
       y      = midpoint$y,
-      r      = spec$penalty_spot_distance,
+      r      = spec$arc_size %||% spec$penalty_spot_distance,
       colour = colour,
       fill   = fill
     ),

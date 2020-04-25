@@ -1,4 +1,8 @@
-# ggsoccer 0.1.5.9000 (In progress)
+# ggsoccer 0.1.6.9000 (In progress)
+
+* Add optional `arc_size` parameter to pitch dimensions
+
+# ggsoccer 0.1.5
 
 * Make line widths consistent across all pitch elements
 * Convert coordinates between different pitch specifications
