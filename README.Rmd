@@ -182,7 +182,7 @@ large. If you find yourself working with a data provider that has this issue, th
 you can add an optional `arc_size` parameter to your pitch specification to control
 this directly.
 
-```{r example_custom_circle, fig.width=5}
+```{r example_custom_circle}
 pitch_custom_large_circle <- list(
   length = 106,
   width = 68,
@@ -209,7 +209,7 @@ p2 <- ggplot() +
   labs(title = "p2 - Using `arc_size`")
 ```
 
-```{r, echo=FALSE}
+```{r print_custom_circle, echo=FALSE, , fig.width=4.5}
 print(p1)
 print(p2)
 ```

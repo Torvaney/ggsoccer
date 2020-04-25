@@ -212,7 +212,7 @@ p2 <- ggplot() +
   labs(title = "p2 - Using `arc_size`")
 ```
 
-![](man/figures/README-unnamed-chunk-4-1.png)<!-- -->![](man/figures/README-unnamed-chunk-4-2.png)<!-- -->
+![](man/figures/README-print_custom_circle-1.png)<!-- -->![](man/figures/README-print_custom_circle-2.png)<!-- -->
 
 ## Other options
 
