@@ -204,6 +204,9 @@ p1 <- ggplot() +
   theme_pitch() +
   labs(title = "p1 - Default circle size")
 
+# Here we are adding arc_size to a the pitch dimensions defined above.
+# In practice, you could just add `arc_size = 8` to the initial definition
+# of `pitch_custom_large_circle`
 pitch_custom_large_circle$arc_size <- 8
 
 p2 <- ggplot() +
