@@ -20,7 +20,7 @@
 #' # Add direction of play label
 #' p + direction_label()
 #'
-#' @importFrom ggplot2 annotate geom_segment
+#' @importFrom ggplot2 annotate
 #' @importFrom grid arrow unit
 #'
 #' @export
@@ -29,7 +29,8 @@ direction_label <- function(x_label = 50,
                             label_length = 20,
                             colour = "dimgray") {
   layer <- list(
-    geom_segment(
+    annotate(
+      "segment",
       x = x_label - (label_length / 2),
       y = y_label,
       xend = x_label + (label_length / 2),

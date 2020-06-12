@@ -4,8 +4,12 @@
 \alias{annotate_pitch}
 \title{Adds soccer pitch markings as a layer for use in a ggplot plot.}
 \usage{
-annotate_pitch(colour = "dimgray", fill = "white", limits = TRUE,
-  dimensions = pitch_opta)
+annotate_pitch(
+  colour = "dimgray",
+  fill = "white",
+  limits = TRUE,
+  dimensions = pitch_opta
+)
 }
 \arguments{
 \item{colour}{Colour of pitch outline.}

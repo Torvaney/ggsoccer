@@ -1,4 +1,9 @@
-# ggsoccer 0.1.5.9000 (In progress)
+# ggsoccer 0.1.6.9000 (In progress)
+
+* Make direction arrow an annotation
+  * This ensures it will display properly for a ggplot without any data
+
+# ggsoccer 0.1.5
 
 * Make line widths consistent across all pitch elements
 * Convert coordinates between different pitch specifications

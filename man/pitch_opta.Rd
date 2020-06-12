@@ -7,7 +7,15 @@
 \alias{pitch_wyscout}
 \alias{pitch_international}
 \title{Pitch dimensions}
-\format{An object of class \code{list} of length 10.}
+\format{
+An object of class \code{list} of length 10.
+
+An object of class \code{list} of length 10.
+
+An object of class \code{list} of length 10.
+
+An object of class \code{list} of length 10.
+}
 \usage{
 pitch_opta
 
