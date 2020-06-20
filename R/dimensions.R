@@ -103,18 +103,21 @@ pitch_international <- list(
   origin_y = 0
 )
 
-#' @rdname pitch_tracab
+#' @rdname pitch_opta
 #' @export
 # ChyronHego Tracab: only length & width provided in metadata.
 # Source: official documentation.
 # This solution takes the remaining dimensions from the international pitch.
 make_pitch_tracab <- function(length=105, width=68){
-  pitch_tracab <- lapply(pitch_international, function(x){100.0*x}) # cm
+  pitch_tracab <- lapply(pitch_international, function(x) 100.0*x) # cm
   pitch_tracab["length"] <- 100.0*length
   pitch_tracab["width"] <- 100.0*width
   pitch_tracab["origin_x"] <- -pitch_tracab[["length"]]/2.0
   pitch_tracab["origin_y"] <- -pitch_tracab[["width"]]/2.0
-  return(pitch_tracab)
+
+  pitch_tracab
 }
 
+#' @rdname pitch_opta
+#' @export
 pitch_tracab <- make_pitch_tracab()

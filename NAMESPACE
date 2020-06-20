@@ -2,9 +2,11 @@
 
 export(annotate_pitch)
 export(direction_label)
+export(make_pitch_tracab)
 export(pitch_international)
 export(pitch_opta)
 export(pitch_statsbomb)
+export(pitch_tracab)
 export(pitch_wyscout)
 export(rescale_coordinates)
 export(rescale_international)
