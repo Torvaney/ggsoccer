@@ -40,6 +40,8 @@
 #'   annotate_pitch(dimensions = pitch_statsbomb) +
 #'   theme_pitch()
 #'
+#' @seealso `make_pitch_tracab`
+#'
 #' @export
 pitch_opta <- list(
   length = 100,
@@ -103,11 +105,32 @@ pitch_international <- list(
   origin_y = 0
 )
 
-#' @rdname pitch_opta
+
+#' Create Tracab dimensions object from pitch length and width
+#'
+#' @description When the actual length and width of a pitch are known,
+#' for example from Tracab file metadata, `make_pitch_tracab` can be
+#' used to replace the 105m x 68m defaults hardcoded in `pitch_tracab`.
+#' The remaining pitch markings are taken from the
+#' UEFA Category 4 standard (`pitch_international`).
+#'
+#' @param length Length of the pitch in metres
+#' @param width Width of the pitch in metres
+#'
+#' @return A named list of pitch marking coordinates.
+#'
+#' @examples
+#' library(ggplot2)
+#' library(ggsoccer)
+#'
+#' ggplot() +
+#'   annotate_pitch(dimensions = make_pitch_tracab(110, 70)) +
+#'   theme_pitch()
+#'
+#'
+#' @seealso `pitch_tracab`
+#'
 #' @export
-# ChyronHego Tracab: only length & width provided in metadata.
-# Source: official documentation.
-# This solution takes the remaining dimensions from the international pitch.
 make_pitch_tracab <- function(length=105, width=68){
   pitch_tracab <- lapply(pitch_international, function(x) 100.0*x) # cm
   pitch_tracab["length"] <- 100.0*length
@@ -117,6 +140,7 @@ make_pitch_tracab <- function(length=105, width=68){
 
   pitch_tracab
 }
+
 
 #' @rdname pitch_opta
 #' @export

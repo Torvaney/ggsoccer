@@ -6,7 +6,6 @@
 \alias{pitch_statsbomb}
 \alias{pitch_wyscout}
 \alias{pitch_international}
-\alias{make_pitch_tracab}
 \alias{pitch_tracab}
 \title{Pitch dimensions}
 \format{
@@ -28,8 +27,6 @@ pitch_statsbomb
 pitch_wyscout
 
 pitch_international
-
-make_pitch_tracab(length = 105, width = 68)
 
 pitch_tracab
 }
@@ -75,5 +72,8 @@ ggplot() +
   annotate_pitch(dimensions = pitch_statsbomb) +
   theme_pitch()
 
+}
+\seealso{
+\code{make_pitch_tracab}
 }
 \keyword{datasets}
