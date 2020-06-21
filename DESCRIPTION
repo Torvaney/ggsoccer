@@ -9,6 +9,7 @@ Description: The 'ggplot2' package provides a powerful set of tools
   work smoothly with a variety of popular sports data providers.
 License: MIT + file LICENSE
 URL: https://torvaney.github.io/ggsoccer/, https://github.com/Torvaney/ggsoccer
+Language: en-GB
 Depends:
   R (>= 3.3.0)
 Imports:

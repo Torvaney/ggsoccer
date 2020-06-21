@@ -84,7 +84,7 @@ to ensure that the orientation remains correct.
 
 NOTE: Ordinarily, we would just do this with `scale_y_reverse`. However, due to
 a [bug in ggplot2](https://github.com/tidyverse/ggplot2/issues/3120), this results in
-certain elements of the pitch (center and penalty box arcs) failing to render. 
+certain elements of the pitch (centre circle and penalty box arcs) failing to render. 
 Instead, we can flip the y coordinates manually (`100 - y` in this case).
 
 ```{r example_shots}
