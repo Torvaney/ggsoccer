@@ -1,5 +1,6 @@
 # ggsoccer 0.1.6.9000 (In progress)
 
+* Add support for Tracab pitch dimensions (`pitch_tracab` and `make_pitch_tracab`)
 * Make direction arrow an annotation
   * This ensures it will display properly for a ggplot without any data
 

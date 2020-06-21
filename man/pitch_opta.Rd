@@ -6,8 +6,11 @@
 \alias{pitch_statsbomb}
 \alias{pitch_wyscout}
 \alias{pitch_international}
+\alias{pitch_tracab}
 \title{Pitch dimensions}
 \format{
+An object of class \code{list} of length 10.
+
 An object of class \code{list} of length 10.
 
 An object of class \code{list} of length 10.
@@ -24,6 +27,8 @@ pitch_statsbomb
 pitch_wyscout
 
 pitch_international
+
+pitch_tracab
 }
 \description{
 The coordinate system used to generate pitch markings in
@@ -56,6 +61,7 @@ The following pitch dimensions are provided
 \item{"pitch_statsbomb"}{For Statsbomb data}
 \item{"pitch_wyscout"}{For Wyscout data}
 \item{"pitch_international"}{As per UEFA Category 4 stadium regulations}
+\item{"pitch_tracab"}{"For ChyronHego Tracab, using the 105m x 68m default size"}
 }
 }
 \examples{
@@ -66,5 +72,8 @@ ggplot() +
   annotate_pitch(dimensions = pitch_statsbomb) +
   theme_pitch()
 
+}
+\seealso{
+\code{make_pitch_tracab}
 }
 \keyword{datasets}
