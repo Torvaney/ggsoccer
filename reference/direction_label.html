@@ -128,11 +128,11 @@
     <p>Adds an arrow indicating the direction of play to a ggplot plot</p>
     </div>
 
-    <pre class="usage"><span class='fu'>direction_label</span>(
-  <span class='kw'>x_label</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-  <span class='kw'>y_label</span> <span class='kw'>=</span> -<span class='fl'>3</span>,
-  <span class='kw'>label_length</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>colour</span> <span class='kw'>=</span> <span class='st'>"dimgray"</span>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/direction_label.html'>direction_label</a></span>(
+  x_label = <span class='fl'>50</span>,
+  y_label = <span class='op'>-</span><span class='fl'>3</span>,
+  label_length = <span class='fl'>20</span>,
+  colour = <span class='st'>"dimgray"</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -161,18 +161,17 @@
     <p>list of ggplot layers to be added to a ggplot plot</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)
 
-<span class='no'>shots_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>90</span>, <span class='fl'>85</span>, <span class='fl'>82</span>, <span class='fl'>78</span>, <span class='fl'>83</span>),
-                         <span class='kw'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>43</span>, <span class='fl'>40</span>, <span class='fl'>52</span>, <span class='fl'>56</span>, <span class='fl'>44</span>))
+<span class='kw'>shots_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(x = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>90</span>, <span class='fl'>85</span>, <span class='fl'>82</span>, <span class='fl'>78</span>, <span class='fl'>83</span>),
+                         y = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>43</span>, <span class='fl'>40</span>, <span class='fl'>52</span>, <span class='fl'>56</span>, <span class='fl'>44</span>))
 
-<span class='no'>p</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>shots_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>)) +
-  <span class='fu'><a href='annotate_pitch.html'>annotate_pitch</a></span>() +
+<span class='kw'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>shots_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>x</span>, y = <span class='kw'>y</span>)) <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/annotate_pitch.html'>annotate_pitch</a></span>() <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>()
 
 <span class='co'># Add direction of play label</span>
-<span class='no'>p</span> + <span class='fu'>direction_label</span>()</div><div class='img'><img src='direction_label-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+<span class='kw'>p</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/direction_label.html'>direction_label</a></span>()</div><div class='img'><img src='direction_label-1.png' alt='' width='700' height='433' /></div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

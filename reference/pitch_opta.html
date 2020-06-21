@@ -136,18 +136,21 @@ argument of <code>annotate_pitch</code>.</p>
 However, user-defined specifications can also be used.</p>
     </div>
 
-    <pre class="usage"><span class='no'>pitch_opta</span>
+    <pre class="usage"><span class='kw'>pitch_opta</span>
 
-<span class='no'>pitch_statsbomb</span>
+<span class='kw'>pitch_statsbomb</span>
 
-<span class='no'>pitch_wyscout</span>
+<span class='kw'>pitch_wyscout</span>
 
-<span class='no'>pitch_international</span></pre>
+<span class='kw'>pitch_international</span>
+
+<span class='kw'>pitch_tracab</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>An object of class <code>list</code> of length 10.</p>
+<p>An object of class <code>list</code> of length 10.</p>
 <p>An object of class <code>list</code> of length 10.</p>
 <p>An object of class <code>list</code> of length 10.</p>
 <p>An object of class <code>list</code> of length 10.</p>
@@ -173,17 +176,20 @@ coordinate system. The required dimensions are:</p>
 <li><p>"pitch_statsbomb"For Statsbomb data</p></li>
 <li><p>"pitch_wyscout"For Wyscout data</p></li>
 <li><p>"pitch_international"As per UEFA Category 4 stadium regulations</p></li>
+<li><p>"pitch_tracab""For ChyronHego Tracab, using the 105m x 68m default size"</p></li>
 </ul>
 
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code>make_pitch_tracab</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggsoccer</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://torvaney.github.io/ggsoccer'>ggsoccer</a></span>)
 
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>() +
-  <span class='fu'><a href='annotate_pitch.html'>annotate_pitch</a></span>(<span class='kw'>dimensions</span> <span class='kw'>=</span> <span class='no'>pitch_statsbomb</span>) +
-  <span class='fu'><a href='theme_pitch.html'>theme_pitch</a></span>()</div><div class='img'><img src='pitch_opta-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>() <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/annotate_pitch.html'>annotate_pitch</a></span>(dimensions = <span class='kw'>pitch_statsbomb</span>) <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/theme_pitch.html'>theme_pitch</a></span>()</div><div class='img'><img src='pitch_opta-1.png' alt='' width='700' height='433' /></div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

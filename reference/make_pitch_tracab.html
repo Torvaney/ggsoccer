@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rescale x-y coordinates — rescale_coordinates • ggsoccer</title>
+<title>Create Tracab dimensions object from pitch length and width — make_pitch_tracab • ggsoccer</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,11 +46,12 @@
 
 
 
-<meta property="og:title" content="Rescale x-y coordinates — rescale_coordinates" />
-<meta property="og:description" content="Returns a list containing 2 functions to translate x and y coordinates,
-from one set of pitch dimensions (i.e. data provider) to another.
-Any x or y coordinate is rescaled linearly between the nearest two pitch markings.
-For example, the edge of the penalty box and the half way-line." />
+<meta property="og:title" content="Create Tracab dimensions object from pitch length and width — make_pitch_tracab" />
+<meta property="og:description" content="When the actual length and width of a pitch are known,
+for example from Tracab file metadata, make_pitch_tracab can be
+used to replace the 105m x 68m defaults hardcoded in pitch_tracab.
+The remaining pitch markings are taken from the
+UEFA Category 4 standard (pitch_international)." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -122,53 +123,48 @@ For example, the edge of the penalty box and the half way-line." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rescale x-y coordinates</h1>
-    <small class="dont-index">Source: <a href='https://github.com/torvaney/ggsoccer/blob/master/R/rescale_coordinates.R'><code>R/rescale_coordinates.R</code></a></small>
-    <div class="hidden name"><code>rescale_coordinates.Rd</code></div>
+    <h1>Create Tracab dimensions object from pitch length and width</h1>
+    <small class="dont-index">Source: <a href='https://github.com/torvaney/ggsoccer/blob/master/R/dimensions.R'><code>R/dimensions.R</code></a></small>
+    <div class="hidden name"><code>make_pitch_tracab.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Returns a list containing 2 functions to translate x and y coordinates,
-from one set of pitch dimensions (i.e. data provider) to another.</p>
-<p>Any x or y coordinate is rescaled linearly between the nearest two pitch markings.
-For example, the edge of the penalty box and the half way-line.</p>
+    <p>When the actual length and width of a pitch are known,
+for example from Tracab file metadata, <code>make_pitch_tracab</code> can be
+used to replace the 105m x 68m defaults hardcoded in <code>pitch_tracab</code>.
+The remaining pitch markings are taken from the
+UEFA Category 4 standard (<code>pitch_international</code>).</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/rescale_coordinates.html'>rescale_coordinates</a></span>(<span class='kw'>from</span>, <span class='kw'>to</span>)
-
-<span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/rescale_coordinates.html'>rescale_international</a></span>(<span class='kw'>from</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/make_pitch_tracab.html'>make_pitch_tracab</a></span>(length = <span class='fl'>105</span>, width = <span class='fl'>68</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>from</th>
-      <td><p>The dimensions to convert from (see <code>help(dimensions)</code>)</p></td>
+      <th>length</th>
+      <td><p>Length of the pitch in metres</p></td>
     </tr>
     <tr>
-      <th>to</th>
-      <td><p>The dimensions to convert to (see <code>help(dimensions)</code>)</p></td>
+      <th>width</th>
+      <td><p>Width of the pitch in metres</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><code>pitch_international</code> creates a rescaler to <code>pitch_international</code>
-coordinates.</p>
+    <p>A named list of pitch marking coordinates.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code>pitch_tracab</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'>opta_to_wyscout</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/rescale_coordinates.html'>rescale_coordinates</a></span>(
-  from = <span class='kw'>pitch_opta</span>,
-  to   = <span class='kw'>pitch_wyscout</span>
-)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://torvaney.github.io/ggsoccer'>ggsoccer</a></span>)
 
-<span class='kw'>opta_xs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>22</span>, <span class='fl'>55</span>, <span class='fl'>78</span>)
-<span class='kw'>opta_ys</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>22</span>, <span class='fl'>55</span>, <span class='fl'>78</span>)
-
-<span class='kw'>opta_to_wyscout</span><span class='op'>$</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_position.html'>x</a></span>(<span class='kw'>opta_xs</span>)</div><div class='output co'>#&gt; [1]  8.947368 21.151515 55.151515 78.848485</div><div class='input'><span class='co'>#&gt; c(9.75000, 21.15152, 55.15152, 78.84848)</span>
-
-<span class='kw'>opta_to_wyscout</span><span class='op'>$</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_position.html'>y</a></span>(<span class='kw'>opta_ys</span>)</div><div class='output co'>#&gt; [1]  9.004739 20.031847 55.172414 79.968153</div><div class='input'><span class='co'>#&gt; c(9.004739, 20.031847, 55.172414, 79.968153)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>() <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/annotate_pitch.html'>annotate_pitch</a></span>(dimensions = <span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/make_pitch_tracab.html'>make_pitch_tracab</a></span>(<span class='fl'>110</span>, <span class='fl'>70</span>)) <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/theme_pitch.html'>theme_pitch</a></span>()</div><div class='img'><img src='make_pitch_tracab-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
