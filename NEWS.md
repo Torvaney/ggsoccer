@@ -1,4 +1,4 @@
-# ggsoccer 0.1.6.9000 (In progress)
+# ggsoccer 0.1.6
 
 * Add support for Tracab pitch dimensions (`pitch_tracab` and `make_pitch_tracab`)
 * Make direction arrow an annotation
@@ -25,7 +25,7 @@
 # ggsoccer 0.1.2
 
 * Show pitch with `scale_*_reverse`
-  * Centre-circle and penalty box arcs still do not properly render when 
+  * Centre-circle and penalty box arcs still do not properly render when
     `scale_*_reverse` is used
   * It appears this is an issue with ggplot2 ([#3120](https://github.com/tidyverse/ggplot2/issues/3120))
 
