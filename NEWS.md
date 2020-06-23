@@ -1,5 +1,6 @@
-# ggsoccer 0.1.6.9000 (In progress)
+# ggsoccer 0.1.7.9000 (In progress)
 
+(Nothing yet!)
 
 # ggsoccer 0.1.6
 
