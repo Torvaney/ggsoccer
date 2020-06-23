@@ -1,9 +1,9 @@
 Package: ggsoccer
 Title: Plot Soccer Event Data
-Version: 0.1.6
+Version: 0.1.7.9000
 Authors@R: person("Ben", "Torvaney", email = "torvaney@protonmail.com", role = c("aut", "cre"))
-Description: The 'ggplot2' package provides a powerful set of tools 
-  for visualising and investigating data. The 'ggsoccer' package provides a 
+Description: The 'ggplot2' package provides a powerful set of tools
+  for visualising and investigating data. The 'ggsoccer' package provides a
   set of functions for elegantly displaying and exploring soccer event data
   with 'ggplot2'. Providing extensible layers and themes, it is designed to
   work smoothly with a variety of popular sports data providers.
@@ -19,6 +19,6 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Encoding: UTF-8
 BugReports: https://github.com/torvaney/ggsoccer/issues
-Suggests: 
+Suggests:
   testthat (>= 2.1.0),
   pkgdown
