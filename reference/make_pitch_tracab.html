@@ -136,7 +136,7 @@ The remaining pitch markings are taken from the
 UEFA Category 4 standard (<code>pitch_international</code>).</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/make_pitch_tracab.html'>make_pitch_tracab</a></span>(length = <span class='fl'>105</span>, width = <span class='fl'>68</span>)</pre>
+    <pre class="usage"><span class='fu'>make_pitch_tracab</span>(length = <span class='fl'>105</span>, width = <span class='fl'>68</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -163,8 +163,10 @@ UEFA Category 4 standard (<code>pitch_international</code>).</p>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://torvaney.github.io/ggsoccer'>ggsoccer</a></span>)
 
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>() <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/annotate_pitch.html'>annotate_pitch</a></span>(dimensions = <span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/make_pitch_tracab.html'>make_pitch_tracab</a></span>(<span class='fl'>110</span>, <span class='fl'>70</span>)) <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/ggsoccer/man/theme_pitch.html'>theme_pitch</a></span>()</div><div class='img'><img src='make_pitch_tracab-1.png' alt='' width='700' height='433' /></div><div class='input'>
+  <span class='fu'><a href='annotate_pitch.html'>annotate_pitch</a></span>(dimensions = <span class='fu'>make_pitch_tracab</span>(<span class='fl'>110</span>, <span class='fl'>70</span>)) <span class='op'>+</span>
+  <span class='fu'><a href='theme_pitch.html'>theme_pitch</a></span>()
+</div><div class='img'><img src='make_pitch_tracab-1.png' alt='' width='700' height='433' /></div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -181,7 +183,7 @@ UEFA Category 4 standard (<code>pitch_international</code>).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
