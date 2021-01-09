@@ -36,8 +36,6 @@ remotes::install_github("torvaney/ggsoccer")
 
 ``` r
 library(ggplot2)
-#> Want to understand how all the pieces fit together? Read R for Data Science:
-#> https://r4ds.had.co.nz/
 library(ggsoccer)
 
 ggplot() +
