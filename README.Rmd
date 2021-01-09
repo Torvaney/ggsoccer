@@ -45,7 +45,7 @@ remotes::install_github("torvaney/ggsoccer")
 
 ## Usage
 
-```{r example_blank}
+```{r example_blank, message = FALSE}
 library(ggplot2)
 library(ggsoccer)
 
