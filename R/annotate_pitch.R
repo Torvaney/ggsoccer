@@ -104,13 +104,16 @@ annotate_penalty_box <- function(colour, fill, spec) {
   midpoint <- pitch_center(spec)
 
   list(
-    # Right penalty area
-    annotate_circle(
+    # Right penalty area,
+    ggplot2::annotate(
+      geom   = "curve",
       x      = spec$origin_x + spec$length - spec$penalty_spot_distance,
-      y      = midpoint$y,
-      r      = spec$penalty_spot_distance,
+      xend   = spec$origin_x + spec$length - spec$penalty_spot_distance,
+      y      = midpoint$y - spec$penalty_spot_distance,
+      yend   = midpoint$y + spec$penalty_spot_distance,
+      curvature = -1,
       colour = colour,
-      fill   = fill
+      ncp    = 100
     ),
     ggplot2::annotate(
       geom = "rect",
@@ -130,12 +133,15 @@ annotate_penalty_box <- function(colour, fill, spec) {
       fill = fill
     ),
     # Left penalty area
-    annotate_circle(
+    ggplot2::annotate(
+      geom   = "curve",
       x      = spec$origin_x + spec$penalty_spot_distance,
-      y      = midpoint$y,
-      r      = spec$penalty_spot_distance,
+      xend   = spec$origin_x + spec$penalty_spot_distance,
+      y      = midpoint$y - spec$penalty_spot_distance,
+      yend   = midpoint$y + spec$penalty_spot_distance,
+      curvature = 1,
       colour = colour,
-      fill   = fill
+      ncp    = 100
     ),
     ggplot2::annotate(
       geom = "rect",
