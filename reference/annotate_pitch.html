@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -102,7 +102,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/torvaney/ggsoccer/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -128,12 +128,13 @@
     <p>Adds soccer pitch markings as a layer for use in a ggplot plot.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>annotate_pitch</span>(
-  colour = <span class='st'>"dimgray"</span>,
-  fill = <span class='st'>"white"</span>,
-  limits = <span class='fl'>TRUE</span>,
-  dimensions = <span class='kw'>pitch_opta</span>
-)</pre>
+    <pre class="usage"><span class='fu'>annotate_pitch</span><span class='op'>(</span>
+  colour <span class='op'>=</span> <span class='st'>"dimgray"</span>,
+  fill <span class='op'>=</span> <span class='st'>"white"</span>,
+  limits <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  dimensions <span class='op'>=</span> <span class='va'>pitch_opta</span>,
+  goals <span class='op'>=</span> <span class='va'>goals_box</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,7 +145,7 @@
     </tr>
     <tr>
       <th>fill</th>
-      <td><p>Colour of pitch fill</p></td>
+      <td><p>Colour of pitch fill.</p></td>
     </tr>
     <tr>
       <th>limits</th>
@@ -154,6 +155,11 @@
       <th>dimensions</th>
       <td><p>A list containing the pitch dimensions to draw. See <code><a href='pitch_opta.html'>help(pitch_opta)</a></code>.</p></td>
     </tr>
+    <tr>
+      <th>goals</th>
+      <td><p>A function for generating goal markings. Defaults to <code>goals_box</code>.
+See <code><a href='goals_box.html'>help(goals_box)</a></code>. Formulas are turned into functions with <code><a href='https://rlang.r-lib.org/reference/as_function.html'>rlang::as_function</a></code>.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -161,14 +167,14 @@
     <p>list of ggplot geoms to be added to a ggplot plot</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 
-<span class='kw'>shots_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(x = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>90</span>, <span class='fl'>85</span>, <span class='fl'>82</span>, <span class='fl'>78</span>, <span class='fl'>83</span>),
-                         y = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>43</span>, <span class='fl'>40</span>, <span class='fl'>52</span>, <span class='fl'>56</span>, <span class='fl'>44</span>))
+<span class='va'>shots_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>90</span>, <span class='fl'>85</span>, <span class='fl'>82</span>, <span class='fl'>78</span>, <span class='fl'>83</span><span class='op'>)</span>,
+                         y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>43</span>, <span class='fl'>40</span>, <span class='fl'>52</span>, <span class='fl'>56</span>, <span class='fl'>44</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>shots_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>x</span>, y = <span class='kw'>y</span>)) <span class='op'>+</span>
-  <span class='fu'>annotate_pitch</span>() <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>()
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>shots_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>annotate_pitch</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='img'><img src='annotate_pitch-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
@@ -186,7 +192,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

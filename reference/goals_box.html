@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Adds an arrow indicating the direction of play to a ggplot plot — direction_label • ggsoccer</title>
+<title>Goals markings — goals_box • ggsoccer</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,9 @@
 
 
 
-<meta property="og:title" content="Adds an arrow indicating the direction of play to a ggplot plot — direction_label" />
-<meta property="og:description" content="Adds an arrow indicating the direction of play to a ggplot plot" />
+<meta property="og:title" content="Goals markings — goals_box" />
+<meta property="og:description" content="Various functions ca be supplied to annotate_pitch to specify the appearance
+of goals in the resulting plot." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -119,46 +120,70 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Adds an arrow indicating the direction of play to a ggplot plot</h1>
-    <small class="dont-index">Source: <a href='https://github.com/torvaney/ggsoccer/blob/master/R/direction_label.R'><code>R/direction_label.R</code></a></small>
-    <div class="hidden name"><code>direction_label.Rd</code></div>
+    <h1>Goals markings</h1>
+    <small class="dont-index">Source: <a href='https://github.com/torvaney/ggsoccer/blob/master/R/annotate_pitch.R'><code>R/annotate_pitch.R</code></a></small>
+    <div class="hidden name"><code>goals_box.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Adds an arrow indicating the direction of play to a ggplot plot</p>
+    <p>Various functions ca be supplied to <code>annotate_pitch</code> to specify the appearance
+of goals in the resulting plot.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>direction_label</span><span class='op'>(</span>
-  x_label <span class='op'>=</span> <span class='fl'>50</span>,
-  y_label <span class='op'>=</span> <span class='op'>-</span><span class='fl'>3</span>,
-  label_length <span class='op'>=</span> <span class='fl'>20</span>,
-  colour <span class='op'>=</span> <span class='st'>"dimgray"</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>goals_box</span><span class='op'>(</span><span class='va'>colour</span>, <span class='va'>fill</span>, <span class='va'>dimensions</span>, offset <span class='op'>=</span> <span class='fl'>2</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>goals_strip</span><span class='op'>(</span>
+  <span class='va'>colour</span>,
+  <span class='va'>fill</span>,
+  <span class='va'>dimensions</span>,
+  offset <span class='op'>=</span> <span class='fl'>1</span>,
+  size <span class='op'>=</span> <span class='fl'>1</span>,
+  lineend <span class='op'>=</span> <span class='st'>"round"</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span>
+
+<span class='fu'>goals_line</span><span class='op'>(</span><span class='va'>colour</span>, <span class='va'>fill</span>, <span class='va'>dimensions</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x_label</th>
-      <td><p>x position of the centre of the arrow on the plot</p></td>
-    </tr>
-    <tr>
-      <th>y_label</th>
-      <td><p>y position of the arrow on the plot</p></td>
-    </tr>
-    <tr>
-      <th>label_length</th>
-      <td><p>length of arrow (in x axis units)</p></td>
-    </tr>
-    <tr>
       <th>colour</th>
-      <td><p>colour of the arrow and text</p></td>
+      <td><p>Colour of pitch outline.</p></td>
+    </tr>
+    <tr>
+      <th>fill</th>
+      <td><p>Colour of pitch fill.</p></td>
+    </tr>
+    <tr>
+      <th>dimensions</th>
+      <td><p>A list containing the pitch dimensions to draw. See <code><a href='pitch_opta.html'>help(pitch_opta)</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>offset</th>
+      <td><p>Determines how deep the goal extends.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Passed onto underlying <code><a href='https://ggplot2.tidyverse.org/reference/annotate.html'>ggplot2::annotate</a></code> calls.</p></td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td><p>Determines line thickness in <code>goals_strip</code> and <code>goals_line</code>.</p></td>
+    </tr>
+    <tr>
+      <th>lineend</th>
+      <td><p>Determines lineend in <code>goals_strip</code> and <code>goals_line</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>list of ggplot layers to be added to a ggplot plot</p>
+    <p>list of ggplot geoms to be added to a ggplot plot</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Each function takes <code>colour</code>, <code>fill</code>, and <code>dimensions</code> arguments. User-defined
+functions with the same arguments can also be used</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
@@ -166,13 +191,21 @@
 <span class='va'>shots_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>90</span>, <span class='fl'>85</span>, <span class='fl'>82</span>, <span class='fl'>78</span>, <span class='fl'>83</span><span class='op'>)</span>,
                          y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>43</span>, <span class='fl'>40</span>, <span class='fl'>52</span>, <span class='fl'>56</span>, <span class='fl'>44</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>shots_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='annotate_pitch.html'>annotate_pitch</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='co'># Default</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>shots_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='annotate_pitch.html'>annotate_pitch</a></span><span class='op'>(</span>goals <span class='op'>=</span> <span class='va'>goals_box</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='co'># Add direction of play label</span>
-<span class='va'>p</span> <span class='op'>+</span> <span class='fu'>direction_label</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='direction_label-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='goals_box-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Other goals markings</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>shots_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='annotate_pitch.html'>annotate_pitch</a></span><span class='op'>(</span>goals <span class='op'>=</span> <span class='va'>goals_strip</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='goals_box-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Partial functions can be used to customise further</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>shots_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='annotate_pitch.html'>annotate_pitch</a></span><span class='op'>(</span>goals <span class='op'>=</span> <span class='op'>~</span> <span class='fu'>goals_strip</span><span class='op'>(</span><span class='va'>...</span>, size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='goals_box-3.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -91,7 +91,7 @@ For example, the edge of the penalty box and the half way-line." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -105,7 +105,7 @@ For example, the edge of the penalty box and the half way-line." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/torvaney/ggsoccer/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -134,9 +134,9 @@ from one set of pitch dimensions (i.e. data provider) to another.</p>
 For example, the edge of the penalty box and the half way-line.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rescale_coordinates</span>(<span class='kw'>from</span>, <span class='kw'>to</span>)
+    <pre class="usage"><span class='fu'>rescale_coordinates</span><span class='op'>(</span><span class='va'>from</span>, <span class='va'>to</span><span class='op'>)</span>
 
-<span class='fu'>rescale_international</span>(<span class='kw'>from</span>)</pre>
+<span class='fu'>rescale_international</span><span class='op'>(</span><span class='va'>from</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,18 +158,18 @@ coordinates.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'>opta_to_wyscout</span> <span class='op'>&lt;-</span> <span class='fu'>rescale_coordinates</span>(
-  from = <span class='kw'>pitch_opta</span>,
-  to   = <span class='kw'>pitch_wyscout</span>
-)
+<span class='va'>opta_to_wyscout</span> <span class='op'>&lt;-</span> <span class='fu'>rescale_coordinates</span><span class='op'>(</span>
+  from <span class='op'>=</span> <span class='va'>pitch_opta</span>,
+  to   <span class='op'>=</span> <span class='va'>pitch_wyscout</span>
+<span class='op'>)</span>
 
-<span class='kw'>opta_xs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>22</span>, <span class='fl'>55</span>, <span class='fl'>78</span>)
-<span class='kw'>opta_ys</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>22</span>, <span class='fl'>55</span>, <span class='fl'>78</span>)
+<span class='va'>opta_xs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>22</span>, <span class='fl'>55</span>, <span class='fl'>78</span><span class='op'>)</span>
+<span class='va'>opta_ys</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>22</span>, <span class='fl'>55</span>, <span class='fl'>78</span><span class='op'>)</span>
 
-<span class='kw'>opta_to_wyscout</span><span class='op'>$</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_position.html'>x</a></span>(<span class='kw'>opta_xs</span>)
+<span class='va'>opta_to_wyscout</span><span class='op'>$</span><span class='fu'>x</span><span class='op'>(</span><span class='va'>opta_xs</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1]  8.947368 21.151515 55.151515 78.848485</div><div class='input'><span class='co'>#&gt; c(9.75000, 21.15152, 55.15152, 78.84848)</span>
 
-<span class='kw'>opta_to_wyscout</span><span class='op'>$</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_position.html'>y</a></span>(<span class='kw'>opta_ys</span>)
+<span class='va'>opta_to_wyscout</span><span class='op'>$</span><span class='fu'>y</span><span class='op'>(</span><span class='va'>opta_ys</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1]  9.004739 20.031847 55.172414 79.968153</div><div class='input'><span class='co'>#&gt; c(9.004739, 20.031847, 55.172414, 79.968153)</span>
 
 </div></pre>
@@ -188,7 +188,7 @@ coordinates.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
