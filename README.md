@@ -227,6 +227,7 @@ Depending on your use case, you may want to check these out too:
 
 ### Python
 
-  - If you have the misfortune of being stuck with matplotlib,
-    [matplotsoccer](https://github.com/TomDecroos/matplotsoccer) might
-    be able to help you out.
+There are a couple of pitch plotting options for matplotlib, too:
+
+  - [mplsoccer](https://github.com/andrewRowlinson/mplsoccer)
+  - [matplotsoccer](https://github.com/TomDecroos/matplotsoccer)
