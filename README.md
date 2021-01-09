@@ -3,11 +3,13 @@
 
 # ggsoccer <img src="man/figures/logo.png" width="160px" align="right" />
 
+<!-- badges: start -->
+
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ggsoccer)](https://cran.r-project.org/package=ggsoccer)
 [![CRAN\_Version\_Badge](https://cranlogs.r-pkg.org/badges/ggsoccer?color=ff69b4)](https://cran.r-project.org/package=ggsoccer)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![Travis build
-status](https://travis-ci.org/Torvaney/ggsoccer.svg?branch=master)](https://travis-ci.org/Torvaney/ggsoccer)
+[![R-CMD-check](https://github.com/Torvaney/ggsoccer/workflows/R-CMD-check/badge.svg)](https://github.com/Torvaney/ggsoccer/actions)
+<!-- badges: end -->
 
 ## Overview
 
@@ -34,6 +36,8 @@ remotes::install_github("torvaney/ggsoccer")
 
 ``` r
 library(ggplot2)
+#> Want to understand how all the pieces fit together? Read R for Data Science:
+#> https://r4ds.had.co.nz/
 library(ggsoccer)
 
 ggplot() +
