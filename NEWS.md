@@ -1,6 +1,6 @@
 # ggsoccer 0.1.7.9000 (In progress)
 
-(Nothing yet!)
+* Add support for custom goals markings 
 
 # ggsoccer 0.1.6
 

@@ -91,14 +91,14 @@ shots <- data.frame(x = c(90, 85, 82, 78, 83, 74, 94, 91),
 
 ggplot(shots) +
   annotate_pitch(colour = "white",
-                 fill   = "#7fc47f",
+                 fill   = "springgreen4",
                  limits = FALSE) +
   geom_point(aes(x = x, y = 100 - y),
-             colour = "black", 
-             fill = "chartreuse4", 
-             pch = 21,
-             size = 2) +
+             fill = "yellow", 
+             shape = 21,
+             size = 4) +
   theme_pitch() +
+  theme(panel.background = element_rect(fill = "springgreen4")) +
   coord_flip(xlim = c(49, 101),
              ylim = c(-12, 112)) +
   ggtitle("Simple shotmap",
@@ -170,6 +170,51 @@ ggplot() +
 ```
 
 ![](man/figures/README-example_custom-1.png)<!-- -->
+
+### Goals
+
+The standard “box” goals may not be perfectly suited to your use-case.
+ggsoccer allows you to customise your goals markings by supplying a
+function to the `goals` argument of `annotate_pitch`:
+
+``` r
+ggplot() +
+  annotate_pitch(fill = "steelblue4", colour = "white", goals = goals_line) +
+  theme_pitch() +
+  theme(panel.background = element_rect(fill = "steelblue4"))
+```
+
+![](man/figures/README-example_goals_line-1.png)<!-- -->
+
+``` r
+ggplot() +
+  annotate_pitch(goals = goals_strip, fill = "lightgray") +
+  theme_pitch()
+```
+
+![](man/figures/README-example_goals_strip-1.png)<!-- -->
+
+Since this argument just requires a function (or a one-sided formula),
+you can modify the supplied functions, or create your own goal markings
+function. Additionally, the `goals` argument supports using one-sided
+formulas as lambda functions (see
+[`rlang::as_function`](https://rlang.r-lib.org/reference/as_function.html)).
+
+``` r
+ggplot() +
+  annotate_pitch(
+    goals = ~ goals_strip(..., lineend = "square", size = 3.5), 
+    fill = "lightgray"
+  ) +
+  theme_pitch()
+```
+
+![](man/figures/README-example_goals_custom-1.png)<!-- -->
+
+See `help(goals_box)` for the full list of available functions.
+
+The idea for having multiple goal markings was taken and adapted from
+the [fc.rstats](https://github.com/FCrSTATS/fc.rstats) package.
 
 ## Other options
 

@@ -13,7 +13,8 @@ Language: en-GB
 Depends:
   R (>= 3.3.0)
 Imports:
-  ggplot2
+  ggplot2,
+  rlang
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
