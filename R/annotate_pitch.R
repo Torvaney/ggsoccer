@@ -187,7 +187,7 @@ annotate_six_yard_box <- function(colour, fill, spec) {
 
 #' Goals markings
 #'
-#' Various functions ca be supplied to `annotate_pitch` to specify the appearance
+#' Various functions can be supplied to `annotate_pitch` to specify the appearance
 #' of goals in the resulting plot.
 #'
 #' Each function takes `colour`, `fill`, and `dimensions` arguments. User-defined
