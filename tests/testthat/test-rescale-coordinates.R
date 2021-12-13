@@ -2,14 +2,14 @@ test_that("Rescaling x coordinates works", {
   dimensions <- list(pitch_opta, pitch_wyscout, pitch_statsbomb, pitch_international)
 
   expect_equal_rescaled_x <- function(dim1, dim2) {
-    rescaler <- rescale_coordinates(pitch_opta, pitch_international)
+    rescaler <- rescale_coordinates(dim1, dim2)
 
     x_dimensions <- c("length", "penalty_box_length", "penalty_spot_distance",
                       "six_yard_box_length", "origin_x")
     for (dim in x_dimensions) {
       expect_equal(
-        rescaler$x(pitch_opta[[dim]]),
-        pitch_international[[dim]]
+        rescaler$x(dim1[[dim]]),
+        dim2[[dim]]
       )
     }
   }
