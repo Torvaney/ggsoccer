@@ -145,3 +145,11 @@ make_pitch_tracab <- function(length=105, width=68){
 #' @rdname pitch_opta
 #' @export
 pitch_tracab <- make_pitch_tracab()
+
+
+# Helper functions (internal package use)
+
+pitch_center <- function(spec) {
+  list(x = spec$origin_x + spec$length/2,
+       y = spec$origin_y + spec$width/2)
+}

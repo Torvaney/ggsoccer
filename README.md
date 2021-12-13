@@ -14,7 +14,7 @@
 ## Overview
 
 ggsoccer provides a handful of functions that make it easy to plot
-soccer event data in R/ggplot2.
+soccer event data in R/ggplot2 from a variety of data providers.
 
 ## Installation
 
@@ -24,8 +24,7 @@ ggsoccer is available via CRAN:
 install.packages("ggsoccer")
 ```
 
-Alternatively, you can download the development version from github like
-so:
+Alternatively, you can download the latest version from github like so:
 
 ``` r
 # install.packages("remotes")
@@ -173,7 +172,7 @@ ggplot() +
 
 ![](man/figures/README-example_custom-1.png)<!-- -->
 
-### Goals
+### Goals customisation
 
 The standard “box” goals may not be perfectly suited to your use-case.
 ggsoccer allows you to customise your goals markings by supplying a
@@ -196,19 +195,30 @@ ggplot() +
 
 ![](man/figures/README-example_goals_strip-1.png)<!-- -->
 
-Since this argument just requires a function (or a one-sided formula),
-you can modify the supplied functions, or create your own goal markings
-function. Additionally, the `goals` argument supports using one-sided
-formulas as lambda functions (see
-[`rlang::as_function`](https://rlang.r-lib.org/reference/as_function.html)).
+Since this argument just requires a function, you can modify the
+supplied functions, or create your own goal markings function.
+
+The `goals` argument also supports using one-sided formulas as lambda
+functions (see
+[`rlang::as_function`](https://rlang.r-lib.org/reference/as_function.html))
+to modify or extend the existing goals functions:
 
 ``` r
-ggplot() +
-  annotate_pitch(
-    goals = ~ goals_strip(..., lineend = "square", size = 3.5), 
-    fill = "lightgray"
-  ) +
-  theme_pitch()
+if (require(ggpattern)) {
+  ggplot() +
+    annotate_pitch(
+      goals = ~ goals_box(
+        ..., 
+        geom = ggpattern::GeomRectPattern,
+        pattern_density = 0.1, 
+        pattern_spacing = 0.007,
+        pattern_colour = "gray",
+        pattern_fill = "whitesmoke",
+        ),
+      fill = "whitesmoke"
+    ) +
+    theme_pitch()
+}
 ```
 
 ![](man/figures/README-example_goals_custom-1.png)<!-- -->

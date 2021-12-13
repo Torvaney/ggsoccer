@@ -28,6 +28,7 @@
 #' opta_to_wyscout$y(opta_ys)
 #' #> c(9.004739, 20.031847, 55.172414, 79.968153)
 #'
+#' @include dimensions.R
 #' @export
 rescale_coordinates <- function(from, to) {
   list(x = rescale_line(get_xbreaks(from), get_xbreaks(to)),

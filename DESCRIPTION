@@ -17,9 +17,16 @@ Imports:
   rlang
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Encoding: UTF-8
 BugReports: https://github.com/torvaney/ggsoccer/issues
 Suggests:
   testthat (>= 2.1.0),
   pkgdown
+Collate: 
+    'dimensions.R'
+    'annotate_pitch.R'
+    'direction_label.R'
+    'goals.R'
+    'rescale_coordinates.R'
+    'theme_pitch.R'
