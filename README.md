@@ -219,9 +219,9 @@ if (require(ggpattern)) {
     ) +
     theme_pitch()
 }
+#> Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+#> logical.return = TRUE, : there is no package called 'ggpattern'
 ```
-
-![](man/figures/README-example_goals_custom-1.png)<!-- -->
 
 See `help(goals_box)` for the full list of available functions.
 
