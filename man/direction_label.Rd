@@ -8,7 +8,10 @@ direction_label(
   x_label = 50,
   y_label = -3,
   label_length = 20,
-  colour = "dimgray"
+  colour = "dimgray",
+  linewidth = 0.5,
+  linetype = "solid",
+  text_size = 3
 )
 }
 \arguments{
@@ -19,6 +22,12 @@ direction_label(
 \item{label_length}{length of arrow (in x axis units)}
 
 \item{colour}{colour of the arrow and text}
+
+\item{linewidth}{thickness of the arrow}
+
+\item{linetype}{linetype of the arrow}
+
+\item{text_size}{size of label text (passed onto \code{geom_text})}
 }
 \value{
 list of ggplot layers to be added to a ggplot plot
