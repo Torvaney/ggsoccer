@@ -6,6 +6,9 @@
 #' @param dimensions A list containing the pitch dimensions to draw. See `help(pitch_opta)`.
 #' @param goals A function for generating goal markings. Defaults to `goals_box`.
 #' See `help(goals_box)`. Formulas are turned into functions with `rlang::as_function`.
+#' @param size The size of the pitch markings
+#' @param alpha The transparency of the pitch markings and fill
+#' @param linetype The linetype of the pitch markings (e.g. "dotted")
 #'
 #' @return list of ggplot geoms to be added to a ggplot plot
 #'
@@ -20,20 +23,20 @@
 #'   geom_point()
 #'
 #' @export
-annotate_pitch <- function(colour   = "dimgray",
-                           fill     = "white",
-                           limits   = TRUE,
+annotate_pitch <- function(colour     = "dimgray",
+                           fill       = "white",
+                           limits     = TRUE,
                            dimensions = pitch_opta,
-                           goals = goals_box) {
+                           goals      = goals_box,
+                           size       = 0.5,
+                           alpha      = 1,
+                           linetype   = "solid") {
   goals_f <- rlang::as_function(goals)
 
-  # NOTE: could parameterise the whole function by the list of layer-creation
-  #       functions it uses. We could then open up the API for user-defined pitch
-  #       elements (e.g. a custom goal type)
   marking_layers <- unlist(list(
-    annotate_base_pitch(colour, fill, dimensions),
-    annotate_penalty_box(colour, fill, dimensions),
-    annotate_six_yard_box(colour, fill, dimensions),
+    annotate_base_pitch(colour, fill, dimensions, size, alpha, linetype),
+    annotate_penalty_box(colour, fill, dimensions, size, alpha, linetype),
+    annotate_six_yard_box(colour, fill, dimensions, size, alpha, linetype),
     goals_f(colour = colour, fill = fill, dimensions = dimensions)
   ), recursive = FALSE)
 
@@ -59,9 +62,14 @@ annotate_pitch <- function(colour   = "dimgray",
 # Add markings for parts of a soccer pitch.
 # NOTE: Should these be exposed for top-level use?
 
-annotate_base_pitch <- function(colour, fill, spec) {
+annotate_base_pitch <- function(colour, fill, spec, size, alpha, linetype) {
   midpoint <- pitch_center(spec)
 
+  # NOTE: Alpha not included in lines and points for consistency
+  # On the `rect`s, it refers to the alpha of the fill,
+  # whereas on the segments, it refers to the segments of
+  # the line itself. Since we want all the lines to look the
+  # same, we don't add the alpha argument to lines and points.
   list(
     ggplot2::annotate(
       geom = "rect",
@@ -69,23 +77,28 @@ annotate_base_pitch <- function(colour, fill, spec) {
       xmax = spec$origin_x + spec$length,
       ymin = spec$origin_y,
       ymax = spec$origin_y + spec$width,
-      colour = colour,
-      fill = fill
+      colour   = colour,
+      fill     = fill,
+      size     = size,
+      alpha    = alpha,
+      linetype = linetype
     ),
     # Centre circle
     annotate_circle(
       x = midpoint$x,
       y = midpoint$y,
       r = spec$penalty_spot_distance,
-      colour = colour
+      colour   = colour,
+      size     = size,
+      linetype = linetype
     ),
     # Centre spot
     ggplot2::annotate(
       geom = "point",
       x = midpoint$x,
       y = midpoint$y,
-      colour = colour,
-      fill = fill
+      colour   = colour,
+      size     = size
     ),
     # Halfway line
     ggplot2::annotate(
@@ -94,12 +107,14 @@ annotate_base_pitch <- function(colour, fill, spec) {
       xend = midpoint$x,
       y = spec$origin_y,
       yend = spec$origin_y + spec$width,
-      colour = colour
+      colour   = colour,
+      size     = size,
+      linetype = linetype
     )
   )
 }
 
-annotate_penalty_box <- function(colour, fill, spec) {
+annotate_penalty_box <- function(colour, dimensions, spec, size, alpha, linetype) {
   midpoint <- pitch_center(spec)
 
   list(
@@ -110,7 +125,9 @@ annotate_penalty_box <- function(colour, fill, spec) {
       y0 = midpoint$y,
       r  = spec$penalty_spot_distance,
       direction = "left",
-      colour = colour,
+      colour   = colour,
+      size     = size,
+      linetype = linetype
     ),
     ggplot2::annotate(
       geom = "rect",
@@ -118,16 +135,19 @@ annotate_penalty_box <- function(colour, fill, spec) {
       xmax = spec$origin_x + spec$length,
       ymin = midpoint$y - spec$penalty_box_width/2,
       ymax = midpoint$y + spec$penalty_box_width/2,
-      colour = colour,
-      fill = fill
+      colour   = colour,
+      fill     = NA,
+      size     = size,
+      alpha    = alpha,
+      linetype = linetype
     ),
     ## Penalty spot
     ggplot2::annotate(
       geom = "point",
       x = spec$origin_x + spec$length - spec$penalty_spot_distance,
       y = midpoint$y,
-      colour = colour,
-      fill = fill
+      colour   = colour,
+      size     = size
     ),
     # Left penalty area
     ggplot2::annotate(
@@ -136,8 +156,11 @@ annotate_penalty_box <- function(colour, fill, spec) {
       xmax = spec$origin_x + spec$penalty_box_length,
       ymin = midpoint$y - spec$penalty_box_width/2,
       ymax = midpoint$y + spec$penalty_box_width/2,
-      colour = colour,
-      fill = fill
+      colour   = colour,
+      fill     = NA,
+      size     = size,
+      alpha    = alpha,
+      linetype = linetype
     ),
     annotate_intersection_arc(
       xintercept = spec$penalty_box_length,
@@ -145,20 +168,22 @@ annotate_penalty_box <- function(colour, fill, spec) {
       y0 = midpoint$y,
       r  = spec$penalty_spot_distance,
       direction = "right",
-      colour = colour,
+      colour   = colour,
+      size     = size,
+      linetype = linetype
     ),
     ## Penalty spot
     ggplot2::annotate(
       geom = "point",
       x = spec$origin_x + spec$penalty_spot_distance,
       y = midpoint$y,
-      colour = colour,
-      fill = fill
+      colour   = colour,
+      size     = size
     )
   )
 }
 
-annotate_six_yard_box <- function(colour, fill, spec) {
+annotate_six_yard_box <- function(colour, dimensions, spec, size, alpha, linetype) {
   midpoint <- pitch_center(spec)
 
   list(
@@ -168,8 +193,11 @@ annotate_six_yard_box <- function(colour, fill, spec) {
       xmax = spec$origin_x + spec$length,
       ymin = midpoint$y - spec$six_yard_box_width/2,
       ymax = midpoint$y + spec$six_yard_box_width/2,
-      colour = colour,
-      fill = fill
+      colour   = colour,
+      fill     = NA,
+      size     = size,
+      alpha    = alpha,
+      linetype = linetype
     ),
     ggplot2::annotate(
       geom = "rect",
@@ -177,8 +205,11 @@ annotate_six_yard_box <- function(colour, fill, spec) {
       xmax = spec$origin_x + spec$six_yard_box_length,
       ymin = midpoint$y - spec$six_yard_box_width/2,
       ymax = midpoint$y + spec$six_yard_box_width/2,
-      colour = colour,
-      fill = fill
+      colour   = colour,
+      fill     = NA,
+      size     = size,
+      alpha    = alpha,
+      linetype = linetype
     )
   )
 }
