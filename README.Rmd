@@ -192,10 +192,17 @@ you can modify the supplied functions, or create your own goal markings function
 Additionally, the `goals` argument supports using one-sided formulas as lambda functions
 (see [`rlang::as_function`](https://rlang.r-lib.org/reference/as_function.html)).
 
+Custom goals functions must accept the arguments used by `annotate_pitch`: `colour`, `fill`, 
+`dimensions`, `size`, `alpha`, and `linetype`. Additional arguments can also be added.
+
 ```{r example_goals_custom}
+goals_custom <- function(colour, fill, dimensions, ...) {
+  goals_strip(colour, fill, dimensions, lineend = "square", size = 3.5)
+}
+
 ggplot() +
   annotate_pitch(
-    goals = ~ goals_strip(..., lineend = "square", size = 3.5), 
+    goals = goals_custom, 
     fill = "lightgray"
   ) +
   theme_pitch()

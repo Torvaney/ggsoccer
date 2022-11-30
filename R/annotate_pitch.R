@@ -37,7 +37,7 @@ annotate_pitch <- function(colour     = "dimgray",
     annotate_base_pitch(colour, fill, dimensions, size, alpha, linetype),
     annotate_penalty_box(colour, fill, dimensions, size, alpha, linetype),
     annotate_six_yard_box(colour, fill, dimensions, size, alpha, linetype),
-    goals_f(colour = colour, fill = fill, dimensions = dimensions)
+    goals_f(colour = colour, fill = fill, dimensions = dimensions, size = size, alpha = alpha, linetype = linetype)
   ), recursive = FALSE)
 
   if (!limits) {
@@ -309,7 +309,7 @@ annotate_circle <- function(x, y, r, ...) {
 #'   geom_point()
 #'
 #' @export
-goals_box <- function(colour, fill, dimensions, offset = 2, ...) {
+goals_box <- function(colour, fill, dimensions, size = 1, alpha = 1, linetype = "solid", offset = 2, ...) {
   midpoint <- pitch_center(dimensions)
 
   list(
@@ -321,6 +321,9 @@ goals_box <- function(colour, fill, dimensions, offset = 2, ...) {
       ymax = midpoint$y + dimensions$goal_width/2,
       colour = colour,
       fill = fill,
+      size = size,
+      alpha = alpha,
+      linetype = linetype,
       ...
     ),
     ggplot2::annotate(
@@ -331,6 +334,9 @@ goals_box <- function(colour, fill, dimensions, offset = 2, ...) {
       ymax = midpoint$y + dimensions$goal_width/2,
       colour = colour,
       fill = fill,
+      size = size,
+      alpha = alpha,
+      linetype = linetype,
       ...
     )
   )
@@ -339,7 +345,7 @@ goals_box <- function(colour, fill, dimensions, offset = 2, ...) {
 #' @rdname goals_box
 #' @importFrom rlang %||%
 #' @export
-goals_strip <- function(colour, fill, dimensions, offset = 1, size = 1, lineend = "round", ...) {
+goals_strip <- function(colour, fill, dimensions, size = 1, alpha = 1, linetype = "solid", offset = 1, lineend = "round", ...) {
   midpoint <- pitch_center(dimensions)
 
   list(
@@ -351,6 +357,7 @@ goals_strip <- function(colour, fill, dimensions, offset = 1, size = 1, lineend 
       yend = midpoint$y + dimensions$goal_width/2,
       colour = colour,
       size = size,
+      linetype = linetype,
       lineend = lineend,
       ...
     ),
@@ -362,6 +369,7 @@ goals_strip <- function(colour, fill, dimensions, offset = 1, size = 1, lineend 
       yend = midpoint$y + dimensions$goal_width/2,
       colour = colour,
       size = size,
+      linetype = linetype,
       lineend = lineend,
       ...
     )
@@ -370,8 +378,11 @@ goals_strip <- function(colour, fill, dimensions, offset = 1, size = 1, lineend 
 
 #' @rdname goals_box
 #' @export
-goals_line <- function(colour, fill, dimensions, ...) {
-  goals_strip(colour, fill, dimensions, offset = 0, size = 1.5, ...)
+goals_line <- function(colour, fill, dimensions, ..., size = 1, relative_size = 3) {
+  # We want the goals line to be responsive to the size of the rest of the pitch markings
+  # To do this, we multiply the provided size for the rest of the pitch markings by
+  # a scaling factor, `relative_size`
+  goals_strip(colour, fill, dimensions, size = size*relative_size, ..., offset = 0)
 }
 
 # Helper functions

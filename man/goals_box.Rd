@@ -6,19 +6,38 @@
 \alias{goals_line}
 \title{Goals markings}
 \usage{
-goals_box(colour, fill, dimensions, offset = 2, ...)
+goals_box(
+  colour,
+  fill,
+  dimensions,
+  size = 1,
+  alpha = 1,
+  linetype = "solid",
+  offset = 2,
+  ...
+)
 
 goals_strip(
   colour,
   fill,
   dimensions,
-  offset = 1,
   size = 1,
+  alpha = 1,
+  linetype = "solid",
+  offset = 1,
   lineend = "round",
   ...
 )
 
-goals_line(colour, fill, dimensions, ...)
+goals_line(
+  colour,
+  fill,
+  dimensions,
+  ...,
+  size = 1,
+  linetype = NULL,
+  relative_size = 3
+)
 }
 \arguments{
 \item{colour}{Colour of pitch outline.}
@@ -27,11 +46,11 @@ goals_line(colour, fill, dimensions, ...)
 
 \item{dimensions}{A list containing the pitch dimensions to draw. See \code{help(pitch_opta)}.}
 
+\item{size}{Determines line thickness in \code{goals_strip} and \code{goals_line}.}
+
 \item{offset}{Determines how deep the goal extends.}
 
 \item{...}{Passed onto underlying \code{ggplot2::annotate} calls.}
-
-\item{size}{Determines line thickness in \code{goals_strip} and \code{goals_line}.}
 
 \item{lineend}{Determines lineend in \code{goals_strip} and \code{goals_line}.}
 }
