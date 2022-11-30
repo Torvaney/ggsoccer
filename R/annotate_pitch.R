@@ -378,7 +378,10 @@ goals_strip <- function(colour, fill, dimensions, size = 1, alpha = 1, linetype 
 
 #' @rdname goals_box
 #' @export
-goals_line <- function(colour, fill, dimensions, ..., size = 1, relative_size = 3) {
+goals_line <- function(colour, fill, dimensions, ..., size = 1, linetype = NULL, relative_size = 3) {
+  # Function arguments absorb linetype (removing them from `...`) because we *always*
+  # want this to be solid
+
   # We want the goals line to be responsive to the size of the rest of the pitch markings
   # To do this, we multiply the provided size for the rest of the pitch markings by
   # a scaling factor, `relative_size`
