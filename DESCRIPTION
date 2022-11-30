@@ -17,7 +17,7 @@ Imports:
   rlang
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.2.2
 Encoding: UTF-8
 BugReports: https://github.com/torvaney/ggsoccer/issues
 Suggests:
