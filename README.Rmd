@@ -81,16 +81,14 @@ Note that by default, ggsoccer will display the whole pitch. To display a
 subsection of the pitch, simply set the plot limits as you would with any other
 ggplot2 plot. Here, we use the `xlim` and `ylim` arguments to `coord_flip`.
 
-Because of the way coordinates get flipped, we must also reverse the y-axis
-to ensure that the orientation remains correct.
+Note that because of the way coordinates get flipped, we must also reverse the y-axis
+to ensure that the orientation remains correct by reversing the order of the limits 
+in `coord_flip`.
 
-NOTE: Ordinarily, we would just do this with `scale_y_reverse`. However, due to
-a [bug in ggplot2](https://github.com/tidyverse/ggplot2/issues/3120), this results in
-certain elements of the pitch (centre circle and penalty box arcs) failing to render. 
-Instead, we can flip the y coordinates manually (`100 - y` in this case).
+Ordinarily, we could do this with `scale_y_reverse`. However, due to a [bug in ggplot2](https://github.com/tidyverse/ggplot2/issues/3120), this results in
+certain elements of the pitch (penalty box arcs) failing to render.
 
 ```{r example_shots}
-
 shots <- data.frame(x = c(90, 85, 82, 78, 83, 74, 94, 91),
                     y = c(43, 40, 52, 56, 44, 71, 60, 54))
 
@@ -98,14 +96,14 @@ ggplot(shots) +
   annotate_pitch(colour = "white",
                  fill   = "springgreen4",
                  limits = FALSE) +
-  geom_point(aes(x = x, y = 100 - y),
+  geom_point(aes(x = x, y = y),
              fill = "yellow", 
              shape = 21,
              size = 4) +
   theme_pitch() +
   theme(panel.background = element_rect(fill = "springgreen4")) +
   coord_flip(xlim = c(49, 101),
-             ylim = c(-12, 112)) +
+             ylim = c(112, -12)) +
   ggtitle("Simple shotmap",
           "ggsoccer example")
 ```
@@ -156,7 +154,7 @@ pitch_custom <- list(
   length = 150,
   width = 100,
   penalty_box_length = 25,
-  penalty_box_width = 50,
+  penalty_box_width = 60,
   six_yard_box_length = 8,
   six_yard_box_width = 26,
   penalty_spot_distance = 16,
