@@ -117,8 +117,43 @@ annotate_base_pitch <- function(colour, fill, spec, size, alpha, linetype) {
 annotate_penalty_box <- function(colour, dimensions, spec, size, alpha, linetype) {
   midpoint <- pitch_center(spec)
 
+  # NOTE: Penalty boxes are drawn as 3 lines because we don't want to overlap
+  # with the base pitch. This can cause inconsistency when the `linetype` argument
+  # is provided.
+
   list(
-    # Right penalty area
+    # Right penalty box
+    ggplot2::annotate(
+      geom = "segment",
+      x    = spec$origin_x + spec$length - spec$penalty_box_length,
+      xend = spec$origin_x + spec$length,
+      y    = midpoint$y - spec$penalty_box_width/2,
+      yend = midpoint$y - spec$penalty_box_width/2,
+      colour   = colour,
+      size     = size,
+      linetype = linetype
+    ),
+    ggplot2::annotate(
+      geom = "segment",
+      x    = spec$origin_x + spec$length - spec$penalty_box_length,
+      xend = spec$origin_x + spec$length - spec$penalty_box_length,
+      y    = midpoint$y - spec$penalty_box_width/2,
+      yend = midpoint$y + spec$penalty_box_width/2,
+      colour   = colour,
+      size     = size,
+      linetype = linetype
+    ),
+    ggplot2::annotate(
+      geom = "segment",
+      x    = spec$origin_x + spec$length - spec$penalty_box_length,
+      xend = spec$origin_x + spec$length,
+      y    = midpoint$y + spec$penalty_box_width/2,
+      yend = midpoint$y + spec$penalty_box_width/2,
+      colour   = colour,
+      size     = size,
+      linetype = linetype
+    ),
+    # Right penalty arc
     annotate_intersection_arc(
       xintercept = spec$origin_x + spec$length - spec$penalty_box_length,
       x0 = spec$origin_x + spec$length - spec$penalty_spot_distance,
@@ -129,19 +164,7 @@ annotate_penalty_box <- function(colour, dimensions, spec, size, alpha, linetype
       size     = size,
       linetype = linetype
     ),
-    ggplot2::annotate(
-      geom = "rect",
-      xmin = spec$origin_x + spec$length - spec$penalty_box_length,
-      xmax = spec$origin_x + spec$length,
-      ymin = midpoint$y - spec$penalty_box_width/2,
-      ymax = midpoint$y + spec$penalty_box_width/2,
-      colour   = colour,
-      fill     = NA,
-      size     = size,
-      alpha    = alpha,
-      linetype = linetype
-    ),
-    ## Penalty spot
+    # Right penalty spot
     ggplot2::annotate(
       geom = "point",
       x = spec$origin_x + spec$length - spec$penalty_spot_distance,
@@ -151,17 +174,36 @@ annotate_penalty_box <- function(colour, dimensions, spec, size, alpha, linetype
     ),
     # Left penalty area
     ggplot2::annotate(
-      geom = "rect",
-      xmin = spec$origin_x,
-      xmax = spec$origin_x + spec$penalty_box_length,
-      ymin = midpoint$y - spec$penalty_box_width/2,
-      ymax = midpoint$y + spec$penalty_box_width/2,
+      geom = "segment",
+      x    = spec$origin_x,
+      xend = spec$origin_x + spec$penalty_box_length,
+      y    = midpoint$y - spec$penalty_box_width/2,
+      yend = midpoint$y - spec$penalty_box_width/2,
       colour   = colour,
-      fill     = NA,
       size     = size,
-      alpha    = alpha,
       linetype = linetype
     ),
+    ggplot2::annotate(
+      geom = "segment",
+      x    = spec$origin_x + spec$penalty_box_length,
+      xend = spec$origin_x + spec$penalty_box_length,
+      y    = midpoint$y - spec$penalty_box_width/2,
+      yend = midpoint$y + spec$penalty_box_width/2,
+      colour   = colour,
+      size     = size,
+      linetype = linetype
+    ),
+    ggplot2::annotate(
+      geom = "segment",
+      x    = spec$origin_x,
+      xend = spec$origin_x + spec$penalty_box_length,
+      y    = midpoint$y + spec$penalty_box_width/2,
+      yend = midpoint$y + spec$penalty_box_width/2,
+      colour   = colour,
+      size     = size,
+      linetype = linetype
+    ),
+    # Left penalty arc
     annotate_intersection_arc(
       xintercept = spec$penalty_box_length,
       x0 = spec$penalty_spot_distance,
@@ -172,7 +214,7 @@ annotate_penalty_box <- function(colour, dimensions, spec, size, alpha, linetype
       size     = size,
       linetype = linetype
     ),
-    ## Penalty spot
+    # Left penalty spot
     ggplot2::annotate(
       geom = "point",
       x = spec$origin_x + spec$penalty_spot_distance,
@@ -186,29 +228,72 @@ annotate_penalty_box <- function(colour, dimensions, spec, size, alpha, linetype
 annotate_six_yard_box <- function(colour, dimensions, spec, size, alpha, linetype) {
   midpoint <- pitch_center(spec)
 
+  # NOTE: As with penalty boxes, six-yard boxes are drawn as 3 lines because we
+  # don't want to overlap with the base pitch. This can cause inconsistency when
+  # the `linetype` argument
+  # is provided.
+
   list(
+    # Right 6yb
     ggplot2::annotate(
-      geom = "rect",
-      xmin = spec$origin_x + spec$length - spec$six_yard_box_length,
-      xmax = spec$origin_x + spec$length,
-      ymin = midpoint$y - spec$six_yard_box_width/2,
-      ymax = midpoint$y + spec$six_yard_box_width/2,
+      geom = "segment",
+      x    = spec$origin_x + spec$length - spec$six_yard_box_length,
+      xend = spec$origin_x + spec$length,
+      y    = midpoint$y - spec$six_yard_box_width/2,
+      yend = midpoint$y - spec$six_yard_box_width/2,
       colour   = colour,
-      fill     = NA,
       size     = size,
-      alpha    = alpha,
       linetype = linetype
     ),
     ggplot2::annotate(
-      geom = "rect",
-      xmin = spec$origin_x,
-      xmax = spec$origin_x + spec$six_yard_box_length,
-      ymin = midpoint$y - spec$six_yard_box_width/2,
-      ymax = midpoint$y + spec$six_yard_box_width/2,
+      geom = "segment",
+      x    = spec$origin_x + spec$length - spec$six_yard_box_length,
+      xend = spec$origin_x + spec$length - spec$six_yard_box_length,
+      y    = midpoint$y - spec$six_yard_box_width/2,
+      yend = midpoint$y + spec$six_yard_box_width/2,
       colour   = colour,
-      fill     = NA,
       size     = size,
-      alpha    = alpha,
+      linetype = linetype
+    ),
+    ggplot2::annotate(
+      geom = "segment",
+      x    = spec$origin_x + spec$length - spec$six_yard_box_length,
+      xend = spec$origin_x + spec$length,
+      y    = midpoint$y + spec$six_yard_box_width/2,
+      yend = midpoint$y + spec$six_yard_box_width/2,
+      colour   = colour,
+      size     = size,
+      linetype = linetype
+    ),
+    # Left 6yb
+    ggplot2::annotate(
+      geom = "segment",
+      x    = spec$origin_x,
+      xend = spec$origin_x + spec$six_yard_box_length,
+      y    = midpoint$y - spec$six_yard_box_width/2,
+      yend = midpoint$y - spec$six_yard_box_width/2,
+      colour   = colour,
+      size     = size,
+      linetype = linetype
+    ),
+    ggplot2::annotate(
+      geom = "segment",
+      x    = spec$origin_x + spec$six_yard_box_length,
+      xend = spec$origin_x + spec$six_yard_box_length,
+      y    = midpoint$y - spec$six_yard_box_width/2,
+      yend = midpoint$y + spec$six_yard_box_width/2,
+      colour   = colour,
+      size     = size,
+      linetype = linetype
+    ),
+    ggplot2::annotate(
+      geom = "segment",
+      x    = spec$origin_x,
+      xend = spec$origin_x + spec$six_yard_box_length,
+      y    = midpoint$y + spec$six_yard_box_width/2,
+      yend = midpoint$y + spec$six_yard_box_width/2,
+      colour   = colour,
+      size     = size,
       linetype = linetype
     )
   )
