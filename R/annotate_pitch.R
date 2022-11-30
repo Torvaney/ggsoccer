@@ -81,7 +81,8 @@ annotate_base_pitch <- function(colour, fill, spec, linewidth, alpha, linetype) 
       fill      = fill,
       linewidth = linewidth,
       alpha     = alpha,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     # Centre circle
     annotate_circle(
@@ -90,7 +91,8 @@ annotate_base_pitch <- function(colour, fill, spec, linewidth, alpha, linetype) 
       r = spec$penalty_spot_distance,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     # Centre spot
     ggplot2::annotate(
@@ -109,7 +111,8 @@ annotate_base_pitch <- function(colour, fill, spec, linewidth, alpha, linetype) 
       yend = spec$origin_y + spec$width,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     )
   )
 }
@@ -131,7 +134,8 @@ annotate_penalty_box <- function(colour, dimensions, spec, linewidth, alpha, lin
       yend = midpoint$y - spec$penalty_box_width/2,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     ggplot2::annotate(
       geom = "segment",
@@ -141,7 +145,8 @@ annotate_penalty_box <- function(colour, dimensions, spec, linewidth, alpha, lin
       yend = midpoint$y + spec$penalty_box_width/2,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     ggplot2::annotate(
       geom = "segment",
@@ -151,7 +156,8 @@ annotate_penalty_box <- function(colour, dimensions, spec, linewidth, alpha, lin
       yend = midpoint$y + spec$penalty_box_width/2,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     # Right penalty arc
     annotate_intersection_arc(
@@ -162,7 +168,8 @@ annotate_penalty_box <- function(colour, dimensions, spec, linewidth, alpha, lin
       direction = "left",
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     # Right penalty spot
     ggplot2::annotate(
@@ -181,7 +188,8 @@ annotate_penalty_box <- function(colour, dimensions, spec, linewidth, alpha, lin
       yend = midpoint$y - spec$penalty_box_width/2,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     ggplot2::annotate(
       geom = "segment",
@@ -191,7 +199,8 @@ annotate_penalty_box <- function(colour, dimensions, spec, linewidth, alpha, lin
       yend = midpoint$y + spec$penalty_box_width/2,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     ggplot2::annotate(
       geom = "segment",
@@ -201,7 +210,8 @@ annotate_penalty_box <- function(colour, dimensions, spec, linewidth, alpha, lin
       yend = midpoint$y + spec$penalty_box_width/2,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     # Left penalty arc
     annotate_intersection_arc(
@@ -212,7 +222,8 @@ annotate_penalty_box <- function(colour, dimensions, spec, linewidth, alpha, lin
       direction = "right",
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     # Left penalty spot
     ggplot2::annotate(
@@ -243,7 +254,8 @@ annotate_six_yard_box <- function(colour, dimensions, spec, linewidth, alpha, li
       yend = midpoint$y - spec$six_yard_box_width/2,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     ggplot2::annotate(
       geom = "segment",
@@ -253,7 +265,8 @@ annotate_six_yard_box <- function(colour, dimensions, spec, linewidth, alpha, li
       yend = midpoint$y + spec$six_yard_box_width/2,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     ggplot2::annotate(
       geom = "segment",
@@ -263,7 +276,8 @@ annotate_six_yard_box <- function(colour, dimensions, spec, linewidth, alpha, li
       yend = midpoint$y + spec$six_yard_box_width/2,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     # Left 6yb
     ggplot2::annotate(
@@ -274,7 +288,8 @@ annotate_six_yard_box <- function(colour, dimensions, spec, linewidth, alpha, li
       yend = midpoint$y - spec$six_yard_box_width/2,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     ggplot2::annotate(
       geom = "segment",
@@ -284,7 +299,8 @@ annotate_six_yard_box <- function(colour, dimensions, spec, linewidth, alpha, li
       yend = midpoint$y + spec$six_yard_box_width/2,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     ),
     ggplot2::annotate(
       geom = "segment",
@@ -294,7 +310,8 @@ annotate_six_yard_box <- function(colour, dimensions, spec, linewidth, alpha, li
       yend = midpoint$y + spec$six_yard_box_width/2,
       colour    = colour,
       linewidth = linewidth,
-      linetype  = linetype
+      linetype  = linetype,
+      lineend   = "round"
     )
   )
 }
