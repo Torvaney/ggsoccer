@@ -19,9 +19,9 @@ test_that("Plotting each of the supplied dimensions doesn't throw an error", {
 test_that("Pitch can be plotted with aesthetic attributes", {
   # c.f. https://github.com/Torvaney/ggsoccer/issues/23
   aesthetics <- list(
-    list(size = 3),
+    list(linewidth = 3),
     list(linetype = "dotted"),
-    list(linetype = "dashed", size = 2),
+    list(linetype = "dashed", linewidth = 2),
     list(alpha = 0.5)
   )
 
@@ -49,7 +49,7 @@ test_that("Plotting pitch dimensions without a visible penalty arc shows a warni
   )
 
   expect_warning({
-    ggplot() +
+    ggplot2::ggplot() +
       annotate_pitch(dimensions = pitch_custom) +
       theme_pitch()
   })

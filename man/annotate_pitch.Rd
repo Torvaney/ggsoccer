@@ -10,7 +10,7 @@ annotate_pitch(
   limits = TRUE,
   dimensions = pitch_opta,
   goals = goals_box,
-  size = 0.5,
+  linewidth = 0.5,
   alpha = 1,
   linetype = "solid"
 )
@@ -27,7 +27,7 @@ annotate_pitch(
 \item{goals}{A function for generating goal markings. Defaults to \code{goals_box}.
 See \code{help(goals_box)}. Formulas are turned into functions with \code{rlang::as_function}.}
 
-\item{size}{The size of the pitch markings}
+\item{linewidth}{The linewidth of the pitch markings}
 
 \item{alpha}{The transparency of the pitch markings and fill}
 
