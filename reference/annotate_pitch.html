@@ -53,46 +53,57 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">annotate_pitch</span><span class="op">(</span>
-  colour <span class="op">=</span> <span class="st">"dimgray"</span>,
-  fill <span class="op">=</span> <span class="st">"white"</span>,
-  limits <span class="op">=</span> <span class="cn">TRUE</span>,
-  dimensions <span class="op">=</span> <span class="va">pitch_opta</span>,
-  goals <span class="op">=</span> <span class="va">goals_box</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">annotate_pitch</span><span class="op">(</span></span>
+<span>  colour <span class="op">=</span> <span class="st">"dimgray"</span>,</span>
+<span>  fill <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>  limits <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  dimensions <span class="op">=</span> <span class="va">pitch_opta</span>,</span>
+<span>  goals <span class="op">=</span> <span class="va">goals_box</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>colour</dt>
 <dd><p>Colour of pitch outline.</p></dd>
+
+
 <dt>fill</dt>
 <dd><p>Colour of pitch fill.</p></dd>
+
+
 <dt>limits</dt>
 <dd><p>Whether to adjust the plot limits to display the whole pitch.</p></dd>
+
+
 <dt>dimensions</dt>
 <dd><p>A list containing the pitch dimensions to draw. See <code><a href="pitch_opta.html">help(pitch_opta)</a></code>.</p></dd>
+
+
 <dt>goals</dt>
 <dd><p>A function for generating goal markings. Defaults to <code>goals_box</code>.
 See <code><a href="goals_box.html">help(goals_box)</a></code>. Formulas are turned into functions with <code><a href="https://rlang.r-lib.org/reference/as_function.html" class="external-link">rlang::as_function</a></code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>list of ggplot geoms to be added to a ggplot plot</p>
+    
+
+<p>list of ggplot geoms to be added to a ggplot plot</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">shots_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">85</span>, <span class="fl">82</span>, <span class="fl">78</span>, <span class="fl">83</span><span class="op">)</span>,</span>
-<span class="r-in">                         y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">43</span>, <span class="fl">40</span>, <span class="fl">52</span>, <span class="fl">56</span>, <span class="fl">44</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">shots_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span class="r-in">  <span class="fu">annotate_pitch</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">shots_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">85</span>, <span class="fl">82</span>, <span class="fl">78</span>, <span class="fl">83</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                         y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">43</span>, <span class="fl">40</span>, <span class="fl">52</span>, <span class="fl">56</span>, <span class="fl">44</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">shots_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">annotate_pitch</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="annotate_pitch-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -107,7 +118,7 @@ See <code><a href="goals_box.html">help(goals_box)</a></code>. Formulas are turn
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

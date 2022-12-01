@@ -59,17 +59,20 @@ For example, the edge of the penalty box and the half way-line.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">rescale_coordinates</span><span class="op">(</span><span class="va">from</span>, <span class="va">to</span><span class="op">)</span>
-
-<span class="fu">rescale_international</span><span class="op">(</span><span class="va">from</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rescale_coordinates</span><span class="op">(</span><span class="va">from</span>, <span class="va">to</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">rescale_international</span><span class="op">(</span><span class="va">from</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>from</dt>
 <dd><p>The dimensions to convert from (see <code>help(dimensions)</code>)</p></dd>
+
+
 <dt>to</dt>
 <dd><p>The dimensions to convert to (see <code>help(dimensions)</code>)</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -79,23 +82,23 @@ coordinates.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="va">opta_to_wyscout</span> <span class="op">&lt;-</span> <span class="fu">rescale_coordinates</span><span class="op">(</span></span>
-<span class="r-in">  from <span class="op">=</span> <span class="va">pitch_opta</span>,</span>
-<span class="r-in">  to   <span class="op">=</span> <span class="va">pitch_wyscout</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">opta_xs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">22</span>, <span class="fl">55</span>, <span class="fl">78</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">opta_ys</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">22</span>, <span class="fl">55</span>, <span class="fl">78</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">opta_to_wyscout</span><span class="op">$</span><span class="fu">x</span><span class="op">(</span><span class="va">opta_xs</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">opta_to_wyscout</span> <span class="op">&lt;-</span> <span class="fu">rescale_coordinates</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  from <span class="op">=</span> <span class="va">pitch_opta</span>,</span></span>
+<span class="r-in"><span>  to   <span class="op">=</span> <span class="va">pitch_wyscout</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">opta_xs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">22</span>, <span class="fl">55</span>, <span class="fl">78</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">opta_ys</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">22</span>, <span class="fl">55</span>, <span class="fl">78</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">opta_to_wyscout</span><span class="op">$</span><span class="fu">x</span><span class="op">(</span><span class="va">opta_xs</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  8.947368 21.151515 55.151515 78.848485</span>
-<span class="r-in"><span class="co">#&gt; c(9.75000, 21.15152, 55.15152, 78.84848)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">opta_to_wyscout</span><span class="op">$</span><span class="fu">y</span><span class="op">(</span><span class="va">opta_ys</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">#&gt; c(9.75000, 21.15152, 55.15152, 78.84848)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">opta_to_wyscout</span><span class="op">$</span><span class="fu">y</span><span class="op">(</span><span class="va">opta_ys</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  9.004739 20.031847 55.172414 79.968153</span>
-<span class="r-in"><span class="co">#&gt; c(9.004739, 20.031847, 55.172414, 79.968153)</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span><span class="co">#&gt; c(9.004739, 20.031847, 55.172414, 79.968153)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -110,7 +113,7 @@ coordinates.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

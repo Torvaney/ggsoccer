@@ -80,7 +80,6 @@
 <div class="page-header"><h1 id="ggsoccer-">ggsoccer <img src="reference/figures/logo.png" width="160px" align="right"><a class="anchor" aria-label="anchor" href="#ggsoccer-"></a>
 </h1></div>
 <!-- badges: start -->
-
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
@@ -91,63 +90,63 @@
 </h2>
 <p>ggsoccer is available via CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ggsoccer"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ggsoccer"</span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, you can download the development version from github like so:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"torvaney/ggsoccer"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"torvaney/ggsoccer"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://torvaney.github.io/ggsoccer/" class="external-link">ggsoccer</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://torvaney.github.io/ggsoccer/" class="external-link">ggsoccer</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_blank-1.png"><!-- --></p>
 <p>The following example uses ggsoccer to solve a realistic problem: plotting a set of passes onto a soccer pitch.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pass_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">24</span>, <span class="fl">18</span>, <span class="fl">64</span>, <span class="fl">78</span>, <span class="fl">53</span><span class="op">)</span>,
-                        y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">43</span>, <span class="fl">55</span>, <span class="fl">88</span>, <span class="fl">18</span>, <span class="fl">44</span><span class="op">)</span>,
-                        x2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">34</span>, <span class="fl">44</span>, <span class="fl">81</span>, <span class="fl">85</span>, <span class="fl">64</span><span class="op">)</span>,
-                        y2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">62</span>, <span class="fl">89</span>, <span class="fl">44</span>, <span class="fl">28</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pass_data</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html" class="external-link">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, xend <span class="op">=</span> <span class="va">x2</span>, yend <span class="op">=</span> <span class="va">y2</span><span class="op">)</span>,
-               arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html" class="external-link">arrow</a></span><span class="op">(</span>length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="st">"cm"</span><span class="op">)</span>,
-                             type <span class="op">=</span> <span class="st">"closed"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/direction_label.html">direction_label</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Simple passmap"</span>, 
-          <span class="st">"ggsoccer example"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pass_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">24</span>, <span class="fl">18</span>, <span class="fl">64</span>, <span class="fl">78</span>, <span class="fl">53</span><span class="op">)</span>,</span>
+<span>                        y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">43</span>, <span class="fl">55</span>, <span class="fl">88</span>, <span class="fl">18</span>, <span class="fl">44</span><span class="op">)</span>,</span>
+<span>                        x2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">34</span>, <span class="fl">44</span>, <span class="fl">81</span>, <span class="fl">85</span>, <span class="fl">64</span><span class="op">)</span>,</span>
+<span>                        y2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">40</span>, <span class="fl">62</span>, <span class="fl">89</span>, <span class="fl">44</span>, <span class="fl">28</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">pass_data</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html" class="external-link">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, xend <span class="op">=</span> <span class="va">x2</span>, yend <span class="op">=</span> <span class="va">y2</span><span class="op">)</span>,</span>
+<span>               arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html" class="external-link">arrow</a></span><span class="op">(</span>length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="st">"cm"</span><span class="op">)</span>,</span>
+<span>                             type <span class="op">=</span> <span class="st">"closed"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/direction_label.html">direction_label</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Simple passmap"</span>, </span>
+<span>          <span class="st">"ggsoccer example"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_passes-1.png"><!-- --></p>
 <p>Because ggsoccer is implemented as ggplot layers, it makes customising a plot very easy. Here is a different example, plotting shots on a <strong>green</strong> pitch.</p>
 <p>Note that by default, ggsoccer will display the whole pitch. To display a subsection of the pitch, simply set the plot limits as you would with any other ggplot2 plot. Here, we use the <code>xlim</code> and <code>ylim</code> arguments to <code>coord_flip</code>.</p>
 <p>Because of the way coordinates get flipped, we must also reverse the y-axis to ensure that the orientation remains correct.</p>
 <p>NOTE: Ordinarily, we would just do this with <code>scale_y_reverse</code>. However, due to a <a href="https://github.com/tidyverse/ggplot2/issues/3120" class="external-link">bug in ggplot2</a>, this results in certain elements of the pitch (centre circle and penalty box arcs) failing to render. Instead, we can flip the y coordinates manually (<code>100 - y</code> in this case).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">85</span>, <span class="fl">82</span>, <span class="fl">78</span>, <span class="fl">83</span>, <span class="fl">74</span>, <span class="fl">94</span>, <span class="fl">91</span><span class="op">)</span>,
-                    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">43</span>, <span class="fl">40</span>, <span class="fl">52</span>, <span class="fl">56</span>, <span class="fl">44</span>, <span class="fl">71</span>, <span class="fl">60</span>, <span class="fl">54</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">shots</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"white"</span>,
-                 fill   <span class="op">=</span> <span class="st">"springgreen4"</span>,
-                 limits <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="fl">100</span> <span class="op">-</span> <span class="va">y</span><span class="op">)</span>,
-             fill <span class="op">=</span> <span class="st">"yellow"</span>, 
-             shape <span class="op">=</span> <span class="fl">21</span>,
-             size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"springgreen4"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">49</span>, <span class="fl">101</span><span class="op">)</span>,
-             ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">12</span>, <span class="fl">112</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Simple shotmap"</span>,
-          <span class="st">"ggsoccer example"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span><span class="va">shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">85</span>, <span class="fl">82</span>, <span class="fl">78</span>, <span class="fl">83</span>, <span class="fl">74</span>, <span class="fl">94</span>, <span class="fl">91</span><span class="op">)</span>,</span>
+<span>                    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">43</span>, <span class="fl">40</span>, <span class="fl">52</span>, <span class="fl">56</span>, <span class="fl">44</span>, <span class="fl">71</span>, <span class="fl">60</span>, <span class="fl">54</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">shots</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"white"</span>,</span>
+<span>                 fill   <span class="op">=</span> <span class="st">"springgreen4"</span>,</span>
+<span>                 limits <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="fl">100</span> <span class="op">-</span> <span class="va">y</span><span class="op">)</span>,</span>
+<span>             fill <span class="op">=</span> <span class="st">"yellow"</span>, </span>
+<span>             shape <span class="op">=</span> <span class="fl">21</span>,</span>
+<span>             size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"springgreen4"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">49</span>, <span class="fl">101</span><span class="op">)</span>,</span>
+<span>             ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">12</span>, <span class="fl">112</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Simple shotmap"</span>,</span>
+<span>          <span class="st">"ggsoccer example"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_shots-1.png"><!-- --></p>
 <div class="section level3">
 <h3 id="data-providers">Data providers<a class="anchor" aria-label="anchor" href="#data-providers"></a>
@@ -163,24 +162,24 @@
 <h4 id="statsbomb">Statsbomb<a class="anchor" aria-label="anchor" href="#statsbomb"></a>
 </h4>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># ggsoccer enables you to rescale coordinates from one data provider to another, too</span>
-<span class="va">to_statsbomb</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rescale_coordinates.html">rescale_coordinates</a></span><span class="op">(</span>from <span class="op">=</span> <span class="va">pitch_opta</span>, to <span class="op">=</span> <span class="va">pitch_statsbomb</span><span class="op">)</span>
-
-<span class="va">passes_rescaled</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x  <span class="op">=</span> <span class="va">to_statsbomb</span><span class="op">$</span><span class="fu">x</span><span class="op">(</span><span class="va">pass_data</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>,
-                              y  <span class="op">=</span> <span class="va">to_statsbomb</span><span class="op">$</span><span class="fu">y</span><span class="op">(</span><span class="va">pass_data</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>,
-                              x2 <span class="op">=</span> <span class="va">to_statsbomb</span><span class="op">$</span><span class="fu">x</span><span class="op">(</span><span class="va">pass_data</span><span class="op">$</span><span class="va">x2</span><span class="op">)</span>,
-                              y2 <span class="op">=</span> <span class="va">to_statsbomb</span><span class="op">$</span><span class="fu">y</span><span class="op">(</span><span class="va">pass_data</span><span class="op">$</span><span class="va">y2</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">passes_rescaled</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>dimensions <span class="op">=</span> <span class="va">pitch_statsbomb</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html" class="external-link">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, xend <span class="op">=</span> <span class="va">x2</span>, yend <span class="op">=</span> <span class="va">y2</span><span class="op">)</span>,
-               colour <span class="op">=</span> <span class="st">"coral"</span>,
-               arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html" class="external-link">arrow</a></span><span class="op">(</span>length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="st">"cm"</span><span class="op">)</span>,
-                             type <span class="op">=</span> <span class="st">"closed"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/direction_label.html">direction_label</a></span><span class="op">(</span>x_label <span class="op">=</span> <span class="fl">60</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Simple passmap"</span>, 
-          <span class="st">"Statsbomb co-ordinates"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># ggsoccer enables you to rescale coordinates from one data provider to another, too</span></span>
+<span><span class="va">to_statsbomb</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/rescale_coordinates.html">rescale_coordinates</a></span><span class="op">(</span>from <span class="op">=</span> <span class="va">pitch_opta</span>, to <span class="op">=</span> <span class="va">pitch_statsbomb</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">passes_rescaled</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x  <span class="op">=</span> <span class="va">to_statsbomb</span><span class="op">$</span><span class="fu">x</span><span class="op">(</span><span class="va">pass_data</span><span class="op">$</span><span class="va">x</span><span class="op">)</span>,</span>
+<span>                              y  <span class="op">=</span> <span class="va">to_statsbomb</span><span class="op">$</span><span class="fu">y</span><span class="op">(</span><span class="va">pass_data</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>,</span>
+<span>                              x2 <span class="op">=</span> <span class="va">to_statsbomb</span><span class="op">$</span><span class="fu">x</span><span class="op">(</span><span class="va">pass_data</span><span class="op">$</span><span class="va">x2</span><span class="op">)</span>,</span>
+<span>                              y2 <span class="op">=</span> <span class="va">to_statsbomb</span><span class="op">$</span><span class="fu">y</span><span class="op">(</span><span class="va">pass_data</span><span class="op">$</span><span class="va">y2</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">passes_rescaled</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>dimensions <span class="op">=</span> <span class="va">pitch_statsbomb</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html" class="external-link">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span>, xend <span class="op">=</span> <span class="va">x2</span>, yend <span class="op">=</span> <span class="va">y2</span><span class="op">)</span>,</span>
+<span>               colour <span class="op">=</span> <span class="st">"coral"</span>,</span>
+<span>               arrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/arrow.html" class="external-link">arrow</a></span><span class="op">(</span>length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="st">"cm"</span><span class="op">)</span>,</span>
+<span>                             type <span class="op">=</span> <span class="st">"closed"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/direction_label.html">direction_label</a></span><span class="op">(</span>x_label <span class="op">=</span> <span class="fl">60</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Simple passmap"</span>, </span>
+<span>          <span class="st">"Statsbomb co-ordinates"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_passes_sb-1.png"><!-- --></p>
 </div>
 <div class="section level4">
@@ -188,22 +187,22 @@
 </h4>
 <p>To plot data for a dataset not provided, ggsoccer just requires a pitch specification. This is a list containing the required pitch dimensions like so:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pitch_custom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>
-  length <span class="op">=</span> <span class="fl">150</span>,
-  width <span class="op">=</span> <span class="fl">100</span>,
-  penalty_box_length <span class="op">=</span> <span class="fl">25</span>,
-  penalty_box_width <span class="op">=</span> <span class="fl">50</span>,
-  six_yard_box_length <span class="op">=</span> <span class="fl">8</span>,
-  six_yard_box_width <span class="op">=</span> <span class="fl">26</span>,
-  penalty_spot_distance <span class="op">=</span> <span class="fl">16</span>,
-  goal_width <span class="op">=</span> <span class="fl">12</span>,
-  origin_x <span class="op">=</span> <span class="fl">0</span>,
-  origin_y <span class="op">=</span> <span class="fl">0</span>
-<span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>dimensions <span class="op">=</span> <span class="va">pitch_custom</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pitch_custom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  length <span class="op">=</span> <span class="fl">150</span>,</span>
+<span>  width <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  penalty_box_length <span class="op">=</span> <span class="fl">25</span>,</span>
+<span>  penalty_box_width <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>  six_yard_box_length <span class="op">=</span> <span class="fl">8</span>,</span>
+<span>  six_yard_box_width <span class="op">=</span> <span class="fl">26</span>,</span>
+<span>  penalty_spot_distance <span class="op">=</span> <span class="fl">16</span>,</span>
+<span>  goal_width <span class="op">=</span> <span class="fl">12</span>,</span>
+<span>  origin_x <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  origin_y <span class="op">=</span> <span class="fl">0</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>dimensions <span class="op">=</span> <span class="va">pitch_custom</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_custom-1.png"><!-- --></p>
 </div>
 </div>
@@ -212,24 +211,24 @@
 </h3>
 <p>The standard “box” goals may not be perfectly suited to your use-case. ggsoccer allows you to customise your goals markings by supplying a function to the <code>goals</code> argument of <code>annotate_pitch</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"steelblue4"</span>, colour <span class="op">=</span> <span class="st">"white"</span>, goals <span class="op">=</span> <span class="va">goals_line</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"steelblue4"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"steelblue4"</span>, colour <span class="op">=</span> <span class="st">"white"</span>, goals <span class="op">=</span> <span class="va">goals_line</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"steelblue4"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_goals_line-1.png"><!-- --></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>goals <span class="op">=</span> <span class="va">goals_strip</span>, fill <span class="op">=</span> <span class="st">"lightgray"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>goals <span class="op">=</span> <span class="va">goals_strip</span>, fill <span class="op">=</span> <span class="st">"lightgray"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_goals_strip-1.png"><!-- --></p>
 <p>Since this argument just requires a function (or a one-sided formula), you can modify the supplied functions, or create your own goal markings function. Additionally, the <code>goals</code> argument supports using one-sided formulas as lambda functions (see <a href="https://rlang.r-lib.org/reference/as_function.html" class="external-link"><code>rlang::as_function</code></a>).</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>
-    goals <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="reference/goals_box.html">goals_strip</a></span><span class="op">(</span><span class="va">...</span>, lineend <span class="op">=</span> <span class="st">"square"</span>, size <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span>, 
-    fill <span class="op">=</span> <span class="st">"lightgray"</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span></span>
+<span>    goals <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="reference/goals_box.html">goals_strip</a></span><span class="op">(</span><span class="va">...</span>, lineend <span class="op">=</span> <span class="st">"square"</span>, size <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span>, </span>
+<span>    fill <span class="op">=</span> <span class="st">"lightgray"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_goals_custom-1.png"><!-- --></p>
 <p>See <code><a href="reference/goals_box.html">help(goals_box)</a></code> for the full list of available functions.</p>
 <p>The idea for having multiple goal markings was taken and adapted from the <a href="https://github.com/FCrSTATS/fc.rstats" class="external-link">fc.rstats</a> package.</p>
@@ -311,7 +310,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
