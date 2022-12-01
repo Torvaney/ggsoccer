@@ -1,6 +1,7 @@
 # ggsoccer 0.1.7.9000 (In progress)
 
 * Add support for custom goals markings 
+* Add `pitch_statsperform` alias for Opta data
 
 # ggsoccer 0.1.6
 

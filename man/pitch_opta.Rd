@@ -3,6 +3,7 @@
 \docType{data}
 \name{pitch_opta}
 \alias{pitch_opta}
+\alias{pitch_statsperform}
 \alias{pitch_statsbomb}
 \alias{pitch_wyscout}
 \alias{pitch_international}
@@ -18,9 +19,13 @@ An object of class \code{list} of length 10.
 An object of class \code{list} of length 10.
 
 An object of class \code{list} of length 10.
+
+An object of class \code{list} of length 10.
 }
 \usage{
 pitch_opta
+
+pitch_statsperform
 
 pitch_statsbomb
 
