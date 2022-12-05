@@ -212,6 +212,17 @@ See `help(goals_box)` for the full list of available functions.
 
 The idea for having multiple goal markings was taken and adapted from the [fc.rstats](https://github.com/FCrSTATS/fc.rstats) package.
 
+### Further customisation
+
+You can also alter the style of pitch markings with `linewidth`, `alpha`, and `linetype`:
+
+```{r}
+ggplot() +
+  annotate_pitch(colour = "white", linewidth = 1.5, linetype = "12", alpha = 0.2, goals = goals_line) +
+  theme_pitch() +
+  theme(panel.background = element_rect(fill = "steelblue"))
+```
+
 ## Other options
 
 There are other packages that offer alternative pitch plotting options. 
