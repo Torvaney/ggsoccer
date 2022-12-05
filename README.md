@@ -77,6 +77,17 @@ subsection of the pitch, set the plot limits as you would with any other
 ggplot2 plot. Here, we use the `xlim` and `ylim` arguments to
 `coord_flip`.
 
+`coord_flip` reverses the orientation of the points, so we must also
+reverse the y-axis to ensure that the orientation remains correct (that
+is, shots from the left hand side appear on the left, and right-sided
+shots appear on the right).
+
+You can do this with either `scale_y_reverse` or by reversing the order
+of the limits in `coord_flip`’s `ylim` argument.
+
+If you don’t correct (i.e. reverse) the y axis orientation, the penalty
+box arcs will appear inside the box\!
+
 ``` r
 shots <- data.frame(x = c(90, 85, 82, 78, 83, 74, 94, 91),
                     y = c(43, 40, 52, 56, 44, 71, 60, 54))
