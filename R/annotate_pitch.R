@@ -100,7 +100,7 @@ annotate_base_pitch <- function(colour, fill, spec, linewidth, alpha, linetype) 
       x = midpoint$x,
       y = midpoint$y,
       colour   = colour,
-      size     = linewidth
+      size     = linewidth*2
     ),
     # Halfway line
     ggplot2::annotate(
@@ -177,7 +177,7 @@ annotate_penalty_box <- function(colour, dimensions, spec, linewidth, alpha, lin
       x = spec$origin_x + spec$length - spec$penalty_spot_distance,
       y = midpoint$y,
       colour   = colour,
-      size     = linewidth
+      size     = linewidth*2
     ),
     # Left penalty area
     ggplot2::annotate(
@@ -231,7 +231,7 @@ annotate_penalty_box <- function(colour, dimensions, spec, linewidth, alpha, lin
       x = spec$origin_x + spec$penalty_spot_distance,
       y = midpoint$y,
       colour   = colour,
-      size     = linewidth
+      size     = linewidth*2
     )
   )
 }
