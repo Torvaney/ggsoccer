@@ -58,6 +58,10 @@ pitch_opta <- list(
 
 #' @rdname pitch_opta
 #' @export
+pitch_statsperform <- pitch_opta
+
+#' @rdname pitch_opta
+#' @export
 # Source: https://github.com/statsbomb/open-data/blob/master/doc/StatsBomb%20Event%20Data%20Specification%20v1.0.2.pdf
 pitch_statsbomb <- list(
   length = 120,

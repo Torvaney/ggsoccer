@@ -13,8 +13,8 @@
 
 ## Overview
 
-ggsoccer provides a handful of functions that make it easy to plot
-soccer event data in R/ggplot2.
+ggsoccer provides a functions for plotting soccer event data in
+R/ggplot2.
 
 ## Installation
 
@@ -67,23 +67,15 @@ ggplot(pass_data) +
 
 ![](man/figures/README-example_passes-1.png)<!-- -->
 
-Because ggsoccer is implemented as ggplot layers, it makes customising a
-plot very easy. Here is a different example, plotting shots on a
-**green** pitch.
+Because ggsoccer is implemented as ggplot layers, plots can be
+customised with standard ggplot functions and layers.
 
-Note that by default, ggsoccer will display the whole pitch. To display
-a subsection of the pitch, simply set the plot limits as you would with
-any other ggplot2 plot. Here, we use the `xlim` and `ylim` arguments to
+Here is a different example, plotting shots on a **green** pitch.
+
+By default, ggsoccer will display the whole pitch. To display a
+subsection of the pitch, set the plot limits as you would with any other
+ggplot2 plot. Here, we use the `xlim` and `ylim` arguments to
 `coord_flip`.
-
-Note that because of the way coordinates get flipped, we must also
-reverse the y-axis to ensure that the orientation remains correct by
-reversing the order of the limits in `coord_flip`. You can do this with
-either `scale_y_reverse` or by reversing the order of the limits in
-`coord_flip`’s `ylim` argument.
-
-If you don’t correct (i.e. reverse) the y axis orientation, the penalty
-box arcs will appear inside the box\!
 
 ``` r
 shots <- data.frame(x = c(90, 85, 82, 78, 83, 74, 94, 91),
@@ -145,7 +137,7 @@ ggplot(passes_rescaled) +
 
 #### Custom data
 
-To plot data for a dataset not provided, ggsoccer just requires a pitch
+To plot data for a dataset not provided, ggsoccer requires a pitch
 specification. This is a list containing the required pitch dimensions
 like so:
 
@@ -172,7 +164,6 @@ ggplot() +
 
 ### Goals
 
-The standard “box” goals may not be perfectly suited to your use-case.
 ggsoccer allows you to customise your goals markings by supplying a
 function to the `goals` argument of `annotate_pitch`:
 
@@ -193,10 +184,10 @@ ggplot() +
 
 ![](man/figures/README-example_goals_strip-1.png)<!-- -->
 
-Since this argument just requires a function (or a one-sided formula),
-you can modify the supplied functions, or create your own goal markings
-function. Additionally, the `goals` argument supports using one-sided
-formulas as lambda functions (see
+This argument takes a function (or one-sided formula). You can use the
+supplied functions, or create your own goal markings function. The
+`goals` argument also supports using one-sided formulas as lambda
+functions (see
 [`rlang::as_function`](https://rlang.r-lib.org/reference/as_function.html)).
 
 Custom goals functions must accept the arguments used by

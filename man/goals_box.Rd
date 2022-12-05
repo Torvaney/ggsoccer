@@ -64,7 +64,7 @@ goals_line(
 list of ggplot geoms to be added to a ggplot plot
 }
 \description{
-Various functions ca be supplied to \code{annotate_pitch} to specify the appearance
+Various functions can be supplied to \code{annotate_pitch} to specify the appearance
 of goals in the resulting plot.
 }
 \details{
