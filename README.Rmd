@@ -219,7 +219,13 @@ You can also alter the style of pitch markings with `linewidth`, `alpha`, and `l
 
 ```{r example_further_customisation}
 ggplot() +
-  annotate_pitch(colour = "white", linewidth = 1.5, linetype = "12", alpha = 0.2, goals = goals_line) +
+  annotate_pitch(
+    colour = "white", 
+    linewidth = 1.5, 
+    linetype = "12", 
+    alpha = 0.2, 
+    goals = goals_line
+  ) +
   theme_pitch() +
   theme(panel.background = element_rect(fill = "steelblue"))
 ```
