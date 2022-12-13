@@ -217,7 +217,7 @@ The idea for having multiple goal markings was taken and adapted from the [fc.rs
 
 You can also alter the style of pitch markings with `linewidth`, `alpha`, and `linetype`:
 
-```{r}
+```{r example_further_customisation}
 ggplot() +
   annotate_pitch(colour = "white", linewidth = 1.5, linetype = "12", alpha = 0.2, goals = goals_line) +
   theme_pitch() +
