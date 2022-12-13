@@ -58,7 +58,10 @@
 <span>  fill <span class="op">=</span> <span class="st">"white"</span>,</span>
 <span>  limits <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  dimensions <span class="op">=</span> <span class="va">pitch_opta</span>,</span>
-<span>  goals <span class="op">=</span> <span class="va">goals_box</span></span>
+<span>  goals <span class="op">=</span> <span class="va">goals_box</span>,</span>
+<span>  linewidth <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  linetype <span class="op">=</span> <span class="st">"solid"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -83,6 +86,18 @@
 <dt>goals</dt>
 <dd><p>A function for generating goal markings. Defaults to <code>goals_box</code>.
 See <code><a href="goals_box.html">help(goals_box)</a></code>. Formulas are turned into functions with <code><a href="https://rlang.r-lib.org/reference/as_function.html" class="external-link">rlang::as_function</a></code>.</p></dd>
+
+
+<dt>linewidth</dt>
+<dd><p>The linewidth of the pitch markings</p></dd>
+
+
+<dt>alpha</dt>
+<dd><p>The transparency of the pitch markings and fill</p></dd>
+
+
+<dt>linetype</dt>
+<dd><p>The linetype of the pitch markings (e.g. "dotted")</p></dd>
 
 </dl></div>
     <div id="value">

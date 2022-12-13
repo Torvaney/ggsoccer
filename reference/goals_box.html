@@ -55,19 +55,38 @@ of goals in the resulting plot.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">goals_box</span><span class="op">(</span><span class="va">colour</span>, <span class="va">fill</span>, <span class="va">dimensions</span>, offset <span class="op">=</span> <span class="fl">2</span>, <span class="va">...</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">goals_box</span><span class="op">(</span></span>
+<span>  <span class="va">colour</span>,</span>
+<span>  <span class="va">fill</span>,</span>
+<span>  <span class="va">dimensions</span>,</span>
+<span>  linewidth <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  linetype <span class="op">=</span> <span class="st">"solid"</span>,</span>
+<span>  offset <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">goals_strip</span><span class="op">(</span></span>
 <span>  <span class="va">colour</span>,</span>
 <span>  <span class="va">fill</span>,</span>
 <span>  <span class="va">dimensions</span>,</span>
+<span>  linewidth <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  linetype <span class="op">=</span> <span class="st">"solid"</span>,</span>
 <span>  offset <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  size <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  lineend <span class="op">=</span> <span class="st">"round"</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">goals_line</span><span class="op">(</span><span class="va">colour</span>, <span class="va">fill</span>, <span class="va">dimensions</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">goals_line</span><span class="op">(</span></span>
+<span>  <span class="va">colour</span>,</span>
+<span>  <span class="va">fill</span>,</span>
+<span>  <span class="va">dimensions</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  linewidth <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  linetype <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  relative_width <span class="op">=</span> <span class="fl">3</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -84,6 +103,18 @@ of goals in the resulting plot.</p>
 <dd><p>A list containing the pitch dimensions to draw. See <code><a href="pitch_opta.html">help(pitch_opta)</a></code>.</p></dd>
 
 
+<dt>linewidth</dt>
+<dd><p>Determines line thickness in <code>goals_strip</code> and <code>goals_line</code>.</p></dd>
+
+
+<dt>alpha</dt>
+<dd><p>Determines alpha in <code>goals_box</code>.</p></dd>
+
+
+<dt>linetype</dt>
+<dd><p>Determines linetype in <code>goals_box</code> and <code>goals_strip</code>.</p></dd>
+
+
 <dt>offset</dt>
 <dd><p>Determines how deep the goal extends.</p></dd>
 
@@ -92,12 +123,12 @@ of goals in the resulting plot.</p>
 <dd><p>Passed onto underlying <code><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">ggplot2::annotate</a></code> calls.</p></dd>
 
 
-<dt>size</dt>
-<dd><p>Determines line thickness in <code>goals_strip</code> and <code>goals_line</code>.</p></dd>
-
-
 <dt>lineend</dt>
 <dd><p>Determines lineend in <code>goals_strip</code> and <code>goals_line</code>.</p></dd>
+
+
+<dt>relative_width</dt>
+<dd><p>Determines relative width of the goal marking to the pitch markings in <code>goals_line</code>.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -133,8 +164,10 @@ functions with the same arguments can also be used</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Partial functions can be used to customise further</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">shots_data</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>goals <span class="op">=</span> <span class="op">~</span> <span class="fu">goals_strip</span><span class="op">(</span><span class="va">...</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>goals <span class="op">=</span> <span class="op">~</span> <span class="fu">goals_box</span><span class="op">(</span><span class="va">...</span>, offset <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1 rows containing missing values (`geom_rect()`).</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1 rows containing missing values (`geom_rect()`).</span>
 <span class="r-plt img"><img src="goals_box-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

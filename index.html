@@ -83,7 +83,7 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>ggsoccer provides a handful of functions that make it easy to plot soccer event data in R/ggplot2.</p>
+<p>ggsoccer provides a functions for plotting soccer event data in R/ggplot2.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -124,27 +124,27 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Simple passmap"</span>, </span>
 <span>          <span class="st">"ggsoccer example"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_passes-1.png"><!-- --></p>
-<p>Because ggsoccer is implemented as ggplot layers, it makes customising a plot very easy. Here is a different example, plotting shots on a <strong>green</strong> pitch.</p>
-<p>Note that by default, ggsoccer will display the whole pitch. To display a subsection of the pitch, simply set the plot limits as you would with any other ggplot2 plot. Here, we use the <code>xlim</code> and <code>ylim</code> arguments to <code>coord_flip</code>.</p>
-<p>Because of the way coordinates get flipped, we must also reverse the y-axis to ensure that the orientation remains correct.</p>
-<p>NOTE: Ordinarily, we would just do this with <code>scale_y_reverse</code>. However, due to a <a href="https://github.com/tidyverse/ggplot2/issues/3120" class="external-link">bug in ggplot2</a>, this results in certain elements of the pitch (centre circle and penalty box arcs) failing to render. Instead, we can flip the y coordinates manually (<code>100 - y</code> in this case).</p>
+<p>Because ggsoccer is implemented as ggplot layers, plots can be customised with standard ggplot functions and layers.</p>
+<p>Here is a different example, plotting shots on a <strong>green</strong> pitch.</p>
+<p>By default, ggsoccer will display the whole pitch. To display a subsection of the pitch, set the plot limits as you would with any other ggplot2 plot. Here, we use the <code>xlim</code> and <code>ylim</code> arguments to <code>coord_flip</code>.</p>
+<p><code>coord_flip</code> reverses the orientation of the points, so we must also reverse the y-axis to ensure that the orientation remains correct (that is, shots from the left hand side appear on the left, and right-sided shots appear on the right).</p>
+<p>You can do this with either <code>scale_y_reverse</code> or by reversing the order of the limits in <code>coord_flip</code>’s <code>ylim</code> argument.</p>
+<p>If you don’t correct (i.e. reverse) the y axis orientation, the penalty box arcs will appear inside the box!</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">85</span>, <span class="fl">82</span>, <span class="fl">78</span>, <span class="fl">83</span>, <span class="fl">74</span>, <span class="fl">94</span>, <span class="fl">91</span><span class="op">)</span>,</span>
+<code class="sourceCode R"><span><span class="va">shots</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">85</span>, <span class="fl">82</span>, <span class="fl">78</span>, <span class="fl">83</span>, <span class="fl">74</span>, <span class="fl">94</span>, <span class="fl">91</span><span class="op">)</span>,</span>
 <span>                    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">43</span>, <span class="fl">40</span>, <span class="fl">52</span>, <span class="fl">56</span>, <span class="fl">44</span>, <span class="fl">71</span>, <span class="fl">60</span>, <span class="fl">54</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">shots</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"white"</span>,</span>
 <span>                 fill   <span class="op">=</span> <span class="st">"springgreen4"</span>,</span>
 <span>                 limits <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="fl">100</span> <span class="op">-</span> <span class="va">y</span><span class="op">)</span>,</span>
-<span>             fill <span class="op">=</span> <span class="st">"yellow"</span>, </span>
-<span>             shape <span class="op">=</span> <span class="fl">21</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, y <span class="op">=</span> <span class="va">y</span><span class="op">)</span>,</span>
+<span>             colour <span class="op">=</span> <span class="st">"yellow"</span>,</span>
 <span>             size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"springgreen4"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">49</span>, <span class="fl">101</span><span class="op">)</span>,</span>
-<span>             ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">12</span>, <span class="fl">112</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">49</span>, <span class="fl">101</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_reverse</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Simple shotmap"</span>,</span>
 <span>          <span class="st">"ggsoccer example"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_shots-1.png"><!-- --></p>
@@ -185,13 +185,13 @@
 <div class="section level4">
 <h4 id="custom-data">Custom data<a class="anchor" aria-label="anchor" href="#custom-data"></a>
 </h4>
-<p>To plot data for a dataset not provided, ggsoccer just requires a pitch specification. This is a list containing the required pitch dimensions like so:</p>
+<p>To plot data for a dataset not provided, ggsoccer requires a pitch specification. This is a list containing the required pitch dimensions like so:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pitch_custom</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  length <span class="op">=</span> <span class="fl">150</span>,</span>
 <span>  width <span class="op">=</span> <span class="fl">100</span>,</span>
 <span>  penalty_box_length <span class="op">=</span> <span class="fl">25</span>,</span>
-<span>  penalty_box_width <span class="op">=</span> <span class="fl">50</span>,</span>
+<span>  penalty_box_width <span class="op">=</span> <span class="fl">60</span>,</span>
 <span>  six_yard_box_length <span class="op">=</span> <span class="fl">8</span>,</span>
 <span>  six_yard_box_width <span class="op">=</span> <span class="fl">26</span>,</span>
 <span>  penalty_spot_distance <span class="op">=</span> <span class="fl">16</span>,</span>
@@ -209,7 +209,7 @@
 <div class="section level3">
 <h3 id="goals">Goals<a class="anchor" aria-label="anchor" href="#goals"></a>
 </h3>
-<p>The standard “box” goals may not be perfectly suited to your use-case. ggsoccer allows you to customise your goals markings by supplying a function to the <code>goals</code> argument of <code>annotate_pitch</code>:</p>
+<p>ggsoccer allows you to customise your goals markings by supplying a function to the <code>goals</code> argument of <code>annotate_pitch</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"steelblue4"</span>, colour <span class="op">=</span> <span class="st">"white"</span>, goals <span class="op">=</span> <span class="va">goals_line</span><span class="op">)</span> <span class="op">+</span></span>
@@ -221,17 +221,33 @@
 <span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>goals <span class="op">=</span> <span class="va">goals_strip</span>, fill <span class="op">=</span> <span class="st">"lightgray"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_goals_strip-1.png"><!-- --></p>
-<p>Since this argument just requires a function (or a one-sided formula), you can modify the supplied functions, or create your own goal markings function. Additionally, the <code>goals</code> argument supports using one-sided formulas as lambda functions (see <a href="https://rlang.r-lib.org/reference/as_function.html" class="external-link"><code>rlang::as_function</code></a>).</p>
+<p>This argument takes a function (or one-sided formula). You can use the supplied functions, or create your own goal markings function. The <code>goals</code> argument also supports using one-sided formulas as lambda functions (see <a href="https://rlang.r-lib.org/reference/as_function.html" class="external-link"><code>rlang::as_function</code></a>).</p>
+<p>Custom goals functions must accept the arguments used by <code>annotate_pitch</code>: <code>colour</code>, <code>fill</code>, <code>dimensions</code>, <code>linewidth</code>, <code>alpha</code>, and <code>linetype</code>. Additional arguments can also be added.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<code class="sourceCode R"><span><span class="va">goals_custom</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">colour</span>, <span class="va">fill</span>, <span class="va">dimensions</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="reference/goals_box.html">goals_strip</a></span><span class="op">(</span><span class="va">colour</span>, <span class="va">fill</span>, <span class="va">dimensions</span>, lineend <span class="op">=</span> <span class="st">"square"</span>, linewidth <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span></span>
-<span>    goals <span class="op">=</span> <span class="op">~</span> <span class="fu"><a href="reference/goals_box.html">goals_strip</a></span><span class="op">(</span><span class="va">...</span>, lineend <span class="op">=</span> <span class="st">"square"</span>, size <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span>, </span>
+<span>    goals <span class="op">=</span> <span class="va">goals_custom</span>, </span>
 <span>    fill <span class="op">=</span> <span class="st">"lightgray"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example_goals_custom-1.png"><!-- --></p>
 <p>See <code><a href="reference/goals_box.html">help(goals_box)</a></code> for the full list of available functions.</p>
 <p>The idea for having multiple goal markings was taken and adapted from the <a href="https://github.com/FCrSTATS/fc.rstats" class="external-link">fc.rstats</a> package.</p>
+</div>
+<div class="section level3">
+<h3 id="further-customisation">Further customisation<a class="anchor" aria-label="anchor" href="#further-customisation"></a>
+</h3>
+<p>You can also alter the style of pitch markings with <code>linewidth</code>, <code>alpha</code>, and <code>linetype</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/annotate_pitch.html">annotate_pitch</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"white"</span>, linewidth <span class="op">=</span> <span class="fl">1.5</span>, linetype <span class="op">=</span> <span class="st">"12"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, goals <span class="op">=</span> <span class="va">goals_line</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="reference/theme_pitch.html">theme_pitch</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"steelblue"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-4-1.png"><!-- --></p>
 </div>
 </div>
 <div class="section level2">
