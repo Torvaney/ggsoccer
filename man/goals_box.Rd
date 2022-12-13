@@ -6,19 +6,38 @@
 \alias{goals_line}
 \title{Goals markings}
 \usage{
-goals_box(colour, fill, dimensions, offset = 2, ...)
+goals_box(
+  colour,
+  fill,
+  dimensions,
+  linewidth = 1,
+  alpha = 1,
+  linetype = "solid",
+  offset = 2,
+  ...
+)
 
 goals_strip(
   colour,
   fill,
   dimensions,
+  linewidth = 1,
+  alpha = 1,
+  linetype = "solid",
   offset = 1,
-  size = 1,
   lineend = "round",
   ...
 )
 
-goals_line(colour, fill, dimensions, ...)
+goals_line(
+  colour,
+  fill,
+  dimensions,
+  ...,
+  linewidth = 1,
+  linetype = NULL,
+  relative_width = 3
+)
 }
 \arguments{
 \item{colour}{Colour of pitch outline.}
@@ -27,13 +46,19 @@ goals_line(colour, fill, dimensions, ...)
 
 \item{dimensions}{A list containing the pitch dimensions to draw. See \code{help(pitch_opta)}.}
 
+\item{linewidth}{Determines line thickness in \code{goals_strip} and \code{goals_line}.}
+
+\item{alpha}{Determines alpha in \code{goals_box}.}
+
+\item{linetype}{Determines linetype in \code{goals_box} and \code{goals_strip}.}
+
 \item{offset}{Determines how deep the goal extends.}
 
 \item{...}{Passed onto underlying \code{ggplot2::annotate} calls.}
 
-\item{size}{Determines line thickness in \code{goals_strip} and \code{goals_line}.}
-
 \item{lineend}{Determines lineend in \code{goals_strip} and \code{goals_line}.}
+
+\item{relative_width}{Determines relative width of the goal marking to the pitch markings in \code{goals_line}.}
 }
 \value{
 list of ggplot geoms to be added to a ggplot plot
@@ -64,7 +89,7 @@ ggplot(shots_data, aes(x = x, y = y)) +
 
 # Partial functions can be used to customise further
 ggplot(shots_data, aes(x = x, y = y)) +
-  annotate_pitch(goals = ~ goals_strip(..., size = 2)) +
+  annotate_pitch(goals = ~ goals_box(..., offset = 4)) +
   geom_point()
 
 }

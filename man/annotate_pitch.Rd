@@ -9,7 +9,10 @@ annotate_pitch(
   fill = "white",
   limits = TRUE,
   dimensions = pitch_opta,
-  goals = goals_box
+  goals = goals_box,
+  linewidth = 0.5,
+  alpha = 1,
+  linetype = "solid"
 )
 }
 \arguments{
@@ -23,6 +26,12 @@ annotate_pitch(
 
 \item{goals}{A function for generating goal markings. Defaults to \code{goals_box}.
 See \code{help(goals_box)}. Formulas are turned into functions with \code{rlang::as_function}.}
+
+\item{linewidth}{The linewidth of the pitch markings}
+
+\item{alpha}{The transparency of the pitch markings and fill}
+
+\item{linetype}{The linetype of the pitch markings (e.g. "dotted")}
 }
 \value{
 list of ggplot geoms to be added to a ggplot plot

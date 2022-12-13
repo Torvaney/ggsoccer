@@ -77,19 +77,18 @@ subsection of the pitch, set the plot limits as you would with any other
 ggplot2 plot. Here, we use the `xlim` and `ylim` arguments to
 `coord_flip`.
 
-Because coord-flip reverses the orientation of the points, we must also
+`coord_flip` reverses the orientation of the points, so we must also
 reverse the y-axis to ensure that the orientation remains correct (that
 is, shots from the left hand side appear on the left, and right-sided
 shots appear on the right).
 
-NOTE: Ordinarily, we would do this with `scale_y_reverse`. However, due
-to a [bug in ggplot2](https://github.com/tidyverse/ggplot2/issues/3120),
-this results in certain elements of the pitch (centre circle and penalty
-box arcs) failing to render. Instead, we can flip the y coordinates
-manually (`100 - y` in this case).
+You can do this with either `scale_y_reverse` or by reversing the order
+of the limits in `coord_flip`’s `ylim` argument.
+
+If you don’t correct (i.e. reverse) the y axis orientation, the penalty
+box arcs will appear inside the box\!
 
 ``` r
-
 shots <- data.frame(x = c(90, 85, 82, 78, 83, 74, 94, 91),
                     y = c(43, 40, 52, 56, 44, 71, 60, 54))
 
@@ -97,14 +96,13 @@ ggplot(shots) +
   annotate_pitch(colour = "white",
                  fill   = "springgreen4",
                  limits = FALSE) +
-  geom_point(aes(x = x, y = 100 - y),
-             fill = "yellow", 
-             shape = 21,
+  geom_point(aes(x = x, y = y),
+             colour = "yellow",
              size = 4) +
   theme_pitch() +
   theme(panel.background = element_rect(fill = "springgreen4")) +
-  coord_flip(xlim = c(49, 101),
-             ylim = c(-12, 112)) +
+  coord_flip(xlim = c(49, 101)) +
+  scale_y_reverse() +
   ggtitle("Simple shotmap",
           "ggsoccer example")
 ```
@@ -159,7 +157,7 @@ pitch_custom <- list(
   length = 150,
   width = 100,
   penalty_box_length = 25,
-  penalty_box_width = 50,
+  penalty_box_width = 60,
   six_yard_box_length = 8,
   six_yard_box_width = 26,
   penalty_spot_distance = 16,
@@ -203,10 +201,18 @@ supplied functions, or create your own goal markings function. The
 functions (see
 [`rlang::as_function`](https://rlang.r-lib.org/reference/as_function.html)).
 
+Custom goals functions must accept the arguments used by
+`annotate_pitch`: `colour`, `fill`, `dimensions`, `linewidth`, `alpha`,
+and `linetype`. Additional arguments can also be added.
+
 ``` r
+goals_custom <- function(colour, fill, dimensions, ...) {
+  goals_strip(colour, fill, dimensions, lineend = "square", linewidth = 3.5)
+}
+
 ggplot() +
   annotate_pitch(
-    goals = ~ goals_strip(..., lineend = "square", size = 3.5), 
+    goals = goals_custom, 
     fill = "lightgray"
   ) +
   theme_pitch()
@@ -218,6 +224,20 @@ See `help(goals_box)` for the full list of available functions.
 
 The idea for having multiple goal markings was taken and adapted from
 the [fc.rstats](https://github.com/FCrSTATS/fc.rstats) package.
+
+### Further customisation
+
+You can also alter the style of pitch markings with `linewidth`,
+`alpha`, and `linetype`:
+
+``` r
+ggplot() +
+  annotate_pitch(colour = "white", linewidth = 1.5, linetype = "12", alpha = 0.2, goals = goals_line) +
+  theme_pitch() +
+  theme(panel.background = element_rect(fill = "steelblue"))
+```
+
+![](man/figures/README-unnamed-chunk-4-1.png)<!-- -->
 
 ## Other options
 

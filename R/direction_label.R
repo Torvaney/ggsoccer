@@ -4,6 +4,9 @@
 #' @param y_label y position of the arrow on the plot
 #' @param label_length length of arrow (in x axis units)
 #' @param colour colour of the arrow and text
+#' @param linewidth thickness of the arrow
+#' @param linetype linetype of the arrow
+#' @param text_size size of label text (passed onto `geom_text`)
 #'
 #' @return list of ggplot layers to be added to a ggplot plot
 #'
@@ -27,7 +30,10 @@
 direction_label <- function(x_label = 50,
                             y_label = -3,
                             label_length = 20,
-                            colour = "dimgray") {
+                            colour    = "dimgray",
+                            linewidth = 0.5,
+                            linetype  = "solid",
+                            text_size = 3) {
   layer <- list(
     annotate(
       "segment",
@@ -37,15 +43,17 @@ direction_label <- function(x_label = 50,
       yend = y_label,
       arrow = arrow(length = unit(0.02, "npc"),
                     type = "closed"),
-      colour = colour
+      colour = colour,
+      linetype = linetype,
+      linewidth = linewidth
     ),
     annotate(
       "text",
       x = x_label,
       y = y_label - 1,
-      label = c("Direction of play"),
+      label = "Direction of play",
       vjust = 1.5,
-      size = 3,
+      size = text_size,
       colour = colour
       )
     )
