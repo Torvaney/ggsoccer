@@ -237,7 +237,7 @@ ggplot() +
   theme(panel.background = element_rect(fill = "steelblue"))
 ```
 
-![](man/figures/README-unnamed-chunk-4-1.png)<!-- -->
+![](man/figures/README-example_further_customisation-1.png)<!-- -->
 
 ## Other options
 
