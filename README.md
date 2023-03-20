@@ -117,9 +117,10 @@ different data providers may use alternative coordinates.
 ggsoccer provides support for a few data providers out of the box, as
 well as an interface for any custom coordinate system:
 
-  - Opta
+  - StatsPerform/Opta
   - Statsbomb
   - Wyscout
+  - Tracab
 
 #### Statsbomb
 
