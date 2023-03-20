@@ -1,5 +1,7 @@
 # ggsoccer 0.1.8 (In progress)
 
+- Add IMPECT pitch dimensions (`pitch_impect`)
+
 # ggsoccer 0.1.7
 
 -   Add support for custom goals markings

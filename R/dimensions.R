@@ -31,6 +31,7 @@
 #'  \item{"pitch_wyscout"}{For Wyscout data}
 #'  \item{"pitch_international"}{As per UEFA Category 4 stadium regulations}
 #'  \item{"pitch_tracab"}{"For ChyronHego Tracab, using the 105m x 68m default size"}
+#'  \item{"pitch_impect"}{For IMPECT data}
 #' }
 #'
 #' @examples
@@ -150,3 +151,20 @@ make_pitch_tracab <- function(length=105, width=68){
 #' @rdname pitch_opta
 #' @export
 pitch_tracab <- make_pitch_tracab()
+
+                         
+#' @rdname pitch_opta
+#' @export
+# Source: https://glossary.impect.com/api-design?tab=2
+pitch_impect <- list(
+  length = 105,
+  width = 68,
+  penalty_box_length = 16.5,
+  penalty_box_width = 40.32,
+  six_yard_box_length = 5.5,
+  six_yard_box_width = 18.32,
+  penalty_spot_distance = 11,
+  goal_width = 7.32,
+  origin_x = -52.5,
+  origin_y = -34
+)
