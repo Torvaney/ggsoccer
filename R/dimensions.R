@@ -25,7 +25,8 @@
 #'
 #' The following pitch dimensions are provided
 #' \itemize{
-#'  \item{"pitch_opta"}{For Opta f24 data}
+#'  \item{"pitch_statsperform"}{For StatsPerform/Opts f24 data}
+#'  \item{"pitch_opta"}{Alias for "pitch_statsperform"}
 #'  \item{"pitch_statsbomb"}{For Statsbomb data}
 #'  \item{"pitch_wyscout"}{For Wyscout data}
 #'  \item{"pitch_international"}{As per UEFA Category 4 stadium regulations}

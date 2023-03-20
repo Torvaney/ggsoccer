@@ -5,8 +5,8 @@
 
 <!-- badges: start -->
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/ggsoccer)](https://cran.r-project.org/package=ggsoccer)
-[![CRAN\_Version\_Badge](https://cranlogs.r-pkg.org/badges/ggsoccer?color=ff69b4)](https://cran.r-project.org/package=ggsoccer)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/ggsoccer)](https://cran.r-project.org/package=ggsoccer)
+[![CRAN_Version_Badge](https://cranlogs.r-pkg.org/badges/ggsoccer?color=ff69b4)](https://cran.r-project.org/package=ggsoccer)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/Torvaney/ggsoccer/workflows/R-CMD-check/badge.svg)](https://github.com/Torvaney/ggsoccer/actions)
 <!-- badges: end -->
@@ -86,7 +86,7 @@ You can do this with either `scale_y_reverse` or by reversing the order
 of the limits in `coord_flip`’s `ylim` argument.
 
 If you don’t correct (i.e. reverse) the y axis orientation, the penalty
-box arcs will appear inside the box\!
+box arcs will appear inside the box!
 
 ``` r
 shots <- data.frame(x = c(90, 85, 82, 78, 83, 74, 94, 91),
@@ -114,12 +114,14 @@ ggplot(shots) +
 ggsoccer defaults to Opta’s 100x100 coordinate system. However,
 different data providers may use alternative coordinates.
 
-ggsoccer provides support for a few data providers out of the box, as
-well as an interface for any custom coordinate system:
+ggsoccer provides support for a few data providers out of the box:
 
-  - Opta
-  - Statsbomb
-  - Wyscout
+- StatsPerform/Opta (`pitch_statsperform`, default)
+- Statsbomb (`pitch_statsbomb`)
+- Wyscout (`pitch_wyscout`)
+- Tracab (`make_pitch_tracab()`)
+
+ggsoccer also provides an interface for any custom coordinate system.
 
 #### Statsbomb
 
@@ -250,13 +252,14 @@ ggplot() +
 There are other packages that offer alternative pitch plotting options.
 Depending on your use case, you may want to check these out too:
 
-  - [soccermatics](https://github.com/JoGall/soccermatics)
-  - [SBpitch](https://github.com/FCrSTATS/SBpitch)
-  - [fc.rstats](https://github.com/FCrSTATS/fc.rstats)
+- [soccermatics](https://github.com/JoGall/soccermatics)
+- [SBpitch](https://github.com/FCrSTATS/SBpitch)
+- [fc.rstats](https://github.com/FCrSTATS/fc.rstats)
+- [sportyR](https://github.com/sportsdataverse/sportyR)
 
 ### Python
 
 There are a couple of pitch plotting options for matplotlib, too:
 
-  - [mplsoccer](https://github.com/andrewRowlinson/mplsoccer)
-  - [matplotsoccer](https://github.com/TomDecroos/matplotsoccer)
+- [mplsoccer](https://github.com/andrewRowlinson/mplsoccer)
+- [matplotsoccer](https://github.com/TomDecroos/matplotsoccer)
