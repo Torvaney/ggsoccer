@@ -116,13 +116,14 @@ ggplot(shots) +
 ggsoccer defaults to Opta's 100x100 coordinate system. However, different data 
 providers may use alternative coordinates. 
 
-ggsoccer provides support for a few data providers out of the box,
-as well as an interface for any custom coordinate system:
+ggsoccer provides support for a few data providers out of the box:
 
-* StatsPerform/Opta
-* Statsbomb
-* Wyscout
-* Tracab
+* StatsPerform/Opta (`pitch_statsperform`, default)
+* Statsbomb (`pitch_statsbomb`)
+* Wyscout (`pitch_wyscout`)
+* Tracab (`make_pitch_tracab()`)
+
+ggsoccer also provides an interface for any custom coordinate system.
 
 #### Statsbomb
 
