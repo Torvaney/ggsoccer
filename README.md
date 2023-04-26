@@ -120,7 +120,6 @@ ggsoccer provides support for a few data providers out of the box:
 - Statsbomb (`pitch_statsbomb`)
 - Wyscout (`pitch_wyscout`)
 - Tracab (`make_pitch_tracab()`)
-- Impect (`pitch_impect`)
 
 ggsoccer also provides an interface for any custom coordinate system.
 
