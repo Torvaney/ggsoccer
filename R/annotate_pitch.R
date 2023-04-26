@@ -216,7 +216,7 @@ annotate_penalty_box <- function(colour, dimensions, spec, linewidth, alpha, lin
     # Left penalty arc
     annotate_intersection_arc(
       xintercept = spec$penalty_box_length,
-      x0 = spec$penalty_spot_distance,
+      x0 = spec$origin_x + spec$penalty_spot_distance,
       y0 = midpoint$y,
       r  = spec$penalty_spot_distance,
       direction = "right",
