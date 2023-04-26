@@ -163,8 +163,8 @@ pitch_custom <- list(
   six_yard_box_width = 26,
   penalty_spot_distance = 16,
   goal_width = 12,
-  origin_x = 0,
-  origin_y = 0
+  origin_x = -50,
+  origin_y = -75
 )
 
 ggplot() +
