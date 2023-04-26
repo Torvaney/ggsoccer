@@ -56,6 +56,29 @@ test_that("Plotting pitch dimensions without a visible penalty arc shows a warni
 })
 
 
+test_that("Plotting valid pitch dimensions with a negative origin plots without a warning", {
+  # Based on https://github.com/Torvaney/ggsoccer/issues/31
+  pitch_custom_negative_origin <- list(
+    length = 105,
+    width = 68,
+    penalty_box_length = 16.5,
+    penalty_box_width = 40.3,
+    six_yard_box_length = 5.5,
+    six_yard_box_width = 18.32,
+    penalty_spot_distance = 11,
+    goal_width = 7.32,
+    origin_x = -52.5,
+    origin_y = -34
+  )
+
+  expect_no_warning({
+    ggplot2::ggplot() +
+      annotate_pitch(dimensions = pitch_custom_negative_origin) +
+      theme_pitch()
+  })
+})
+
+
 
 
 
