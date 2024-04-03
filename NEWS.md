@@ -1,6 +1,7 @@
 # ggsoccer 0.1.8 (In progress)
 
-- Add IMPECT pitch dimensions (`pitch_impect`)
+-   Add IMPECT pitch dimensions (`pitch_impect`)
+-   Fixed precision bug in arc drawing, which could cause the pitch to fail to render
 
 # ggsoccer 0.1.7
 

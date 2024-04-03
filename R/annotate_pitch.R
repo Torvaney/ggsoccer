@@ -345,7 +345,15 @@ annotate_intersection_arc <- function(xintercept, x0, y0, r, direction, ...) {
   # `annotate_intersection_arc` with `xintercept = spec$penalty_spot_distance`
   # on top of a pitch_international pitch and comparing to the drawn arc)
   # but it is close enough.
-  angle <- acos((r^2 + r^2 - abs(pos_y - neg_y)^2)/(2*r^2))
+
+  # However, it's possible to get NaNs here!
+  # This is because of the inaccuracies in double-precision numbers.
+  # Consequently, if you have a perfect semi-circle (which should have an
+  # angle of `acos(-1) = pi`), you might try to calculate `acos(-(1 + epsilon))`
+  # where epsilon is some tiny value. The arccos of anything greater than -1 is
+  # undefined.
+  # To get around this, we cap the inner calculation to be -1 at the least
+  angle <- acos(pmax(-1, (r^2 + r^2 - abs(pos_y - neg_y)^2)/(2*r^2)))
   arc_proportion <- angle/(2*pi)
   curvature <- -arc_proportion/(arc_proportion-1)
 
