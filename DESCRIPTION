@@ -16,7 +16,7 @@ Imports:
   ggplot2,
   rlang
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 BugReports: https://github.com/torvaney/ggsoccer/issues
 Suggests:
