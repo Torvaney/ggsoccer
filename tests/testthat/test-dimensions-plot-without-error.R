@@ -79,6 +79,62 @@ test_that("Plotting valid pitch dimensions with a negative origin plots without 
 })
 
 
+test_that("Plotting dimensions without a `penalty_arc_radius` doesn't error", {
+  dim <- list(
+    length = 100,
+    width = 100,
+    penalty_box_length = 17,
+    penalty_box_width = 57.8,
+    six_yard_box_length = 5.8,
+    six_yard_box_width = 26.4,
+    penalty_spot_distance = 11.5,
+    goal_width = 11.6,
+    origin_x = 0,
+    origin_y = 0
+  )
+
+  expect_no_error({
+    ggplot2::ggplot() +
+      annotate_pitch(dimensions = dim)
+  })
+
+  # Also check for warnings
+  expect_no_warning({
+    ggplot2::ggplot() +
+      annotate_pitch(dimensions = dim)
+  })
+})
+
+
+test_that("Plotting dimensions with a `penalty_arc_radius` doesn't error", {
+  dim <- list(
+    length = 100,
+    width = 100,
+    penalty_box_length = 17,
+    penalty_box_width = 57.8,
+    six_yard_box_length = 5.8,
+    six_yard_box_width = 26.4,
+    penalty_spot_distance = 11.5,
+    goal_width = 11.6,
+    origin_x = 0,
+    origin_y = 0,
+    penalty_arc_radius = 10
+  )
+
+  expect_no_error({
+    ggplot2::ggplot() +
+      annotate_pitch(dimensions = dim)
+  })
+
+  # Also check for warnings
+  # arcs
+  expect_no_warning({
+    ggplot2::ggplot() +
+      annotate_pitch(dimensions = dim)
+  })
+})
+
+
 
 
 

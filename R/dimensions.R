@@ -21,6 +21,7 @@
 #'  \item{"goal_width"}{The distance from one goal post to the other}
 #'  \item{"origin_x"}{The minimum x coordinate of the pitch}
 #'  \item{"origin_y"}{The minimum y coordinate of the pitch}
+#'  \item{"penalty_arc_radius"}{The radius of the arc above the penalty box (Optional). Defaults to `penalty_spot_distance`}
 #' }
 #'
 #' The following pitch dimensions are provided
@@ -75,7 +76,8 @@ pitch_statsbomb <- list(
   penalty_spot_distance = 12,
   goal_width = 8,
   origin_x = 0,
-  origin_y = 0
+  origin_y = 0,
+  penalty_arc_radius = 10
 )
 
 #' @rdname pitch_opta
@@ -98,6 +100,7 @@ pitch_wyscout <- list(
 #' @export
 # As per UEFA Category 4 regulations
 # Source: https://en.wikipedia.org/wiki/UEFA_stadium_categories
+# Source: https://en.wikipedia.org/wiki/Penalty_area
 pitch_international <- list(
   length = 105,
   width = 68,
@@ -108,7 +111,8 @@ pitch_international <- list(
   penalty_spot_distance = 11,
   goal_width = 7.32,
   origin_x = 0,
-  origin_y = 0
+  origin_y = 0,
+  penalty_arc_radius = 9.15
 )
 
 
@@ -152,7 +156,7 @@ make_pitch_tracab <- function(length=105, width=68){
 #' @export
 pitch_tracab <- make_pitch_tracab()
 
-                         
+
 #' @rdname pitch_opta
 #' @export
 # Source: https://glossary.impect.com/api-design?tab=2
@@ -166,5 +170,6 @@ pitch_impect <- list(
   penalty_spot_distance = 11,
   goal_width = 7.32,
   origin_x = -52.5,
-  origin_y = -34
+  origin_y = -34,
+  penalty_arc_radius = 10
 )

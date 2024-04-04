@@ -15,15 +15,15 @@ An object of class \code{list} of length 10.
 
 An object of class \code{list} of length 10.
 
-An object of class \code{list} of length 10.
+An object of class \code{list} of length 11.
 
 An object of class \code{list} of length 10.
 
-An object of class \code{list} of length 10.
+An object of class \code{list} of length 11.
 
-An object of class \code{list} of length 10.
+An object of class \code{list} of length 11.
 
-An object of class \code{list} of length 10.
+An object of class \code{list} of length 11.
 }
 \usage{
 pitch_opta
@@ -63,6 +63,7 @@ coordinate system. The required dimensions are:
 \item{"goal_width"}{The distance from one goal post to the other}
 \item{"origin_x"}{The minimum x coordinate of the pitch}
 \item{"origin_y"}{The minimum y coordinate of the pitch}
+\item{"penalty_arc_radius"}{The radius of the arc above the penalty box (Optional). Defaults to \code{penalty_spot_distance}}
 }
 
 The following pitch dimensions are provided
