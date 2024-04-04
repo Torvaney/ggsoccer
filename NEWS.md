@@ -2,6 +2,8 @@
 
 -   Add IMPECT pitch dimensions (`pitch_impect`)
 -   Fixed precision bug in arc drawing, which could cause the pitch to fail to render
+-   Amended penalty arc to use the correct curvature, making them more visible on 
+    Wyscout and StatsPerform pitches
 
 # ggsoccer 0.1.7
 

@@ -320,42 +320,36 @@ annotate_intersection_arc <- function(xintercept, x0, y0, r, direction, ...) {
   direction <- match.arg(direction, c("left", "right"))
   direction_values <- c(left = 1, right = -1)
 
-  # Find intersection of arc with a vertical line
-  # (Assuming there is a valid intersection...)
-  # This determines the start and end points, and the curvature
-  suppressWarnings({
-    pos_y <-  sqrt(r^2 - (xintercept - x0)^2) + y0
-    neg_y <- -sqrt(r^2 - (xintercept - x0)^2) + y0
-  })
+  x_distance <- abs(xintercept - x0)
 
   # It's possible (but very unlikely) that the provided dimensions don't result
   # in the penalty box intersecting with the penalty arc, or result in a single
-  # intersection point (pos and neg roots are the same).
+  # intersection point (r == x_distance)
   # If this does happen, we provide a warning
-  if (is.nan(pos_y) | (pos_y == neg_y)) {
+  if (r <= x_distance) {
     warning("Penalty box arc does not intersect with penalty box and won't appear with the current dimensions", call. = FALSE)
     return(list())
   }
 
-  # Determine the curvature by finding the central angle
-  # I *think* I can approximate the curvature is just a ratio (i.e. x:1)
-  # so a curvature of 1 is 1:1, or 50% of the circle.
-  # i.e. curvature / (curvature + 1) = arc proportion
-  # This isn't *exactly* correct (you can check by layering an
-  # `annotate_intersection_arc` with `xintercept = spec$penalty_spot_distance`
-  # on top of a pitch_international pitch and comparing to the drawn arc)
-  # but it is close enough.
+  # Find intersection of arc with a vertical line
+  # (Assuming there is a valid intersection...)
+  # This determines the start and end points, and the curvature
+  pos_y <-  sqrt(r^2 - (xintercept - x0)^2) + y0
+  neg_y <- -sqrt(r^2 - (xintercept - x0)^2) + y0
 
-  # However, it's possible to get NaNs here!
+  # Determine the curvature by finding the central angle
+  # using `grid::arcCurvature` - thanks @mdonoghoe! - and Pythagoras
+  # (Split the triangle into 2 right-angled triangles, find the angle and
+  # double it)
+  # Also - It's possible to get NaNs here!
   # This is because of the inaccuracies in double-precision numbers.
   # Consequently, if you have a perfect semi-circle (which should have an
   # angle of `acos(-1) = pi`), you might try to calculate `acos(-(1 + epsilon))`
   # where epsilon is some tiny value. The arccos of anything greater than -1 is
-  # undefined.
-  # To get around this, we cap the inner calculation to be -1 at the least
-  angle <- acos(pmax(-1, (r^2 + r^2 - abs(pos_y - neg_y)^2)/(2*r^2)))
-  arc_proportion <- angle/(2*pi)
-  curvature <- -arc_proportion/(arc_proportion-1)
+  # undefined!
+  angle <- 2 * acos(pmax(-1, x_distance/r))
+  angle_degrees <- 180*angle/pi
+  curvature <- grid::arcCurvature(angle_degrees)
 
   ggplot2::annotate(
     geom   = "curve",
