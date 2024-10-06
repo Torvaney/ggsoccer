@@ -13,3 +13,4 @@
 ^pkgdown$
 ^\.github$
 ^CRAN-SUBMISSION$
+^revdep$
