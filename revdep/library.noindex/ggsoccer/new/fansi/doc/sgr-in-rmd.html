@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Brodie Gaslam" />
+
+
+<title>ANSI CSI SGR Sequences in Rmarkdown</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">
+body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.5;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+
+padding: 4px;
+width: 100%;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 1em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+h3.subtitle {
+margin-top: -23px;
+}
+body pre + pre:not([class]) code.hljs, body pre + pre.fansi code.hljs {
+background-color: #EEE;
+}
+body pre + pre:not([class]), body pre + pre.fansi,
+body div.sourceCode + pre:not([class]),
+body div.sourceCode + pre.fansi {
+margin-top: -19px;
+}
+pre, code {
+background-color: #EEE;
+color: #333;
+
+}
+pre {
+border: 2px solid #EEE;
+overflow: auto;
+white-space: pre-wrap; 
+
+margin: 5px 0px;
+padding: 5px 10px;
+}
+code {
+font-size: 85%;
+}
+pre:not([class]) {
+color: #353;
+
+}
+div.sourceCode pre, div.sourceCode code {
+background-color: #FAFAFA;
+}
+div.sourceCode pre{
+
+}
+div.sourceCode + pre,
+div.sourceCode + div.diffobj_container {
+margin-top: -14px;
+}
+div.diffobj_container pre{
+line-height: 1.3;
+}
+
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+}
+p > code, li > code, h1 > code, h2 > code, h3 > code,
+h4 > code, h5 > code, h6 > code {
+padding: 2px 0px;
+line-height: 1;
+font-weight: bold;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+padding-bottom: 3px;
+font-size: 35px;
+line-height: 40px;
+border-bottom: 1px solid #999;
+}
+h2 {
+border-bottom: 1px solid #999;
+padding-top: 5px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+padding-top: 5px;
+font-size: 120%;
+}
+h4 {
+
+color: #777;
+font-size: 105%;
+}
+h4.author, h4.date {display: none;}
+h5, h6 {
+
+font-size: 105%;
+}
+a {
+color: #2255dd;
+font-weight: bold;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">ANSI CSI SGR Sequences in Rmarkdown</h1>
+<h4 class="author">Brodie Gaslam</h4>
+
+
+
+<div id="browsers-do-not-interpret-ansi-csi-sgr-sequences" class="section level3">
+<h3>Browsers Do Not Interpret ANSI CSI SGR Sequences</h3>
+<p>Over the past few years color has been gaining traction in the R
+terminal, particularly since Gábor Csárdi’s <a href="https://github.com/r-lib/crayon">crayon</a> made it easy to format
+text with <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">ANSI
+CSI SGR sequences</a>. At the same time the advent of JJ Alaire and
+Yihui Xie <code>rmarkdown</code> and <code>knitr</code> packages, along
+with John MacFarlane <code>pandoc</code>, made it easy to automatically
+incorporate R code and output in HTML documents.</p>
+<p>Unfortunately ANSI CSI SGR sequences are not recognized by web
+browsers and end up rendering weirdly<a href="#f1"><sup>1</sub></a>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>sgr.string <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="st">&quot;</span><span class="sc">\033</span><span class="st">[43;34mday &gt; night</span><span class="sc">\033</span><span class="st">[0m&quot;</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>  <span class="st">&quot;</span><span class="sc">\033</span><span class="st">[44;33mdawn &lt; dusk</span><span class="sc">\033</span><span class="st">[0m&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">writeLines</span>(sgr.string)</span></code></pre></div>
+<pre><code>## �[43;34mday &gt; night�[0m
+## �[44;33mdawn &lt; dusk�[0m</code></pre>
+</div>
+<div id="automatically-convert-ansi-csi-sgr-to-html" class="section level3">
+<h3>Automatically Convert ANSI CSI SGR to HTML</h3>
+<p><code>fansi</code> provides the <code>to_html</code> function which
+converts the ANSI CSI SGR sequences and OSC hyperlinks into HTML markup.
+When we combine it with <code>knitr::knit_hooks</code> we can modify the
+rendering of the <code>rmarkdown</code> document such that ANSI CSI SGR
+encoding is shown in the equivalent HTML.</p>
+<p><code>fansi::set_knit_hooks</code> is a convenience function that
+does just this. You should call it in an <code>rmarkdown</code> document
+with the:</p>
+<ul>
+<li>Chunk option <code>results</code> set to “asis”.</li>
+<li>Chunk option <code>comments</code> set to “” (empty string).</li>
+<li>The <code>knitr::knit_hooks</code> object as an argument.</li>
+</ul>
+<p>The corresponding <code>rmarkdown</code> hunk should look as
+follows:</p>
+<pre><code>```{r, comment=&quot;&quot;, results=&quot;asis&quot;}
+old.hooks &lt;- fansi::set_knit_hooks(knitr::knit_hooks)
+```</code></pre>
+<STYLE type="text/css" scoped>
+PRE.fansi SPAN {padding-top: .25em; padding-bottom: .25em};
+</STYLE>
+<p>We run this function for its side effects, which cause the output to
+be displayed as intended:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">writeLines</span>(sgr.string)</span></code></pre></div>
+<PRE class="fansi fansi-output"><CODE>## <span style="color: #0000BB; background-color: #BBBB00;">day &gt; night</span>
+## <span style="color: #BBBB00; background-color: #0000BB;">dawn &lt; dusk</span>
+</CODE></PRE>
+<p>If you are seeing extra line breaks in your output you may need to
+use:</p>
+<pre><code>```{r, comment=&quot;&quot;, results=&quot;asis&quot;}
+old.hooks &lt;- fansi::set_knit_hooks(knitr::knit_hooks, split.nl=TRUE)
+```</code></pre>
+<p>If you use <code>crayon</code> to generate your ANSI CSI SGR style
+strings you may need to set <code>options(crayon.enabled=TRUE)</code>,
+as in some cases <code>crayon</code> suppresses the SGR markup if it
+thinks it is not outputting to a terminal.</p>
+<p>We can also set hooks for the other types of outputs, and add some
+additional CSS styles.</p>
+<pre><code>```{r, comment=&quot;&quot;, results=&quot;asis&quot;}
+styles &lt;- c(
+  getOption(&quot;fansi.style&quot;, dflt_css()),  # default style
+  &quot;PRE.fansi CODE {background-color: transparent;}&quot;,
+  &quot;PRE.fansi-error {background-color: #DDAAAA;}&quot;,
+  &quot;PRE.fansi-warning {background-color: #DDDDAA;}&quot;,
+  &quot;PRE.fansi-message {background-color: #AAAADD;}&quot;
+)
+old.hooks &lt;- c(
+  old.hooks,
+  fansi::set_knit_hooks(
+    knitr::knit_hooks,
+    which=c(&quot;warning&quot;, &quot;error&quot;, &quot;message&quot;),
+    style=styles
+) )
+```</code></pre>
+<STYLE type="text/css" scoped>
+PRE.fansi SPAN {padding-top: .25em; padding-bottom: .25em};
+PRE.fansi CODE {background-color: transparent;}
+PRE.fansi-error {background-color: #DDAAAA;}
+PRE.fansi-warning {background-color: #DDDDAA;}
+PRE.fansi-message {background-color: #AAAADD;}
+</STYLE>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">message</span>(<span class="fu">paste0</span>(sgr.string, <span class="at">collapse=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<PRE class="fansi fansi-message"><CODE>## <span style="color: #0000BB; background-color: #BBBB00;">day &gt; night</span>
+## <span style="color: #BBBB00; background-color: #0000BB;">dawn &lt; dusk</span>
+</CODE></PRE>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">warning</span>(<span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">&quot;&quot;</span>, sgr.string), <span class="at">collapse=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<PRE class="fansi fansi-warning"><CODE>## Warning: 
+## <span style="color: #0000BB; background-color: #BBBB00;">day &gt; night</span>
+## <span style="color: #BBBB00; background-color: #0000BB;">dawn &lt; dusk</span>
+</CODE></PRE>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">stop</span>(<span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">&quot;&quot;</span>, sgr.string), <span class="at">collapse=</span><span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<PRE class="fansi fansi-error"><CODE>## Error in eval(expr, envir, enclos): 
+## <span style="color: #0000BB; background-color: #BBBB00;">day &gt; night</span>
+## <span style="color: #BBBB00; background-color: #0000BB;">dawn &lt; dusk</span>
+</CODE></PRE>
+<p>You can restore the old hooks at any time in your document with:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">do.call</span>(knitr<span class="sc">::</span>knit_hooks<span class="sc">$</span>set, old.hooks)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="fu">writeLines</span>(sgr.string)</span></code></pre></div>
+<pre><code>## �[43;34mday &gt; night�[0m
+## �[44;33mdawn &lt; dusk�[0m</code></pre>
+<p>See <code>?fansi::set_knit_hooks</code> for details.</p>
+<hr />
+<p><a name="f1"></a><sup>1</sup>For illustrative purposes we output raw
+ANSI CSI SGR sequences in this document. However, because the ESC
+control character causes problems with some HTML rendering services we
+replace it with the � symbol. Depending on the browser and process it
+would normally not be visible at all, or substituted with some other
+symbol.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

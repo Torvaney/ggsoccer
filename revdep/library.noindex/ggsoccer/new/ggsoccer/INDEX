@@ -1,0 +1,11 @@
+annotate_pitch          Adds soccer pitch markings as a layer for use
+                        in a ggplot plot.
+direction_label         Adds an arrow indicating the direction of play
+                        to a ggplot plot
+goals_box               Goals markings
+make_pitch_tracab       Create Tracab dimensions object from pitch
+                        length and width
+pitch_opta              Pitch dimensions
+rescale_coordinates     Rescale x-y coordinates
+theme_pitch             Removes background and axes details from a
+                        ggplot plot.

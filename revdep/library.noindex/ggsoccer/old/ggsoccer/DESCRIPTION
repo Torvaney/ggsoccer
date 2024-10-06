@@ -1,0 +1,26 @@
+Package: ggsoccer
+Title: Plot Soccer Event Data
+Version: 0.1.7
+Authors@R: person("Ben", "Torvaney", email = "torvaney@protonmail.com", role = c("aut", "cre"))
+Description: The 'ggplot2' package provides a powerful set of tools
+  for visualising and investigating data. The 'ggsoccer' package provides a
+  set of functions for elegantly displaying and exploring soccer event data
+  with 'ggplot2'. Providing extensible layers and themes, it is designed to
+  work smoothly with a variety of popular sports data providers.
+License: MIT + file LICENSE
+URL: https://torvaney.github.io/ggsoccer/,
+        https://github.com/Torvaney/ggsoccer
+Language: en-GB
+Depends: R (>= 3.3.0)
+Imports: ggplot2, rlang
+RoxygenNote: 7.2.2
+Encoding: UTF-8
+BugReports: https://github.com/torvaney/ggsoccer/issues
+Suggests: testthat (>= 2.1.0), pkgdown
+NeedsCompilation: no
+Packaged: 2022-12-16 15:33:14 UTC; ben
+Author: Ben Torvaney [aut, cre]
+Maintainer: Ben Torvaney <torvaney@protonmail.com>
+Repository: CRAN
+Date/Publication: 2022-12-16 15:50:02 UTC
+Built: R 4.1.3; ; 2024-10-06 20:51:35 UTC; unix

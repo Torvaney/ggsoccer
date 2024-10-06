@@ -1,0 +1,15 @@
+annotate_pitch	annotate_pitch
+direction_label	direction_label
+goals_box	goals_box
+goals_line	goals_box
+goals_strip	goals_box
+make_pitch_tracab	make_pitch_tracab
+pitch_international	pitch_opta
+pitch_opta	pitch_opta
+pitch_statsbomb	pitch_opta
+pitch_statsperform	pitch_opta
+pitch_tracab	pitch_opta
+pitch_wyscout	pitch_opta
+rescale_coordinates	rescale_coordinates
+rescale_international	rescale_coordinates
+theme_pitch	theme_pitch
