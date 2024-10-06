@@ -1,47 +1,47 @@
 # ggsoccer 0.1.8 (In progress)
 
--   Add IMPECT pitch dimensions (`pitch_impect`)
--   Fixed precision bug in arc drawing, which could cause the pitch to fail to render
+-   Add `pitch_impect`: IMPECT pitch dimensions.
+-   Fixed precision bug in arc drawing, which could cause the pitch to fail to render.
 -   Amended penalty arc to use the correct curvature, making them more visible on 
-    Wyscout and StatsPerform pitches
+    Wyscout and StatsPerform pitches.
 
 # ggsoccer 0.1.7
 
--   Add support for custom goals markings
--   Add `pitch_statsperform` alias for Opta data
+-   Add support for custom goals markings.
+-   Add `pitch_statsperform` alias for Opta data.
 
 # ggsoccer 0.1.6
 
--   Add support for Tracab pitch dimensions (`pitch_tracab` and `make_pitch_tracab`)
--   Make direction arrow an annotation
-    -   This ensures it will display properly for a ggplot without any data
+-   Add support for Tracab pitch dimensions (`pitch_tracab` and `make_pitch_tracab`).
+-   Make direction arrow an annotation.
+    -   This ensures it will display properly for a ggplot without any data.
 
 # ggsoccer 0.1.5
 
--   Make line widths consistent across all pitch elements
--   Convert coordinates between different pitch specifications
--   Add UEFA-standard pitch dimensions (`pitch_international`)
+-   Make line widths consistent across all pitch elements.
+-   Convert coordinates between different pitch specifications.
+-   Add UEFA-standard pitch dimensions (`pitch_international`).
 
 # ggsoccer 0.1.4
 
 -   Released to CRAN!
--   Link penalty box arc to pitch specification
+-   Link penalty box arc to pitch specification.
     -   Fixes a previous issue in which the edge of a circle could be seen poking out from behind the pitch (#8).
 
 # ggsoccer 0.1.3
 
--   Generate pitch markings from a generic specification
-    -   This makes ggsoccer compatible with any data provider
+-   Generate pitch markings from a generic specification.
+    -   This makes ggsoccer compatible with any data provider.
 
 # ggsoccer 0.1.2
 
--   Show pitch with `scale_*_reverse`
-    -   Centre-circle and penalty box arcs still do not properly render when `scale_*_reverse` is used
-    -   It appears this is an issue with ggplot2 ([#3120](https://github.com/tidyverse/ggplot2/issues/3120))
+-   Show pitch with `scale_*_reverse`.
+    -   Centre-circle and penalty box arcs still do not properly render when `scale_*_reverse` is used.
+    -   It appears this is an issue with ggplot2 ([#3120](https://github.com/tidyverse/ggplot2/issues/3120)).
 
 # ggsoccer 0.1.1
 
--   Display the whole pitch by default
+-   Display the whole pitch by default.
 
 # ggsoccer 0.1.0
 
