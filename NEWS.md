@@ -1,3 +1,5 @@
+# ggsoccer (development version)
+
 # ggsoccer 0.2.0
 
 # ggsoccer 0.1.8 (In progress)
